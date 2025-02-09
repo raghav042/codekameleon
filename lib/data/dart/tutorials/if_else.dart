@@ -1,4 +1,4 @@
-## If-Else
+const if_else = '''## If-Else
 
 ### If else statements are fundamental for decision-making in your code. They allow you to execute different code sections based on whether a specific condition is true or false.
 
@@ -24,3 +24,4 @@ if (age >= 18) {
 * The variable age holds the value 25.
 * The if statement checks if age is greater than or equal to 18 (voting age).
 * Since age is 25, which satisfies the condition, the code within the first curly braces (print("You are eligible   to vote.")) gets executed.
+''';

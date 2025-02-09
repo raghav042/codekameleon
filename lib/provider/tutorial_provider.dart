@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../data/dart/tutorials.dart';
+import '../data/dart/course.dart';
 import '../model/tutorial_model.dart';
 
 class TutorialProvider extends ChangeNotifier {
   int currentIndex = 0;
-  TutorialModel get currentTutorial => dartTutorials.tutorials[currentIndex];
+  TutorialModel get currentTutorial => dartCourse.tutorials[currentIndex];
 
   void updateIndex(int index) {
     currentIndex = index;

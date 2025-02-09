@@ -11,16 +11,16 @@ class CodeElementBuilder extends MarkdownElementBuilder {
   @override
   Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
     return SyntaxView(
-        code: element.textContent, // Code text
-        syntax: syntax, // Language
-        syntaxTheme: isDarkMode
-            ? SyntaxTheme.vscodeDark()
-            : SyntaxTheme.vscodeLight(), // Theme
-        fontSize: 14.0, // Font size
-        withZoom: false, // Enable/Disable zoom icon controls
-        withLinesCount: false, // Enable/Disable line number
-        expanded: false, // Enable/Disable container expansion
-        selectable: false // Enable/Disable code text selection
-        );
+      code: element.textContent, // Code text
+      syntax: syntax, // Language
+      syntaxTheme: isDarkMode
+          ? SyntaxTheme.vscodeDark()
+          : SyntaxTheme.vscodeLight(), // Theme
+      fontSize: 14.0, // Font size
+      withZoom: false, // Enable/Disable zoom icon controls
+      withLinesCount: false, // Enable/Disable line number
+      expanded: false, // Enable/Disable container expansion
+      selectable: false, // Enable/Disable code text selection
+    );
   }
 }

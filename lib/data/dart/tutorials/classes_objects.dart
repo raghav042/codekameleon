@@ -1,4 +1,4 @@
-## Classes And Objects
+const classes_objects = '''## Classes And Objects
 
 ### In Dart, classes are like blueprints for creating objects. They define the properties (data) and behaviors (functions).
 
@@ -40,3 +40,4 @@ var object_name  = new class_name();
 ```
 * Each object holds its own set of values for the properties defined in its class. For example, a Car object might have a color property set to "red" and another Car object might have it set to "blue."
 * Objects can call the methods defined in their class. These methods operate on the object's own data.
+''';

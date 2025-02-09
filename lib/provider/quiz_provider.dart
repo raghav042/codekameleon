@@ -1,10 +1,10 @@
-// import 'package:appinio_swiper/appinio_swiper.dart';
-// import 'package:flutter/material.dart';
-// import 'package:learn_dart/data/quiz_list.dart';
-// import 'package:learn_dart/model/quiz_model.dart';
-// import 'package:learn_dart/ui/quiz/quiz_screen.dart';
+// import 'package:appinio_swiper/appinio_swiper.tutorials';
+// import 'package:flutter/material.tutorials';
+// import 'package:learn_dart/data/quiz_list.tutorials';
+// import 'package:learn_dart/model/quiz_model.tutorials';
+// import 'package:learn_dart/ui/quiz/quiz_screen.tutorials';
 //
-// import '../data/app_constant.dart';
+// import '../data/app_constant.tutorials';
 //
 // class QuizProvider with ChangeNotifier {
 //   int currentIndex = 0;

@@ -9,10 +9,12 @@ class TutorialScreen extends StatelessWidget {
     required this.tutorial,
     required this.syntax,
     required this.iconPath,
+    required this.scheme,
   });
   final TutorialModel tutorial;
   final Syntax syntax;
   final String iconPath;
+  final ColorScheme scheme;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class TutorialScreen extends StatelessWidget {
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
           child: MarkdownViewer(
-            filePath: tutorial.filePath,
+            content: tutorial.filePath,
             syntax: syntax,
           ),
         ),
