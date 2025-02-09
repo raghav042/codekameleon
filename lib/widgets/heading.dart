@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Heading extends StatelessWidget {
   const Heading({super.key, required this.title});
@@ -7,10 +8,13 @@ class Heading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20.0, 20, 12, 4),
+      padding: const EdgeInsets.fromLTRB(20.0, 22, 12, 4),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        style: GoogleFonts.quicksand(
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

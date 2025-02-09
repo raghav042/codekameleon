@@ -16,6 +16,18 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 8,
+                ),
+                child: SearchAnchor.bar(
+                  barHintText: "Search anything",
+                  suggestionsBuilder: (_, c) {
+                    return [];
+                  },
+                ),
+              ),
               const Heading(title: "Quizes"),
               SizedBox(
                 height: 180,
