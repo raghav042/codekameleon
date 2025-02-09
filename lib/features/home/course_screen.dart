@@ -26,12 +26,13 @@ class CourseScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TutorialScreen(
-                            tutorial: course.tutorials[index],
-                            syntax: course.syntax,
-                            iconPath: course.smallIcon,
-                            scheme: scheme,
-                          )));
+                    builder: (context) => TutorialScreen(
+                      tutorial: course.tutorials[index],
+                      syntax: course.syntax,
+                      iconPath: course.smallIcon,
+                      scheme: scheme,
+                    ),
+                  ));
             },
             contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
             tileColor: scheme.primaryContainer,
@@ -41,9 +42,9 @@ class CourseScreen extends StatelessWidget {
             ),
             title: Text(course.tutorials[index].title),
             trailing: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical:  6),
               decoration: BoxDecoration(
-                color: scheme.surface,
+                //color: scheme.surface,
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Row(
@@ -52,14 +53,14 @@ class CourseScreen extends StatelessWidget {
                   Icon(
                     Icons.access_time_rounded,
                     size: 16,
-                    color: scheme.primary,
+                    color: scheme.onSurface,
                   ),
                   const SizedBox(width: 6),
                   Text(
                     course.tutorials[index].duration,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: scheme.primary,
+                      color: scheme.onSurface,
                     ),
                   ),
                 ],

@@ -1,11 +1,17 @@
 import 'package:codekameleon/model/course_model.dart';
+import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../features/home/course_screen.dart';
 
 class CourseTile extends StatelessWidget {
-  const CourseTile({super.key, required this.course});
+  const CourseTile({
+    super.key,
+    required this.course,
+    this.isRecentCourse = false,
+  });
   final CourseModel course;
+  final bool isRecentCourse;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +25,20 @@ class CourseTile extends StatelessWidget {
 
           return GestureDetector(
             onTap: () {
+              Preferences.saveRecentCourse(course.name);
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CourseScreen(
-                            scheme: scheme,
-                            course: course,
-                          )));
+                    builder: (context) => CourseScreen(
+                      scheme: scheme,
+                      course: course,
+                    ),
+                  ));
             },
             child: Container(
-              height: 200,
+              height: isRecentCourse ? 180 : 100,
               width: double.maxFinite,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: EdgeInsets.symmetric(horizontal: isRecentCourse ? 20 : 0),
               decoration: BoxDecoration(
                 color: scheme.primaryContainer,
                 borderRadius: BorderRadius.circular(12),
@@ -39,10 +47,13 @@ class CourseTile extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Image.asset(course.largeIcon),
+                    child: Image.asset(
+                      course.largeIcon,
+                      width: isRecentCourse ? 150 : 80,
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(isRecentCourse ? 20 : 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -50,7 +61,7 @@ class CourseTile extends StatelessWidget {
                           course.name,
                           style: TextStyle(
                             color: scheme.primary,
-                            fontSize: 30,
+                            fontSize: isRecentCourse ? 35 : 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -65,19 +76,20 @@ class CourseTile extends StatelessWidget {
                             Text(
                               course.tutorials.length.toString(),
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: isRecentCourse ? 18 : 16,
                                 fontWeight: FontWeight.bold,
                                 color: scheme.onPrimaryContainer,
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            Text(
-                              "Tutorials",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: scheme.onPrimaryContainer,
+                            if (isRecentCourse) const SizedBox(width: 8),
+                            if (isRecentCourse)
+                              Text(
+                                "Tutorials",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: scheme.onPrimaryContainer,
+                                ),
                               ),
-                            ),
                           ],
                         )
                       ],
