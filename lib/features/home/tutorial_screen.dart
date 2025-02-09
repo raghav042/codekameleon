@@ -3,6 +3,8 @@ import 'package:codekameleon/widgets/markdown_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
+import '../../widgets/heading.dart';
+
 class TutorialScreen extends StatelessWidget {
   const TutorialScreen({
     super.key,
@@ -45,9 +47,22 @@ class TutorialScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
-          child: MarkdownViewer(
-            content: tutorial.filePath,
-            syntax: syntax,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MarkdownViewer(
+                content: tutorial.filePath,
+                syntax: syntax,
+              ),
+              const SizedBox(height: 30),
+              const Heading(title: "Advertisement"),
+              const SizedBox(height: 10),
+              Container(
+                height: 200,
+                width: double.maxFinite,
+                color: Colors.teal,
+              )
+            ],
           ),
         ),
       ),

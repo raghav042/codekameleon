@@ -55,11 +55,11 @@ ThemeData lightTheme() {
       selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
-    chipTheme: ChipThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25),
-        side: BorderSide(color: scheme.surfaceContainerHighest),
-      ),
-    ),
+    // chipTheme: ChipThemeData(
+    //   shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.circular(25),
+    //     side: BorderSide(color: scheme.surfaceContainerHighest),
+    //   ),
+    // ),
   );
 }
