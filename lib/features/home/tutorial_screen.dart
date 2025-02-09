@@ -18,7 +18,6 @@ class TutorialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text(tutorial.title),
@@ -26,14 +25,17 @@ class TutorialScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: colorScheme.primaryContainer,
+              color: scheme.primary,
               borderRadius: BorderRadius.circular(25),
             ),
             child: Row(
               children: [
-                const Icon(Icons.access_time, size: 20),
+                Icon(Icons.access_time, size: 20, color: scheme.onPrimary),
                 const SizedBox(width: 8),
-                Text(tutorial.duration),
+                Text(
+                  tutorial.duration,
+                  style: TextStyle(color: scheme.onPrimary),
+                ),
               ],
             ),
           ),

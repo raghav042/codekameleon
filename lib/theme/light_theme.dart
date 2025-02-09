@@ -50,6 +50,7 @@ ThemeData lightTheme() {
       indicatorColor: scheme.primary,
     ),
     listTileTheme: ListTileThemeData(
+      tileColor: scheme.surfaceContainerHighest,
       selectedColor: scheme.onSurface,
       selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

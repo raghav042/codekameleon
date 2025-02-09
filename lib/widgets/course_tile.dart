@@ -40,7 +40,7 @@ class CourseTile extends StatelessWidget {
               width: double.maxFinite,
               margin: EdgeInsets.symmetric(horizontal: isRecentCourse ? 20 : 0),
               decoration: BoxDecoration(
-                color: scheme.primaryContainer,
+                color: scheme.primary,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Stack(
@@ -60,7 +60,7 @@ class CourseTile extends StatelessWidget {
                         Text(
                           course.name,
                           style: TextStyle(
-                            color: scheme.primary,
+                            color: scheme.onPrimary,
                             fontSize: isRecentCourse ? 35 : 22,
                             fontWeight: FontWeight.bold,
                           ),
@@ -70,7 +70,7 @@ class CourseTile extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.menu_book_rounded,
-                              color: scheme.primary,
+                              color: scheme.onPrimary,
                             ),
                             const SizedBox(width: 10),
                             Text(
@@ -78,7 +78,7 @@ class CourseTile extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: isRecentCourse ? 18 : 16,
                                 fontWeight: FontWeight.bold,
-                                color: scheme.onPrimaryContainer,
+                                color: scheme.onPrimary,
                               ),
                             ),
                             if (isRecentCourse) const SizedBox(width: 8),
@@ -87,7 +87,7 @@ class CourseTile extends StatelessWidget {
                                 "Tutorials",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: scheme.onPrimaryContainer,
+                                  color: scheme.onPrimary,
                                 ),
                               ),
                           ],
