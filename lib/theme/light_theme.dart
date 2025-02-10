@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme() {
-  final scheme = ColorScheme.fromSeed(seedColor: Colors.purple);
+  final scheme = ColorScheme.fromSeed(seedColor: Colors.blue);
   return ThemeData(
     colorScheme: scheme,
     textTheme: GoogleFonts.ubuntuTextTheme(),
@@ -50,7 +50,7 @@ ThemeData lightTheme() {
       indicatorColor: scheme.primary,
     ),
     listTileTheme: ListTileThemeData(
-      tileColor: scheme.surfaceContainerHighest,
+      tileColor: scheme.surfaceContainerHigh,
       selectedColor: scheme.onSurface,
       selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

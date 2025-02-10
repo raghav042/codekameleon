@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData darkTheme() {
   final scheme = ColorScheme.fromSeed(
-    seedColor: Colors.purple,
+    seedColor: Colors.blue,
     brightness: Brightness.dark,
   );
   return ThemeData(

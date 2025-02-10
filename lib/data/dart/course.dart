@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 import '../../model/course_model.dart';
@@ -16,6 +18,7 @@ const CourseModel dartCourse = CourseModel(
   smallIcon: "assets/icons/dart.png",
   largeIcon: "assets/icons/dart_large.png",
   syntax: Syntax.DART,
+  color: Color(0xff1e96fc),
   tutorials: [
     TutorialModel(
       title: "For loop",

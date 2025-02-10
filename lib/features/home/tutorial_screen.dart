@@ -11,12 +11,12 @@ class TutorialScreen extends StatelessWidget {
     required this.tutorial,
     required this.syntax,
     required this.iconPath,
-    required this.scheme,
+    required this.color,
   });
   final TutorialModel tutorial;
   final Syntax syntax;
   final String iconPath;
-  final ColorScheme scheme;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +27,16 @@ class TutorialScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: scheme.primary,
+              color: color,
               borderRadius: BorderRadius.circular(25),
             ),
             child: Row(
               children: [
-                Icon(Icons.access_time, size: 20, color: scheme.onPrimary),
+                const Icon(Icons.access_time, size: 20, color: Colors.white),
                 const SizedBox(width: 8),
                 Text(
                   tutorial.duration,
-                  style: TextStyle(color: scheme.onPrimary),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),

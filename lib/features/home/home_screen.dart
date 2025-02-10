@@ -9,61 +9,77 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          //padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12.0,
-                  vertical: 8,
-                ),
-                child: SearchAnchor.bar(
-                  barHintText: "Search anything",
-                  suggestionsBuilder: (_, c) {
-                    return [];
-                  },
-                ),
-              ),
-              const Heading(title: "Quizes"),
-              SizedBox(
-                height: 180,
-                child: CarouselView(
-                  itemExtent: 300,
-                  children: List.generate(
-                    7,
-                    (i) => ColoredBox(color: colorScheme.tertiaryContainer),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            //padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SearchAnchor.bar(
+                          barElevation: const WidgetStatePropertyAll(0),
+                          barHintText: "Search anything",
+                          suggestionsBuilder: (_, c) {
+                            return [];
+                          },
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.settings_outlined),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              if (CourseHelper.recentCourse != null)
-                const Heading(title: "Currently Learning"),
-              if (CourseHelper.recentCourse != null)
-                CourseTile(
-                  course: CourseHelper.recentCourse!,
-                  isRecentCourse: true,
+                const Heading(title: "Quizes"),
+                SizedBox(
+                  height: 170,
+                  child: CarouselView(
+                    itemExtent: 300,
+                    children: List.generate(
+                      7,
+                      (i) => ColoredBox(color: colorScheme.surfaceContainer),
+                    ),
+                  ),
                 ),
-              const Heading(title: "Other Tutorials"),
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.5,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 16,
+                if (CourseHelper.recentCourse != null)
+                  const Heading(title: "Currently Learning"),
+                if (CourseHelper.recentCourse != null)
+                  CourseTile(
+                    course: CourseHelper.recentCourse!,
+                    isRecentCourse: true,
+                  ),
+                const Heading(title: "Other Tutorials"),
+                GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.7,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 16,
+                  ),
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: CourseHelper.courses.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (_, i) {
+                    return CourseTile(course: CourseHelper.courses[i]);
+                  },
                 ),
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: CourseHelper.courses.length,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (_, i) {
-                  return CourseTile(course: CourseHelper.courses[i]);
-                },
-              ),
-              const SizedBox(height: 30),
-            ],
+                const SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),
