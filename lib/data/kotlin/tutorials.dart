@@ -9,6 +9,6 @@ const CourseModel kotlinCourse = CourseModel(
   smallIcon: "assets/icons/kotlin.png",
   largeIcon: "assets/icons/kotlin_large.png",
   syntax: Syntax.KOTLIN,
-  color: Color(0xff9d4edd),
+  color: Color(0xffA97BFF),//9d4edd
   tutorials: [],
 );

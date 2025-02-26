@@ -9,6 +9,6 @@ const CourseModel cppCourse = CourseModel(
   smallIcon: "assets/icons/c++.png",
   largeIcon: "assets/icons/c++_large.png",
   syntax: Syntax.CPP,
-  color: Color(0xff0077b6),
+  color: Color(0xff0081CF),//0077b6
   tutorials: [],
 );

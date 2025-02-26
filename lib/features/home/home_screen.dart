@@ -3,6 +3,8 @@ import 'package:codekameleon/widgets/course_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
+import '../search/search.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -16,10 +18,22 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            //padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Heading(title: "Popular Tutorials"),
+
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: CourseHelper.courses.length,
+                      itemBuilder: (_, i) {
+                        return CourseTile(course: CourseHelper.courses[i]);
+                      }),
+                ),
+                SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12.0,
@@ -54,30 +68,30 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (CourseHelper.recentCourse != null)
-                  const Heading(title: "Currently Learning"),
-                if (CourseHelper.recentCourse != null)
-                  CourseTile(
-                    course: CourseHelper.recentCourse!,
-                    isRecentCourse: true,
-                  ),
-                const Heading(title: "Other Tutorials"),
-                GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.7,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 16,
-                  ),
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: CourseHelper.courses.length,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, i) {
-                    return CourseTile(course: CourseHelper.courses[i]);
-                  },
-                ),
-                const SizedBox(height: 30),
+                // if (CourseHelper.recentCourse != null)
+                //   const Heading(title: "Currently Learning"),
+                // if (CourseHelper.recentCourse != null)
+                //   CourseTile(
+                //     course: CourseHelper.recentCourse!,
+                //     isRecentCourse: true,
+                //   ),
+
+                // GridView.builder(
+                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                //     crossAxisCount: 2,
+                //     childAspectRatio: 1.7,
+                //     crossAxisSpacing: 12,
+                //     mainAxisSpacing: 16,
+                //   ),
+                //   shrinkWrap: true,
+                //   padding: const EdgeInsets.symmetric(horizontal: 16),
+                //   itemCount: CourseHelper.courses.length,
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   itemBuilder: (_, i) {
+                //     return CourseTile(course: CourseHelper.courses[i]);
+                //   },
+                // ),
+                const SizedBox(height: 100),
               ],
             ),
           ),

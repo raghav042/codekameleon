@@ -9,10 +9,8 @@ class CourseTile extends StatelessWidget {
   const CourseTile({
     super.key,
     required this.course,
-    this.isRecentCourse = false,
   });
   final CourseModel course;
-  final bool isRecentCourse;
 
   @override
   Widget build(BuildContext context) {
@@ -20,72 +18,84 @@ class CourseTile extends StatelessWidget {
       onTap: () {
         Preferences.saveRecentCourse(course.name);
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CourseScreen(
-                color: course.color,
-                course: course,
-              ),
-            ));
+          context,
+          MaterialPageRoute(
+            builder: (context) => CourseScreen(
+              color: course.color,
+              course: course,
+            ),
+          ),
+        );
       },
       child: Container(
-        height: isRecentCourse ? 170 : 100,
-        width: double.maxFinite,
-        margin: EdgeInsets.symmetric(horizontal: isRecentCourse ? 16 : 0),
+        height: 180,
+        width: 160,
+        margin: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           color: course.color, //scheme.primary,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(200),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
         ),
         child: Stack(
           children: [
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.topLeft,
               child: Image.asset(
                 course.largeIcon,
-                width: isRecentCourse ? 150 : 80,
+                height: 100,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(isRecentCourse ? 20 : 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    course.name,
-                    style: GoogleFonts.quicksand(
-                      color: Colors.white,
-                      fontSize: isRecentCourse ? 40 : 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.menu_book_rounded,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      course.name,
+                      maxLines: 2,
+                      style: GoogleFonts.quicksand(
                         color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(width: 10),
-                      Text(
-                        course.tutorials.length.toString(),
-                        style: TextStyle(
-                          fontSize: isRecentCourse ? 18 : 16,
-                          fontWeight: FontWeight.bold,
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.menu_book_rounded,
                           color: Colors.white,
+                          size: 20,
                         ),
-                      ),
-                      if (isRecentCourse) const SizedBox(width: 8),
-                      if (isRecentCourse)
-                        const Text(
-                          "Tutorials",
-                          style: TextStyle(
+                        const SizedBox(width: 10),
+                        Text(
+                          course.tutorials.length.toString(),
+                          style: const TextStyle(
                             fontSize: 16,
+                            fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
-                    ],
-                  )
-                ],
+                        const SizedBox(width: 6),
+                        const Text(
+                          "Tutorials",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ],
