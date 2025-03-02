@@ -9,6 +9,6 @@ const CourseModel swiftCourse = CourseModel(
   smallIcon: "assets/icons/swift.png",
   largeIcon: "assets/icons/swift_large.png",
   syntax: Syntax.SWIFT,
-  color: Color(0xffA8B9CC),//f3722c
+  color: Color(0xfff3722c),
   tutorials: [],
 );

@@ -3,7 +3,7 @@ import 'package:codekameleon/widgets/course_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
-import '../search/search.dart';
+import '../../widgets/recent_course_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,19 +21,18 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Heading(title: "Popular Tutorials"),
-
+                const Heading(title: "Quizes"),
                 SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: CourseHelper.courses.length,
-                      itemBuilder: (_, i) {
-                        return CourseTile(course: CourseHelper.courses[i]);
-                      }),
+                  height: 170,
+                  child: CarouselView(
+                    itemExtent: 300,
+                    children: List.generate(
+                      7,
+                      (i) => ColoredBox(color: colorScheme.surfaceContainer),
+                    ),
+                  ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12.0,
@@ -57,40 +56,21 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Heading(title: "Quizes"),
+                if (CourseHelper.recentCourse != null)
+                  const Heading(title: "Currently Learning"),
+                if (CourseHelper.recentCourse != null)
+                  RecentCourseTile(course: CourseHelper.recentCourse!),
+                const Heading(title: "Popular Tutorials"),
                 SizedBox(
-                  height: 170,
-                  child: CarouselView(
-                    itemExtent: 300,
-                    children: List.generate(
-                      7,
-                      (i) => ColoredBox(color: colorScheme.surfaceContainer),
-                    ),
+                  height: 200,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: CourseHelper.courses.length,
+                    itemBuilder: (_, i) =>
+                        CourseTile(course: CourseHelper.courses[i]),
                   ),
                 ),
-                // if (CourseHelper.recentCourse != null)
-                //   const Heading(title: "Currently Learning"),
-                // if (CourseHelper.recentCourse != null)
-                //   CourseTile(
-                //     course: CourseHelper.recentCourse!,
-                //     isRecentCourse: true,
-                //   ),
-
-                // GridView.builder(
-                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //     crossAxisCount: 2,
-                //     childAspectRatio: 1.7,
-                //     crossAxisSpacing: 12,
-                //     mainAxisSpacing: 16,
-                //   ),
-                //   shrinkWrap: true,
-                //   padding: const EdgeInsets.symmetric(horizontal: 16),
-                //   itemCount: CourseHelper.courses.length,
-                //   physics: const NeverScrollableScrollPhysics(),
-                //   itemBuilder: (_, i) {
-                //     return CourseTile(course: CourseHelper.courses[i]);
-                //   },
-                // ),
                 const SizedBox(height: 100),
               ],
             ),
