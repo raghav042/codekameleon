@@ -12,6 +12,7 @@ class CourseModel {
     required this.color,
     required this.tutorials,
   });
+
   final String name;
   final String smallIcon;
   final String largeIcon;
