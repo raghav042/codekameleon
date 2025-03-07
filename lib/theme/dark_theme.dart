@@ -53,9 +53,9 @@ ThemeData darkTheme() {
       indicatorColor: scheme.primary,
     ),
     listTileTheme: ListTileThemeData(
-      tileColor: scheme.surfaceContainerHighest,
-      selectedColor: scheme.onSecondaryContainer,
-      selectedTileColor: scheme.secondaryContainer,
+      // tileColor: scheme.surfaceContainerHighest,
+      // selectedColor: scheme.onSecondaryContainer,
+      // selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),

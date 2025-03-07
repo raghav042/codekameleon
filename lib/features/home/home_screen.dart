@@ -12,9 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -25,10 +23,23 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 170,
                   child: CarouselView(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                     itemExtent: 300,
                     children: List.generate(
-                      7,
-                      (i) => ColoredBox(color: colorScheme.surfaceContainer),
+                      quizes.length,
+                      (i) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          border:
+                              Border.all(width: 2, color: colorScheme.primary),
+                          image: DecorationImage(
+                            image: AssetImage(quizes[i]),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -61,14 +72,16 @@ class HomeScreen extends StatelessWidget {
                 if (CourseHelper.recentCourse != null)
                   RecentCourseTile(course: CourseHelper.recentCourse!),
                 const Heading(title: "Popular Tutorials"),
-                SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: CourseHelper.courses.length,
-                    itemBuilder: (_, i) =>
-                        CourseTile(course: CourseHelper.courses[i]),
+                Center(
+                  child: Wrap(
+                    spacing: 15,
+                    runSpacing: 20,
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    children: List.generate(
+                      CourseHelper.courses.length,
+                      (i) => CourseTile(course: CourseHelper.courses[i]),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 100),
@@ -80,3 +93,13 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+List<String> quizes = [
+  "assets/images/c_quiz.png",
+  "assets/images/cpp_quiz.png",
+  "assets/images/java_quiz.png",
+  "assets/images/dart_quiz.png",
+  "assets/images/swift_quiz.png",
+  "assets/images/kotlin_quiz.png",
+  "assets/images/javascript_quiz.png",
+];

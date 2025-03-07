@@ -8,10 +8,10 @@ class Heading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20.0, 22, 12, 4),
+      padding: const EdgeInsets.fromLTRB(24.0, 20, 12, 8),
       child: Text(
         title,
-        style: GoogleFonts.quicksand(
+        style: const TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.bold,
         ),

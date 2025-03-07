@@ -7,7 +7,7 @@ ThemeData lightTheme() {
   return ThemeData(
     colorScheme: scheme,
     textTheme: GoogleFonts.ubuntuTextTheme(),
-    scaffoldBackgroundColor: Colors.white,
+    //scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: false,
@@ -50,9 +50,9 @@ ThemeData lightTheme() {
       indicatorColor: scheme.primary,
     ),
     listTileTheme: ListTileThemeData(
-      tileColor: scheme.surfaceContainerHigh,
-      selectedColor: scheme.onSurface,
-      selectedTileColor: scheme.secondaryContainer,
+      // tileColor: scheme.surfaceContainerHigh,
+      // selectedColor: scheme.onSurface,
+      // selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
     // chipTheme: ChipThemeData(

@@ -10,85 +10,73 @@ class CourseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            backgroundColor: Colors.white,
-            expandedHeight: 250,
-            actions: [
-              Image.asset(course.smallIcon, height: 28),
-            ],
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(course.name),
-              centerTitle: true,
-              background: Container(color: color),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildChips(),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    primary: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
-                    ),
-                    itemCount: course.tutorials.length,
-                    itemBuilder: (_, index) {
-                      return ListTile(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => TutorialScreen(
-                                  tutorial: course.tutorials[index],
-                                  syntax: course.syntax,
-                                  iconPath: course.smallIcon,
-                                  color: color,
-                                ),
-                              ));
-                        },
-                        contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
-                        leading: Text(
-                          "${index + 1}",
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                        title: Text(course.tutorials[index].title),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.access_time_rounded,
-                              size: 16,
-                              //color: scheme.onSurface,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              course.tutorials[index].duration,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                //color: scheme.onSurface,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  ),
-                  SizedBox(height: 400),
-                ],
-              ),
-            ),
-          ),
+      appBar: AppBar(
+        title: Text(course.name),
+        actions: [
+          Image.asset(course.smallIcon, height: 28),
         ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildChips(),
+              ListView.separated(
+                shrinkWrap: true,
+                primary: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
+                ),
+                itemCount: course.tutorials.length,
+                itemBuilder: (_, index) {
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TutorialScreen(
+                              tutorial: course.tutorials[index],
+                              syntax: course.syntax,
+                              iconPath: course.smallIcon,
+                              color: color,
+                            ),
+                          ));
+                    },
+                    contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
+                    leading: Text(
+                      "${index + 1}",
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    title: Text(course.tutorials[index].title),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.access_time_rounded,
+                          size: 16,
+                          //color: scheme.onSurface,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          course.tutorials[index].duration,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            //color: scheme.onSurface,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
+              ),
+              SizedBox(height: 400),
+            ],
+          ),
+        ),
       ),
     );
   }

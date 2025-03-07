@@ -25,7 +25,7 @@ class RecentCourseTile extends StatelessWidget {
         );
       },
       child: Container(
-        height: 200,
+        height: 180,
         width: double.maxFinite,
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
@@ -54,9 +54,9 @@ class RecentCourseTile extends StatelessWidget {
                       course.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.quicksand(
+                      style: GoogleFonts.rajdhani(
                         color: Colors.white,
-                        fontSize: 40,
+                        fontSize: 45,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
