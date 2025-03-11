@@ -1,4 +1,5 @@
-const try_catch = '''## The Try-Catch Block: Catching Exceptions
+const try_catch = '''
+# The Try-Catch Block: Catching Exceptions
 
 ### In Dart, try-catch blocks are essential for handling errors (exceptions) that might occur during program execution. 
 What are **Exceptions?**

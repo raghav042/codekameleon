@@ -1,7 +1,7 @@
-import 'dart:ui';
 
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
+import '../../constant/app_color.dart';
 import '../../model/course_model.dart';
 import '../../model/tutorial_model.dart';
 import 'tutorials/classes_objects.dart';
@@ -18,55 +18,55 @@ const CourseModel dartCourse = CourseModel(
   smallIcon: "assets/icons/dart.png",
   largeIcon: "assets/icons/dart_large.png",
   syntax: Syntax.DART,
-  color: Color(0xff1e96fc),
+  color: AppColor.dart,
   tutorials: [
     TutorialModel(
       title: "For loop",
       description: "Control Flow in Dart",
       duration: "5 min",
-      filePath: for_loop,
+      content: for_loop,
     ),
     TutorialModel(
       title: "While loop",
       description: "Control Flow in Dart",
       duration: "7 min",
-      filePath: while_loop,
+      content: while_loop,
     ),
     TutorialModel(
       title: "If Else",
       description: "If-Else Statement in Dart",
       duration: "5 min",
-      filePath: if_else,
+      content: if_else,
     ),
     TutorialModel(
       title: "If Else-If",
       description: "If Else-If Statement in Dart",
       duration: "8 min",
-      filePath: if_else_if,
+      content: if_else_if,
     ),
     TutorialModel(
       title: "Functions",
       description: "Functions in Dart",
       duration: "10 min",
-      filePath: function,
+      content: function,
     ),
     TutorialModel(
       title: "Classes And Objects",
       description: "Object Oriented Programming",
       duration: "15 min",
-      filePath: classes_objects,
+      content: classes_objects,
     ),
     TutorialModel(
       title: "Constructors",
       description: "Object Oriented Programming",
       duration: "7 min",
-      filePath: constructor,
+      content: constructor,
     ),
     TutorialModel(
       title: "Try-Catch",
       description: "Exception Handling",
       duration: "10 min",
-      filePath: try_catch,
+      content: try_catch,
     ),
   ],
 );

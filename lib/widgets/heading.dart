@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Heading extends StatelessWidget {
   const Heading({super.key, required this.title});

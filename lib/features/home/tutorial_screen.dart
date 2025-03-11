@@ -51,7 +51,7 @@ class TutorialScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MarkdownViewer(
-                content: tutorial.filePath,
+                content: tutorial.content,
                 syntax: syntax,
               ),
               const SizedBox(height: 30),
@@ -65,6 +65,31 @@ class TutorialScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildChips() {
+    return SizedBox(
+      height: 40,
+      child: ListView.separated(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: 7,
+        itemBuilder: (_, i) {
+          final isSelected = i == 2;
+          return ChoiceChip(
+            selectedColor: color,
+            labelStyle: TextStyle(color: isSelected ? Colors.white : null),
+            checkmarkColor: isSelected ? Colors.white : null,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            label: Text("label $i"),
+            selected: isSelected,
+            onSelected: (v) {},
+          );
+        },
+        separatorBuilder: (_, __) => SizedBox(width: 8),
       ),
     );
   }

@@ -1,9 +1,9 @@
-import 'package:codekameleon/data/c++/tutorials.dart';
-import 'package:codekameleon/data/c/tutorials.dart';
-import 'package:codekameleon/data/java/tutorials.dart';
-import 'package:codekameleon/data/javascript/tutorials.dart';
-import 'package:codekameleon/data/kotlin/tutorials.dart';
-import 'package:codekameleon/data/swift/tutorials.dart';
+import 'package:codekameleon/data/c++/course.dart';
+import 'package:codekameleon/data/c/course.dart';
+import 'package:codekameleon/data/java/course.dart';
+import 'package:codekameleon/data/javascript/course.dart';
+import 'package:codekameleon/data/kotlin/course.dart';
+import 'package:codekameleon/data/swift/course.dart';
 import 'package:codekameleon/preferences/preferences.dart';
 
 import '../data/dart/course.dart';
@@ -14,9 +14,8 @@ class CourseHelper {
 
   static CourseModel? get recentCourse {
     final String? recentCourseName = Preferences.getRecentCourse();
-    return recentCourseName != null
-        ? _courses.where((e) => e.name == recentCourseName).first
-        : null;
+    if (recentCourseName == null) return null;
+    return _courses.firstWhere((e) => e.name == recentCourseName);
   }
 
   static List<CourseModel> get courses {
@@ -25,6 +24,7 @@ class CourseHelper {
     if (recentCourseName == null) return _courses;
     return _courses.where((e) => e.name != recentCourseName).toList();
   }
+
 
   static const List<CourseModel> _courses = [
     cCourse,

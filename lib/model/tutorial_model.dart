@@ -3,11 +3,11 @@ class TutorialModel {
     required this.title,
     required this.description,
     required this.duration,
-    required this.filePath,
+    required this.content,
   });
 
   final String title;
   final String description;
   final String duration;
-  final String filePath;
+  final String content;
 }

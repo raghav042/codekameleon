@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme() {
-  final scheme = ColorScheme.fromSeed(seedColor: Colors.purple);
+  final scheme = ColorScheme.fromSeed(seedColor: Colors.blue);
   return ThemeData(
     colorScheme: scheme,
     textTheme: GoogleFonts.ubuntuTextTheme(),

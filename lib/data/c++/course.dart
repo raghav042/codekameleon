@@ -1,7 +1,7 @@
-import 'dart:ui';
 
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
+import '../../constant/app_color.dart';
 import '../../model/course_model.dart';
 
 const CourseModel cppCourse = CourseModel(
@@ -9,6 +9,6 @@ const CourseModel cppCourse = CourseModel(
   smallIcon: "assets/icons/c++.png",
   largeIcon: "assets/icons/c++_large.png",
   syntax: Syntax.CPP,
-  color: Color(0xff0081CF), //0077b6
+  color: AppColor.cpp,
   tutorials: [],
 );
