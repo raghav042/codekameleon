@@ -1,9 +1,12 @@
+import 'package:codekameleon/data/languages.dart';
+import 'package:codekameleon/features/quiz/quiz_tab.dart';
 import 'package:codekameleon/helper/language_helper.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/recent_language_tile.dart';
+import 'quiz_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,59 +17,35 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        appBar: AppBar(
+          leading: const Padding(
+            padding: EdgeInsets.all(8),
+            child: CircleAvatar(),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_outlined),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.settings_outlined),
+            ),
+          ],
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Heading(title: "Quizes"),
-                SizedBox(
-                  height: 170,
-                  child: CarouselView(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    itemExtent: 300,
-                    children: List.generate(
-                      quizes.length,
-                      (i) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          border:
-                              Border.all(width: 2, color: colorScheme.primary),
-                          image: DecorationImage(
-                            image: AssetImage(quizes[i]),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: SearchBar(
+                    elevation: WidgetStatePropertyAll(0),
                   ),
                 ),
+                const QuizList(),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                    vertical: 8,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: SearchAnchor.bar(
-                          barElevation: const WidgetStatePropertyAll(0),
-                          barHintText: "Search anything",
-                          suggestionsBuilder: (_, c) {
-                            return [];
-                          },
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.settings_outlined),
-                      ),
-                    ],
-                  ),
-                ),
                 if (LanguageHelper.recentLanguage != null)
                   const Heading(title: "Currently Learning"),
                 if (LanguageHelper.recentLanguage != null)

@@ -14,7 +14,8 @@ class CodeElementBuilder extends MarkdownElementBuilder {
       child: SyntaxView(
         code: element.textContent,
         syntax: syntax,
-        syntaxTheme: isDarkMode ? SyntaxTheme.vscodeDark() : SyntaxTheme.vscodeLight(),
+        syntaxTheme:
+            isDarkMode ? SyntaxTheme.vscodeDark() : SyntaxTheme.vscodeLight(),
         fontSize: 14.0,
         withZoom: false,
         withLinesCount: false,

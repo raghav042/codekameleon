@@ -4,35 +4,38 @@ import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class LanguageTile extends StatelessWidget {
   const LanguageTile({super.key, required this.language});
   final LanguageModel language;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Preferences.saveRecentCourse(language.name);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LanguageScreen(language: language),
+    return SizedBox(
+      height: 200,
+      width: 170,
+      child: ElevatedButton(
+        onPressed: () {
+          Preferences.saveRecentCourse(language.name);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LanguageScreen(language: language),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          padding: EdgeInsets.zero,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(200),
+              topRight: Radius.circular(25),
+              bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25),
+            ),
           ),
-        );
-      },
-      child: Container(
-        height: 200,
-        width: 170,
-        //margin: const EdgeInsets.symmetric(horizontal: 5),
-        decoration: BoxDecoration(
-          color: language.color, //scheme.primary,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(200),
-            topRight: Radius.circular(25),
-            bottomLeft: Radius.circular(25),
-            bottomRight: Radius.circular(25),
-          ),
+          backgroundColor: language.color,
+          foregroundColor: Colors.white,
         ),
         child: Stack(
           children: [
@@ -53,9 +56,8 @@ class LanguageTile extends StatelessWidget {
                     Text(
                       language.name,
                       maxLines: 2,
-                      style: GoogleFonts.rajdhani(
-                        color: Colors.white,
-                        fontSize: 28,
+                      style: GoogleFonts.quicksand(
+                        fontSize: 26,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
