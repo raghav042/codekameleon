@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -72,13 +71,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-List<String> quizes = [
-  "assets/images/c_quiz.png",
-  "assets/images/cpp_quiz.png",
-  "assets/images/java_quiz.png",
-  "assets/images/dart_quiz.png",
-  "assets/images/swift_quiz.png",
-  "assets/images/kotlin_quiz.png",
-  "assets/images/javascript_quiz.png",
-];
