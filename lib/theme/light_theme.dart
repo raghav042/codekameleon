@@ -7,7 +7,6 @@ ThemeData lightTheme() {
   return ThemeData(
     colorScheme: scheme,
     textTheme: GoogleFonts.ubuntuTextTheme(),
-    //scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: false,
@@ -37,30 +36,12 @@ ThemeData lightTheme() {
         borderRadius: BorderRadius.circular(25.0),
       ),
     ),
-    navigationBarTheme: NavigationBarThemeData(
-      elevation: 0,
-      labelTextStyle: WidgetStatePropertyAll(GoogleFonts.ubuntu()),
-      backgroundColor: scheme.tertiaryContainer,
-      indicatorColor: scheme.primary,
-    ),
-    navigationRailTheme: NavigationRailThemeData(
-      selectedLabelTextStyle: GoogleFonts.ubuntu(color: scheme.onSurface),
-      unselectedLabelTextStyle: GoogleFonts.ubuntu(color: scheme.onSurface),
-      backgroundColor: scheme.tertiaryContainer,
-      indicatorColor: scheme.primary,
-    ),
     listTileTheme: ListTileThemeData(
       tileColor: scheme.surfaceContainer,
       selectedColor: scheme.onSurface,
       selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
-    // chipTheme: ChipThemeData(
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.circular(25),
-    //     side: BorderSide(color: scheme.surfaceContainerHighest),
-    //   ),
-    // ),
     tabBarTheme: TabBarTheme(
       dividerColor: Colors.transparent,
       indicatorSize: TabBarIndicatorSize.tab,

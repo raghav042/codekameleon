@@ -1,6 +1,4 @@
-import 'package:codekameleon/data/languages.dart';
 import 'package:codekameleon/features/home/leaderboard_tile.dart';
-import 'package:codekameleon/features/quiz/quiz_tab.dart';
 import 'package:codekameleon/helper/language_helper.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
