@@ -29,7 +29,7 @@ class RecentLanguageTile extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(20),
             ),
             backgroundColor: language.color,
             foregroundColor: Colors.white,
