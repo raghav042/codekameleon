@@ -1,3 +1,4 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
@@ -15,13 +16,12 @@ class MarkdownViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return MarkdownBody(
       data: content,
       styleSheet: MarkdownStyleSheet(code: GoogleFonts.notoSansMono()),
       builders: {
         'code': CodeElementBuilder(
-          isDarkMode: isDarkMode,
+          scheme: context.colorScheme,
           syntax: syntax,
         )
       },
