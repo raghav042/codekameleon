@@ -1,26 +1,23 @@
-import 'package:codekameleon/model/course_model.dart';
+import 'package:codekameleon/features/language/language_screen.dart';
+import 'package:codekameleon/model/language_model.dart';
 import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../features/home/course_screen.dart';
 
-class CourseTile extends StatelessWidget {
-  const CourseTile({super.key, required this.course});
-  final CourseModel course;
+class LanguageTile extends StatelessWidget {
+  const LanguageTile({super.key, required this.language});
+  final LanguageModel language;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Preferences.saveRecentCourse(course.name);
+        Preferences.saveRecentCourse(language.name);
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CourseScreen(
-              color: course.color,
-              course: course,
-            ),
+            builder: (context) => LanguageScreen(language: language),
           ),
         );
       },
@@ -29,7 +26,7 @@ class CourseTile extends StatelessWidget {
         width: 170,
         //margin: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
-          color: course.color, //scheme.primary,
+          color: language.color, //scheme.primary,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(200),
             topRight: Radius.circular(25),
@@ -42,7 +39,7 @@ class CourseTile extends StatelessWidget {
             Positioned(
               top: 20,
               right: 0,
-              child: Image.asset(course.largeIcon, height: 90),
+              child: Image.asset(language.largeIcon, height: 90),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -54,7 +51,7 @@ class CourseTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      course.name,
+                      language.name,
                       maxLines: 2,
                       style: GoogleFonts.rajdhani(
                         color: Colors.white,
@@ -72,7 +69,7 @@ class CourseTile extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          course.tutorials.length.toString(),
+                          language.tutorials.length.toString(),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -101,12 +98,12 @@ class CourseTile extends StatelessWidget {
 }
 
 /*
-import 'package:codekameleon/model/course_model.dart';
+import 'package:codekameleon/model/language_model.dart';
 import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../features/home/course_screen.dart';
+import '../features/home/tutorial_tab.dart';
 
 class CourseTile extends StatelessWidget {
   const CourseTile({super.key, required this.course});

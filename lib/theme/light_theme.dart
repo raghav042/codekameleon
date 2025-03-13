@@ -8,12 +8,12 @@ ThemeData lightTheme() {
     colorScheme: scheme,
     textTheme: GoogleFonts.ubuntuTextTheme(),
     //scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: false,
       surfaceTintColor: Colors.transparent,
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle(
+      backgroundColor: scheme.surface,
+      systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
@@ -50,9 +50,9 @@ ThemeData lightTheme() {
       indicatorColor: scheme.primary,
     ),
     listTileTheme: ListTileThemeData(
-      // tileColor: scheme.surfaceContainerHigh,
-      // selectedColor: scheme.onSurface,
-      // selectedTileColor: scheme.secondaryContainer,
+      tileColor: scheme.surfaceContainer,
+      selectedColor: scheme.onSurface,
+      selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
     // chipTheme: ChipThemeData(
@@ -61,5 +61,19 @@ ThemeData lightTheme() {
     //     side: BorderSide(color: scheme.surfaceContainerHighest),
     //   ),
     // ),
+    tabBarTheme: TabBarTheme(
+      dividerColor: Colors.transparent,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicator: BoxDecoration(
+        color: scheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(25),
+      ),
+      labelPadding: const EdgeInsets.symmetric(vertical: 10),
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: scheme.onTertiaryContainer,
+      ),
+      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+    ),
   );
 }

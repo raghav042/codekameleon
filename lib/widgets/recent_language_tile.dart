@@ -1,26 +1,23 @@
+import 'package:codekameleon/features/language/language_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../features/home/course_screen.dart';
-import '../model/course_model.dart';
+import '../model/language_model.dart';
 import '../preferences/preferences.dart';
 
-class RecentCourseTile extends StatelessWidget {
-  const RecentCourseTile({super.key, required this.course});
-  final CourseModel course;
+class RecentLanguageTile extends StatelessWidget {
+  const RecentLanguageTile({super.key, required this.language});
+  final LanguageModel language;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Preferences.saveRecentCourse(course.name);
+        Preferences.saveRecentCourse(language.name);
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CourseScreen(
-              color: course.color,
-              course: course,
-            ),
+            builder: (context) => LanguageScreen(language: language),
           ),
         );
       },
@@ -29,7 +26,7 @@ class RecentCourseTile extends StatelessWidget {
         width: double.maxFinite,
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: course.color,
+          color: language.color,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Stack(
@@ -37,7 +34,7 @@ class RecentCourseTile extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Image.asset(
-                course.largeIcon,
+                language.largeIcon,
                 height: 150,
               ),
             ),
@@ -51,7 +48,7 @@ class RecentCourseTile extends StatelessWidget {
                   //mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      course.name,
+                      language.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.rajdhani(
@@ -70,7 +67,7 @@ class RecentCourseTile extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          course.tutorials.length.toString(),
+                          language.tutorials.length.toString(),
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

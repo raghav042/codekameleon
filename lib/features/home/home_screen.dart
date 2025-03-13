@@ -1,9 +1,9 @@
-import 'package:codekameleon/helper/course_helper.dart';
-import 'package:codekameleon/widgets/course_tile.dart';
+import 'package:codekameleon/helper/language_helper.dart';
+import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/recent_course_tile.dart';
+import '../../widgets/recent_language_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -67,10 +67,10 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (CourseHelper.recentCourse != null)
+                if (LanguageHelper.recentLanguage != null)
                   const Heading(title: "Currently Learning"),
-                if (CourseHelper.recentCourse != null)
-                  RecentCourseTile(course: CourseHelper.recentCourse!),
+                if (LanguageHelper.recentLanguage != null)
+                  RecentLanguageTile(language: LanguageHelper.recentLanguage!),
                 const Heading(title: "Popular Tutorials"),
                 Center(
                   child: Wrap(
@@ -79,8 +79,8 @@ class HomeScreen extends StatelessWidget {
                     alignment: WrapAlignment.center,
                     runAlignment: WrapAlignment.center,
                     children: List.generate(
-                      CourseHelper.courses.length,
-                      (i) => CourseTile(course: CourseHelper.courses[i]),
+                      LanguageHelper.language.length,
+                      (i) => LanguageTile(language: LanguageHelper.language[i]),
                     ),
                   ),
                 ),
