@@ -21,31 +21,37 @@ class TutorialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(tutorial.title),
-        actions: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Row(
-              children: [
-                const Icon(Icons.access_time, size: 20, color: Colors.white),
-                const SizedBox(width: 8),
-                Text(
-                  tutorial.duration,
-                  style: const TextStyle(color: Colors.white),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar.large(
+              title: Text(tutorial.title),
+              actions: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.access_time,
+                          size: 20, color: Colors.white),
+                      const SizedBox(width: 8),
+                      Text(
+                        tutorial.duration,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(width: 8),
               ],
-            ),
-          ),
-          const SizedBox(width: 8),
-        ],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
+            )
+          ];
+        },
+        body: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

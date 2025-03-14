@@ -19,6 +19,7 @@ class CodeElementBuilder extends MarkdownElementBuilder {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            margin: const EdgeInsets.only(top: 5),
             decoration: BoxDecoration(
               color: scheme.surfaceContainer,
               borderRadius: const BorderRadius.vertical(
@@ -50,6 +51,7 @@ class CodeElementBuilder extends MarkdownElementBuilder {
           Container(
             width: double.maxFinite,
             alignment: Alignment.topLeft,
+            margin: const EdgeInsets.only(bottom: 5),
             decoration: BoxDecoration(
               color: scheme.surfaceContainer,
               borderRadius: const BorderRadius.vertical(
@@ -65,17 +67,17 @@ class CodeElementBuilder extends MarkdownElementBuilder {
               withLinesCount: false,
               expanded: false,
               selectable: false,
-              syntaxTheme: scheme.brightness == Brightness.dark
-                  ? SyntaxTheme.vscodeDark().copyWith(
-                      backgroundColor: Colors.transparent,
-                    )
-                  : SyntaxTheme.vscodeLight().copyWith(
-                      backgroundColor: Colors.transparent,
-                    ),
+              syntaxTheme: _syntaxTheme(scheme),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+SyntaxTheme _syntaxTheme(ColorScheme scheme) {
+  return scheme.brightness == Brightness.dark
+      ? SyntaxTheme.vscodeDark().copyWith(backgroundColor: Colors.transparent)
+      : SyntaxTheme.vscodeLight().copyWith(backgroundColor: Colors.transparent);
 }
