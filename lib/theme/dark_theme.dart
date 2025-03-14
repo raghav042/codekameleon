@@ -9,7 +9,7 @@ ThemeData darkTheme() {
   );
   return ThemeData(
     colorScheme: scheme,
-    textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
+    textTheme: GoogleFonts.openSansTextTheme(ThemeData.dark().textTheme),
     appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: false,

@@ -6,7 +6,7 @@ ThemeData lightTheme() {
   final scheme = ColorScheme.fromSeed(seedColor: Colors.blue);
   return ThemeData(
     colorScheme: scheme,
-    textTheme: GoogleFonts.ubuntuTextTheme(),
+    textTheme: GoogleFonts.openSansTextTheme(),
     appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: false,
