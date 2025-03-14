@@ -2,39 +2,40 @@ import 'package:flutter/material.dart';
 import '../../model/language_model.dart';
 import 'tutorial_screen.dart';
 
-class TutorialTab extends StatelessWidget {
-  const TutorialTab({super.key, required this.course});
-  final LanguageModel course;
+class TutorialList extends StatelessWidget {
+  const TutorialList({super.key, required this.language});
+  final LanguageModel language;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
       primary: true,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      itemCount: course.tutorials.length,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      itemCount: language.tutorials.length,
       itemBuilder: (_, index) {
         return ListTile(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TutorialScreen(
-                      tutorial: course.tutorials[index],
-                      syntax: course.syntax,
-                      iconPath: course.smallIcon,
-                      color: course.color,
-                    ),
-                  ));
-            },
-            contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
-            title: Text(
-              course.tutorials[index].title,
-              maxLines: 1,
-              style: const TextStyle(fontSize: 18),
-            ),
-            subtitle: Text(course.tutorials[index].description, maxLines: 1),
-            trailing: trailing(course.tutorials[index].duration));
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TutorialScreen(
+                    tutorial: language.tutorials[index],
+                    syntax: language.syntax,
+                    iconPath: language.smallIcon,
+                    color: language.color,
+                  ),
+                ));
+          },
+          contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
+          title: Text(
+            language.tutorials[index].title,
+            maxLines: 1,
+            style: const TextStyle(fontSize: 18),
+          ),
+          subtitle: Text(language.tutorials[index].description, maxLines: 1),
+          trailing: trailing(language.tutorials[index].duration),
+        );
       },
       separatorBuilder: (_, __) => const SizedBox(height: 8),
     );
