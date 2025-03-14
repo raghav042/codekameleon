@@ -1,3 +1,5 @@
+import 'package:codekameleon/data/python/python_language.dart';
+
 import '../model/language_model.dart';
 import 'c++/course.dart';
 import 'c/course.dart';
@@ -15,4 +17,5 @@ const List<LanguageModel> languages = [
   javascriptCourse,
   kotlinCourse,
   swiftCourse,
+  pythonLanguage,
 ];

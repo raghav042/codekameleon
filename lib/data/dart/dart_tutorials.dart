@@ -6,12 +6,17 @@ import 'tutorials/for_loop.dart';
 import 'tutorials/function.dart';
 import 'tutorials/if_else.dart';
 import 'tutorials/if_else_if.dart';
+import 'tutorials/introduction.dart';
 import 'tutorials/try_catch.dart';
 import 'tutorials/while_loop.dart';
 
-
-
 const List<TutorialModel> dartTutorials = [
+  TutorialModel(
+    title: "Introduction of Dart",
+    description: "All about Dart",
+    duration: "12 min",
+    content: introduction_to_dart,
+  ),
   TutorialModel(
     title: "For loop",
     description: "Control Flow in Dart",
