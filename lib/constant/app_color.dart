@@ -11,4 +11,6 @@ class AppColor {
   static const Color javascript = Color(0xfff4b942);
   static const Color kotlin = Color(0xffA97BFF);
   static const Color swift = Color(0xfff3722c);
+  static const Color python = Color(0xffffcf3e);
+
 }

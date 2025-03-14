@@ -35,7 +35,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   SizedBox(width: 4),
                   Text("Tutorials"),
                 ],
-              ),
+              ),    
               Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
