@@ -1,3 +1,4 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/model/tutorial_model.dart';
 import 'package:codekameleon/widgets/markdown_viewer.dart';
 import 'package:flutter/material.dart';
@@ -20,42 +21,74 @@ class TutorialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar.large(
               title: Text(tutorial.title),
-              actions: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.access_time,
-                          size: 20, color: Colors.white),
-                      const SizedBox(width: 8),
-                      Text(
-                        tutorial.duration,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 8),
-              ],
             )
           ];
         },
         body: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                width: double.maxFinite,
+                margin: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 20,
+                ),
+                decoration: BoxDecoration(
+                  color: colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.edit_note,
+                          color: colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          tutorial.updatedAt,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.primary,
+                          ),
+                        ),
+                        const Spacer(),
+                        Icon(
+                          Icons.timelapse_outlined,
+                          color: colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          tutorial.duration,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Text(
+                      tutorial.description,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
               MarkdownViewer(
                 content: tutorial.content,
                 syntax: syntax,
