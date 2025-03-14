@@ -3,7 +3,7 @@ const for_loop = '''
 
 ### Understanding if and else statements is crucial for controlling the flow of your Dart programs and making informed decisions based on specific conditions. This guide will delve into their syntax, usage, and practical applications.
 
-**The `if` Statement: Taking Action When Conditions Are Met**
+*The if Statement: Taking Action When Conditions Are Met*
 
 **Syntax:**
 
