@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:codekameleon/features/leaderboard/leaderboard_screen.dart';
 import 'package:codekameleon/widgets/heading.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardTile extends StatelessWidget {

@@ -1,7 +1,4 @@
-import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../model/language_model.dart';
 import '../../model/quiz_model.dart';
@@ -12,48 +9,48 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text("${language.name} Quiz"),
       ),
-      body: CardSwiper(
-        cardsCount: language.quizes.length,
-        cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
-          final quiz = language.quizes[index];
-          return Container(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-            width: double.maxFinite,
-            // height: double.maxFinite,
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerLow,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: 1,
-                  blurRadius: 3,
-                  offset: const Offset(0, 2),
-                  color: index % 2 == 0
-                      ? colorScheme.primary.withValues(alpha: 0.5)
-                      : colorScheme.tertiary.withValues(alpha: 0.5),
-                )
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  quiz.question,
-                  style: const TextStyle(fontSize: 18),
-                ),
-                options(quiz, index, colorScheme),
-              ],
-            ),
-          );
-        },
-      ),
+      // TODO : improve this code
+      // body: CardSwiper(
+      //   cardsCount: language.quizes.length,
+      //   cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
+      //     final quiz = language.quizes[index];
+      //     return Container(
+      //       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      //       width: double.maxFinite,
+      //       // height: double.maxFinite,
+      //       decoration: BoxDecoration(
+      //         color: colorScheme.surfaceContainerLow,
+      //         borderRadius: BorderRadius.circular(20),
+      //         boxShadow: [
+      //           BoxShadow(
+      //             spreadRadius: 1,
+      //             blurRadius: 3,
+      //             offset: const Offset(0, 2),
+      //             color: index % 2 == 0
+      //                 ? colorScheme.primary.withValues(alpha: 0.5)
+      //                 : colorScheme.tertiary.withValues(alpha: 0.5),
+      //           )
+      //         ],
+      //       ),
+      //       child: Column(
+      //         mainAxisSize: MainAxisSize.min,
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           Text(
+      //             quiz.question,
+      //             style: const TextStyle(fontSize: 18),
+      //           ),
+      //           options(quiz, index, colorScheme),
+      //         ],
+      //       ),
+      //     );
+      //   },
+      // ),
     );
   }
 
