@@ -1,5 +1,3 @@
 import '../../model/quiz_model.dart';
 
-const List<QuizModel> pythonQuizes = [
-  
-];
+const List<QuizModel> pythonQuizes = [];

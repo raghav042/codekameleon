@@ -5,7 +5,7 @@ import '../../constant/app_color.dart';
 import '../../model/language_model.dart';
 import 'python_quizes.dart';
 
-const LanguageModel pythonLanguage = LanguageModel(
+const LanguageModel pythonLanguage =  LanguageModel(
   name: "Python",
   smallIcon: "assets/icons/python.png",
   largeIcon: "assets/icons/python_large.png",

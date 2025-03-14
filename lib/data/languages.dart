@@ -17,5 +17,5 @@ const List<LanguageModel> languages = [
   javascriptCourse,
   kotlinCourse,
   swiftCourse,
-  pythonLanguage
+  pythonLanguage,
 ];
