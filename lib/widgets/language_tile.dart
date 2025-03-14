@@ -105,7 +105,7 @@ import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../features/home/tutorial_tab.dart';
+import '../features/home/tutorial_list.dart';
 
 class CourseTile extends StatelessWidget {
   const CourseTile({super.key, required this.course});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/languages.dart';
 import '../../widgets/heading.dart';
-import '../quiz/quiz_tab.dart';
+import '../quiz/quiz_screen.dart';
 
 class QuizList extends StatelessWidget {
   const QuizList({super.key});
@@ -22,7 +22,7 @@ class QuizList extends StatelessWidget {
               return OutlinedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const QuizTab()));
+                      MaterialPageRoute(builder: (context) =>  QuizScreen(language: languages[i])));
                 },
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
