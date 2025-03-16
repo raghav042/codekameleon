@@ -12,18 +12,28 @@ class NativeAdWidget extends StatefulWidget {
 
 class _NativeAdWidgetState extends State<NativeAdWidget> {
   NativeAd? _nativeAd;
+  double aspectRatio = 1;
 
   Future<void> loadNativeAd() async {
     print("Loading Native Ad=================================\n\n");
     NativeAd(
       adUnitId: AppAds.nativeAdUnitId,
       request: const AdRequest(),
-      nativeTemplateStyle: NativeTemplateStyle(templateType: TemplateType.medium),
+      nativeTemplateStyle:
+          NativeTemplateStyle(templateType: TemplateType.medium),
       listener: NativeAdListener(
         onAdLoaded: (ad) {
           setState(() {
             _nativeAd = ad as NativeAd;
           });
+
+          if (_nativeAd?.responseInfo != null &&
+              _nativeAd?.responseInfo!.responseExtras != null &&
+              _nativeAd!.responseInfo!.responseExtras
+                  .containsKey('media_aspect_ratio')) {
+            aspectRatio = double.parse(
+                _nativeAd!.responseInfo!.responseExtras['media_aspect_ratio']);
+          }
         },
         onAdFailedToLoad: (ad, err) {
           debugPrint('Failed to load a banner ad: ${err.message}');
@@ -32,7 +42,7 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
       ),
     ).load();
 
-    print("Native Ad completed===================================");
+    print("Native Ad completed================= $aspectRatio==================");
   }
 
   @override
@@ -50,6 +60,9 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
   @override
   Widget build(BuildContext context) {
     if (_nativeAd == null) return const SizedBox();
-    return AdWidget(ad: _nativeAd!);
+    return AspectRatio(
+      aspectRatio: aspectRatio,
+      child: AdWidget(ad: _nativeAd!),
+    );
   }
 }
