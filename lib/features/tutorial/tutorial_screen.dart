@@ -1,6 +1,7 @@
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/model/tutorial_model.dart';
 import 'package:codekameleon/widgets/markdown_viewer.dart';
+import 'package:codekameleon/widgets/native_ad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
@@ -96,6 +97,7 @@ class TutorialScreen extends StatelessWidget {
               const SizedBox(height: 30),
               const Heading(title: "Advertisement"),
               const SizedBox(height: 10),
+              const NativeAdWidget(),
               Container(
                 height: 200,
                 width: double.maxFinite,

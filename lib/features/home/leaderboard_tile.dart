@@ -37,15 +37,15 @@ class LeaderboardTile extends StatelessWidget {
                 ),
                 SizedBox(height: 20, width: double.maxFinite),
                 ListTile(
-                  title: Text("useful informatiion"),
+                  title: Text("some content"),
                 ),
                 SizedBox(height: 8),
                 ListTile(
-                  title: Text("kuuch kaam ki info"),
+                  title: Text("useful information"),
                 ),
                 SizedBox(height: 8),
                 ListTile(
-                  title: Text("sirf 3 hi show hoge"),
+                  title: Text("another useful information"),
                 ),
               ],
             ),
