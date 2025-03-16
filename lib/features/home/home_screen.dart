@@ -1,4 +1,5 @@
 import 'package:codekameleon/features/home/leaderboard_tile.dart';
+import 'package:codekameleon/helper/ad_helper.dart';
 import 'package:codekameleon/helper/language_helper.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
@@ -7,8 +8,19 @@ import 'package:flutter/material.dart';
 import '../../widgets/recent_language_tile.dart';
 import 'quiz_list.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    AdHelper.initGoogleMobileAds();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

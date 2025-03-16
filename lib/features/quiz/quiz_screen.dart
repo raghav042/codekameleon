@@ -16,6 +16,7 @@ class QuizScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("${language.name} Quiz"),
       ),
+
       // TODO : improve this code
       // body: CardSwiper(
       //   cardsCount: language.quizes.length,
