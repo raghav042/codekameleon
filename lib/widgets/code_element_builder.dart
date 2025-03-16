@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
@@ -38,7 +41,16 @@ class CodeElementBuilder extends MarkdownElementBuilder {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(
+                      text: element.textContent,
+                    )).then(
+                      (value) {
+                        String? result = element.textContent.toString();
+                        log("the copies data is $result");
+                      },
+                    );
+                  },
                   icon: const Icon(
                     Icons.copy,
                     size: 20,

@@ -1,10 +1,28 @@
 import 'package:animations/animations.dart';
+import 'package:codekameleon/features/leaderboard/leaderboard_card.dart';
+import 'package:codekameleon/model/student_model.dart';
 import 'package:codekameleon/features/leaderboard/leaderboard_screen.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardTile extends StatelessWidget {
   const LeaderboardTile({super.key});
+  static final List<Student> _students = [
+    Student(name: "Raghav Shukla", rank: 1, score: 100),
+    Student(name: "Dhiren", rank: 2, score: 90),
+    Student(name: "Vinay", rank: 3, score: 80),
+    Student(name: "Roshni", rank: 4, score: 70),
+    Student(name: "Aishwarya", rank: 5, score: 80),
+    Student(name: "Sarah", rank: 6, score: 70),
+    Student(name: "Aishwarya", rank: 5, score: 80),
+    Student(name: "Sarah", rank: 6, score: 70),
+    Student(name: "Aishwarya", rank: 5, score: 80),
+    Student(name: "Sarah", rank: 6, score: 70),
+    Student(name: "Aishwarya", rank: 5, score: 80),
+    Student(name: "Sarah", rank: 6, score: 70),
+    Student(name: "Aishwarya", rank: 5, score: 80),
+    Student(name: "Sarah", rank: 6, score: 70),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +35,12 @@ class LeaderboardTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         closedBuilder: (_, __) {
-          return const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(12, 12, 12, 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,23 +53,17 @@ class LeaderboardTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20, width: double.maxFinite),
-                ListTile(
-                  title: Text("useful informatiion"),
-                ),
-                SizedBox(height: 8),
-                ListTile(
-                  title: Text("kuuch kaam ki info"),
-                ),
-                SizedBox(height: 8),
-                ListTile(
-                  title: Text("sirf 3 hi show hoge"),
-                ),
+                const SizedBox(height: 20),
+                ..._students
+                    .take(3)
+                    .map((student) => LeaderboardCard(student: student)),
               ],
             ),
           );
         },
-        openBuilder: (_, __) => const LeaderboardScreen(),
+        openBuilder: (_, __) => LeaderboardScreen(
+          students: _students,
+        ),
       ),
     );
   }
