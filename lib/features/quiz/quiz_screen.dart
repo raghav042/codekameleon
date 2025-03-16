@@ -1,4 +1,6 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 import '../../model/language_model.dart';
 import '../../model/quiz_model.dart';
@@ -9,6 +11,7 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = context.colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text("${language.name} Quiz"),
