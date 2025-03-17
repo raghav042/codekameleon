@@ -27,10 +27,7 @@ class LeaderboardScreen extends StatelessWidget {
                 spacing: 20,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children:
-
-
-                [
+                children: [
                   if (topThree.length > 1)
                     PodiumItem(student: topThree[1], position: 2),
                   if (topThree.isNotEmpty)
