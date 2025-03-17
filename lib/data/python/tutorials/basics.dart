@@ -1,71 +1,50 @@
-// const python_basics = '''
-
-// # 🐍 Python Basics
-
-// ## 📌 Hello World Program
-// The first step in learning Python is writing a simple "Hello, World!" program. In Python, this is very easy:
-
-// ```python
-// print("Hello, World!")  ```
-// ✅ Explanation:
-
-// The print() function is used to display output.
-// The text inside the quotation marks ("Hello, World!") is printed to the screen.
-// 💡 Python is simple and powerful! Start coding today! 🚀
-
-// ''';
-
 const python_basics = '''
-# 🐍 Python Basics
+# Python Basics
 
-## 🚀 Hello World Program  
+## Hello World Program  
 Writing your first Python program is super easy!  
 
-🔹 **Code Example:**  
+ **Code Example:**
 ```python
-print("Hello, World! 🚀")
-🔹 Run the program using:
+print("Hello, World!")
+```
 
-bash
-Copy
-Edit
-python hello.py
-📌 Python Syntax & Indentation
+Run the program using: hello.py
+
+
+## Python Syntax & Indentation
 Python uses indentation instead of braces {} like other languages.
 
-✅ Correct Example:
+**Correct Example:**
 
-python
-Copy
-Edit
+```python
 if True:
     print("Indented correctly!")
-❌ Incorrect Example (will cause an error):
+```
 
-python
-Copy
-Edit
+**Incorrect Example (will cause an error):**
+
+```python
+
 if True:
-print("Missing indentation!")  # IndentationError
-💬 Comments in Python
+print("Missing indentation!")  # IndentationError 
+```
+
+## Comments in Python
 Comments make your code more readable and are ignored by Python during execution.
 
-🔹 Single-line comment:
+**Single-line comment:**
+```python
 
-python
-Copy
-Edit
 # This is a single-line comment
-print("Hello, Python!")  # This prints text
-🔹 Multi-line comment:
+print("Hello, Python!")  # This prints text 
+```
 
-python
-Copy
-Edit
+**Multi-line comment:**
+```python
 """
-This is a multi-line comment.
-Python will ignore these lines.
-"""
-print("Python is awesome!")
-🎉 Now you know the basics of Python! Let’s explore more next! 🚀
+print("hello world") 
+print("hello world") """ 
+```
+Now you know the basics of Python! Let’s explore more next!
 ''';
