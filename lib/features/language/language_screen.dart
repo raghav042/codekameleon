@@ -2,6 +2,7 @@ import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/language_model.dart';
+import '../../widgets/no_data_widget.dart';
 import '../quiz/quiz_screen.dart';
 import '../tutorial/tutorial_list.dart';
 
@@ -68,7 +69,12 @@ class LanguageScreen extends StatelessWidget {
             ),
           ];
         },
-        body: TutorialList(language: language),
+        body: language.tutorials.isNotEmpty
+            ? TutorialList(language: language)
+            : const NoDataWidget(
+                imagePath: "assets/images/no_data.svg",
+                title: "No Tutorial Found",
+              ),
       ),
     );
   }

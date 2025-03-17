@@ -6,8 +6,8 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My Profile")),
-      body: SingleChildScrollView(
+      appBar: AppBar(title: const Text("My Profile")),
+      body: const SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
