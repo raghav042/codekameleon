@@ -17,6 +17,7 @@ class PodiumItem extends StatelessWidget {
     final rankColor = _getRankColor(position, colorScheme);
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         CircleAvatar(
