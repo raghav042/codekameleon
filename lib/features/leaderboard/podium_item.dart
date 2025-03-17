@@ -1,3 +1,4 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/model/student_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +13,8 @@ class PodiumItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rankColor = _getRankColor(position);
+    final colorScheme = context.colorScheme;
+    final rankColor = _getRankColor(position, colorScheme);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -23,42 +25,44 @@ class PodiumItem extends StatelessWidget {
           child: Text(
             "#$position",
             style: GoogleFonts.quicksand(
-                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-            // style: const TextStyle(color: Colors.white, fontSize: 18),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
         const SizedBox(height: 8),
         Text(
           student.name,
-          style:
-              GoogleFonts.quicksand(fontSize: 14, fontWeight: FontWeight.bold),
+          style: GoogleFonts.quicksand(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           "${student.score} pts",
           style: GoogleFonts.quicksand(
-              fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey),
-          // const TextStyle(color: Colors.grey),
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface.withValues(alpha: 0.8),
+          ),
         ),
         const SizedBox(height: 6),
         Container(
           width: 80,
           height: _heights[position],
           decoration: BoxDecoration(
-            color: rankColor.withValues(alpha: 0.7),
+            color: rankColor,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           ),
           child: Center(
             child: Text(
               position.toString(),
               style: GoogleFonts.quicksand(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-              // style: const TextStyle(
-              //   color: Colors.white,
-              //   fontSize: 24,
-              //   fontWeight: FontWeight.bold,
-              // ),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -67,11 +71,11 @@ class PodiumItem extends StatelessWidget {
   }
 }
 
-Color _getRankColor(int rank) {
+Color _getRankColor(int rank, ColorScheme colorScheme) {
   return switch (rank) {
-    1 => Colors.amber,
-    2 => Colors.grey,
-    3 => Colors.brown,
+    1 => Colors.lightBlue.shade400,
+    2 => Colors.purple.shade300,
+    3 => Colors.pink.shade300,
     _ => Colors.blueGrey,
   };
 }
