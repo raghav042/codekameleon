@@ -1,4 +1,6 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/features/home/leaderboard_tile.dart';
+import 'package:codekameleon/features/home/search_field.dart';
 import 'package:codekameleon/features/profile/profile_screen.dart';
 import 'package:codekameleon/helper/ad_helper.dart';
 import 'package:codekameleon/helper/language_helper.dart';
@@ -7,6 +9,8 @@ import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/recent_language_tile.dart';
+import '../notification/notification_screen.dart';
+import '../setting/setting_screen.dart';
 import 'quiz_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,14 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()));
             },
             child: const Padding(
               padding: EdgeInsets.all(8),
@@ -44,11 +51,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotificationScreen()));
+              },
               icon: const Icon(Icons.notifications_outlined),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingScreen()));
+              },
               icon: const Icon(Icons.settings_outlined),
             ),
           ],
@@ -58,12 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  child: SearchBar(
-                    elevation: WidgetStatePropertyAll(0),
-                  ),
-                ),
+                const SearchField(),
                 const QuizList(),
                 const SizedBox(height: 20),
                 if (LanguageHelper.recentLanguage != null)

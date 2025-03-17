@@ -1,9 +1,9 @@
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 import '../../model/language_model.dart';
 import '../../model/quiz_model.dart';
+import '../../widgets/no_data_widget.dart';
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key, required this.language});
@@ -15,6 +15,11 @@ class QuizScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("${language.name} Quiz"),
+      ),
+
+      body: const NoDataWidget(
+        imagePath: "assets/images/no_data.svg",
+        title: "No Quiz Found",
       ),
 
       // TODO : improve this code
