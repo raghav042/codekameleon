@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481621239614",
+    "project_id": "codekameleon",
+    "storage_bucket": "codekameleon.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481621239614:android:4c515d0b751114f1912e6f",
+        "android_client_info": {
+          "package_name": "com.techlyverse.codekameleon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOjUqcKaj8JMsca577PDTsiP1yAJp_WkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
