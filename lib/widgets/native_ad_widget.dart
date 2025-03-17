@@ -22,7 +22,7 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
       templateType: TemplateType.medium,
       mainBackgroundColor: scheme.surfaceContainerLowest,
       primaryTextStyle: NativeTemplateTextStyle(
-        size: 18,
+        size: 16,
         textColor: scheme.onSurface,
         backgroundColor: scheme.surfaceContainerLowest,
       ),

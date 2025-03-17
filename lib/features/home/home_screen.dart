@@ -1,4 +1,5 @@
 import 'package:codekameleon/features/home/leaderboard_tile.dart';
+import 'package:codekameleon/features/profile/profile_screen.dart';
 import 'package:codekameleon/helper/ad_helper.dart';
 import 'package:codekameleon/helper/language_helper.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
@@ -28,9 +29,18 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          leading: const Padding(
-            padding: EdgeInsets.all(8),
-            child: CircleAvatar(),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8),
+              child: Hero(
+                tag: "my_profile_pic",
+                child: CircleAvatar(),
+              ),
+            ),
           ),
           actions: [
             IconButton(

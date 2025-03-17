@@ -41,16 +41,10 @@ class LeaderboardTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.fromLTRB(12, 12, 12, 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Heading(
-                        title: "Leaderboard Rank",
-                        padding: EdgeInsets.zero,
-                      ),
-                      Icon(Icons.open_in_full),
-                    ],
+                  padding: EdgeInsets.fromLTRB(12, 12, 12, 0),
+                  child: Heading(
+                    title: "Leaderboard",
+                    padding: EdgeInsets.zero,
                   ),
                 ),
                 const SizedBox(height: 20),

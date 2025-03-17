@@ -1,3 +1,4 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/model/student_model.dart';
 import 'package:flutter/material.dart';
 
@@ -8,22 +9,35 @@ class LeaderboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
+
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(vertical: 4),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: colorScheme.primaryContainer,
           child: Text(
-            "#${student.rank}",
-            style: const TextStyle(color: Colors.white),
+            "${student.rank}",
+            style: TextStyle(color: colorScheme.onPrimaryContainer),
           ),
         ),
-        title: Text(student.name),
-        subtitle: Text("${student.score} pts"),
-        trailing: Text(
-          "${student.rank}",
-          style: const TextStyle(color: Colors.grey),
+        title: Text(
+          student.name,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              "${student.score}",
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 8),
+            const Icon(Icons.star_rounded, color: Colors.amber),
+          ],
         ),
       ),
     );
