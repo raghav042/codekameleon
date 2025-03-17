@@ -1,3 +1,4 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -15,25 +16,38 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
   double aspectRatio = 1;
 
   Future<void> loadNativeAd() async {
-    print("Loading Native Ad=================================\n\n");
+    final scheme = context.colorScheme;
+
+    final style = NativeTemplateStyle(
+      templateType: TemplateType.medium,
+      mainBackgroundColor: scheme.surfaceContainerLowest,
+      primaryTextStyle: NativeTemplateTextStyle(
+        size: 18,
+        textColor: scheme.onSurface,
+        backgroundColor: scheme.surfaceContainerLowest,
+      ),
+      secondaryTextStyle: NativeTemplateTextStyle(
+        size: 14,
+        textColor: scheme.onSurface,
+        backgroundColor: scheme.surfaceContainerLowest,
+      ),
+      tertiaryTextStyle: NativeTemplateTextStyle(
+        size: 12,
+        style: NativeTemplateFontStyle.bold,
+        textColor: scheme.onSurface,
+        backgroundColor: scheme.surfaceContainerLowest,
+      ),
+    );
+
     NativeAd(
       adUnitId: AppAds.nativeAdUnitId,
       request: const AdRequest(),
-      nativeTemplateStyle:
-          NativeTemplateStyle(templateType: TemplateType.medium),
+      nativeTemplateStyle: style,
       listener: NativeAdListener(
         onAdLoaded: (ad) {
           setState(() {
             _nativeAd = ad as NativeAd;
           });
-
-          if (_nativeAd?.responseInfo != null &&
-              _nativeAd?.responseInfo!.responseExtras != null &&
-              _nativeAd!.responseInfo!.responseExtras
-                  .containsKey('media_aspect_ratio')) {
-            aspectRatio = double.parse(
-                _nativeAd!.responseInfo!.responseExtras['media_aspect_ratio']);
-          }
         },
         onAdFailedToLoad: (ad, err) {
           debugPrint('Failed to load a banner ad: ${err.message}');
@@ -41,8 +55,6 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
         },
       ),
     ).load();
-
-    print("Native Ad completed================= $aspectRatio==================");
   }
 
   @override
@@ -54,15 +66,29 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
   @override
   void initState() {
     super.initState();
-    loadNativeAd();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadNativeAd();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_nativeAd == null) return const SizedBox();
+    if (_nativeAd == null) {
+      return AspectRatio(
+        aspectRatio: aspectRatio,
+        child: Container(
+          width: double.maxFinite,
+          color: context.colorScheme.surfaceContainerLowest,
+        ),
+      );
+    }
+
     return AspectRatio(
       aspectRatio: aspectRatio,
-      child: AdWidget(ad: _nativeAd!),
+      child: SizedBox(
+        width: double.maxFinite,
+        child: AdWidget(ad: _nativeAd!),
+      ),
     );
   }
 }

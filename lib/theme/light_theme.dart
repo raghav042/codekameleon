@@ -1,9 +1,10 @@
+import 'package:codekameleon/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme() {
-  final scheme = ColorScheme.fromSeed(seedColor: Colors.blue);
+  final scheme = AppColor.lightScheme;
   return ThemeData(
     colorScheme: scheme,
     textTheme: GoogleFonts.openSansTextTheme(),

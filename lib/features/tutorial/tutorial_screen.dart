@@ -96,13 +96,8 @@ class TutorialScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               const Heading(title: "Advertisement"),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               const NativeAdWidget(),
-              Container(
-                height: 200,
-                width: double.maxFinite,
-                color: Colors.teal,
-              )
             ],
           ),
         ),

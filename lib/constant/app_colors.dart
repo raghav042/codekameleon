@@ -1,4 +1,5 @@
-import 'dart:ui' show Color;
+
+import 'package:flutter/material.dart';
 
 class AppColor {
   const AppColor._();
@@ -12,4 +13,12 @@ class AppColor {
   static const Color kotlin = Color(0xffA97BFF);
   static const Color swift = Color(0xfff3722c);
   static const Color python = Color(0xff0466c8);
+
+
+  static final lightScheme = ColorScheme.fromSeed(seedColor: Colors.blue);
+  static final darkScheme = ColorScheme.fromSeed(
+    seedColor: Colors.blue,
+    brightness: Brightness.dark,
+  );
+
 }
