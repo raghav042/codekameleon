@@ -1,8 +1,6 @@
-import 'package:codekameleon/constant/app_colors.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/helper/language_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -130,12 +128,12 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
                 color: colorScheme.surfaceContainer,
-                borderRadius: BorderRadius.vertical(
+                borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(16),
                   bottom: Radius.circular(4),
                 ),
@@ -143,8 +141,8 @@ class ProfileScreen extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.data_object),
-                  SizedBox(width: 12),
+                  const Icon(Icons.data_object),
+                  const SizedBox(width: 12),
                   Text(
                     "my_profile.txt",
                     style: GoogleFonts.quicksand(
@@ -161,8 +159,10 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: colorScheme.surfaceContainer,
-                borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(4), bottom: Radius.circular(16)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(4),
+                  bottom: Radius.circular(16),
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +188,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -210,7 +210,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -232,7 +232,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -254,7 +254,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -276,7 +276,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -298,7 +298,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -320,7 +320,7 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   RichText(
                     text: TextSpan(children: [
                       TextSpan(
@@ -341,11 +341,10 @@ class ProfileScreen extends StatelessWidget {
                       )
                     ]),
                   ),
-
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
