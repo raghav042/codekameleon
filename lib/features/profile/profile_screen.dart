@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(width: 12),
                             Expanded(
                               child: Text(
-                                "My Rewards Points",
+                                "Progress Points",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -130,11 +130,11 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: AppColor.darkScheme.surfaceContainerHigh,
+                color: colorScheme.surfaceContainer,
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(16),
                   bottom: Radius.circular(4),
@@ -143,15 +143,11 @@ class ProfileScreen extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.data_object,
-                    color: AppColor.darkScheme.onSurface,
-                  ),
+                  Icon(Icons.data_object),
                   SizedBox(width: 12),
                   Text(
-                    "my_profile.json",
+                    "my_profile.txt",
                     style: GoogleFonts.quicksand(
-                      color: AppColor.darkScheme.onSurface,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -159,36 +155,197 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(height: 1),
+            Divider(height: 2, color: colorScheme.surface),
             Container(
               width: size.width,
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: AppColor.darkScheme.surfaceContainerHigh,
+                color: colorScheme.surfaceContainer,
                 borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(4),
-                  bottom: Radius.circular(16),
-                ),
+                    top: Radius.circular(4), bottom: Radius.circular(16)),
               ),
-              child: Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: SyntaxView(
-                    code: code,
-                    syntax: Syntax.CPP,
-                    fontSize: 16,
-                    withZoom: false,
-                    withLinesCount: false,
-                    expanded: false,
-                    selectable: false,
-                    syntaxTheme: SyntaxTheme.vscodeDark().copyWith(
-                      baseStyle: GoogleFonts.firaCode(),
-                      backgroundColor: Colors.transparent,
-                    ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Name = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "Myiee Name",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
-                ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Email = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "my.awesome@email.com",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Points = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "225",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Online = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "False",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Status = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "Active",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Last Seen At = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "3 min ago",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Registered At = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      //  SizedBox(width: 10),
+                      Text(
+                        "5 March 2025",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "Bio = ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.onSurface.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      TextSpan(
+                        text:
+                            "Some long bio and about information, most of which is fake or I did not even understand",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ]),
+                  ),
+
+                ],
               ),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),
