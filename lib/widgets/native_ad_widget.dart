@@ -13,29 +13,29 @@ class NativeAdWidget extends StatefulWidget {
 
 class _NativeAdWidgetState extends State<NativeAdWidget> {
   NativeAd? _nativeAd;
-  double aspectRatio = 1;
+  double aspectRatio = 0.9;
 
   Future<void> loadNativeAd() async {
     final scheme = context.colorScheme;
 
     final style = NativeTemplateStyle(
       templateType: TemplateType.medium,
-      mainBackgroundColor: scheme.surfaceContainerLowest,
+      mainBackgroundColor: scheme.surfaceContainer,
       primaryTextStyle: NativeTemplateTextStyle(
         size: 16,
         textColor: scheme.onSurface,
-        backgroundColor: scheme.surfaceContainerLowest,
+        backgroundColor: scheme.surfaceContainer,
       ),
       secondaryTextStyle: NativeTemplateTextStyle(
         size: 14,
         textColor: scheme.onSurface,
-        backgroundColor: scheme.surfaceContainerLowest,
+        backgroundColor: scheme.surfaceContainer,
       ),
       tertiaryTextStyle: NativeTemplateTextStyle(
         size: 12,
         style: NativeTemplateFontStyle.bold,
         textColor: scheme.onSurface,
-        backgroundColor: scheme.surfaceContainerLowest,
+        backgroundColor: scheme.surfaceContainer,
       ),
     );
 
@@ -78,7 +78,7 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
         aspectRatio: aspectRatio,
         child: Container(
           width: double.maxFinite,
-          color: context.colorScheme.surfaceContainerLowest,
+          color: context.colorScheme.surfaceContainer,
         ),
       );
     }
