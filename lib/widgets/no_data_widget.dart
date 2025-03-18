@@ -12,9 +12,12 @@ class NoDataWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        imagePath.contains(".svg")
-            ? SvgPicture.asset(imagePath)
-            : Image.asset(imagePath),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: imagePath.contains(".svg")
+              ? SvgPicture.asset(imagePath)
+              : Image.asset(imagePath),
+        ),
         Text(
           title,
           style: TextStyle(
