@@ -5,6 +5,10 @@ This app is your all-in-one coding companion, designed to empower you with the k
 
 ### [Download from Playstore](https://play.google.com/store/apps/details?id=com.techlyverse.codekameleon&hl=en)
 
+#### Tech Stack
+* **Frontend - Flutter**
+* **Backend - Firebase**
+
 #### Features
 * *Onboarding*
 * *Register*
@@ -19,13 +23,9 @@ This app is your all-in-one coding companion, designed to empower you with the k
 * *Notifications*
 * *Dark Mode*
 
-#### Tech Stack
-* **Frontend - Flutter**
-* **Backend - Firebase**
-
 #### Screenshots
 
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial_light.jpg" width="220">
+<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial.jpg" width="220">
 
 
 
