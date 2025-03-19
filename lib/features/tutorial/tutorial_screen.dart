@@ -39,64 +39,89 @@ class TutorialScreen extends StatelessWidget {
             children: [
               Container(
                 width: double.maxFinite,
-                margin: const EdgeInsets.only(bottom: 20),
+                //margin: const EdgeInsets.only(bottom: 20),
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 25,
+                  horizontal: 16,
                   vertical: 20,
                 ),
                 decoration: BoxDecoration(
                   color: colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.edit_note,
-                          color: colorScheme.primary,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          tutorial.updatedAt,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.primary,
-                          ),
-                        ),
-                        const Spacer(),
-                        Icon(
-                          Icons.timelapse_outlined,
-                          color: colorScheme.primary,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          tutorial.duration,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.primary,
-                          ),
-                        ),
-                      ],
+                    const CircleAvatar(
+                      radius: 24,
+                      backgroundImage: AssetImage("assets/icons/app_logo.png"),
                     ),
-                    const SizedBox(height: 15),
-                    Text(
-                      tutorial.description,
-                      style: const TextStyle(fontSize: 16),
-                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Code Kameleon",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: colorScheme.onPrimaryContainer,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                            width: double.maxFinite,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                tutorial.updatedAt,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.primary,
+                                ),
+                              ),
+                              Text(
+                                "${tutorial.duration} read",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.primary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
                   ],
+                ),
+              ),
+              Divider(height: 1, color: colorScheme.surface),
+              Container(
+                width: double.maxFinite,
+                margin: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 20,
+                ),
+                decoration: BoxDecoration(
+                  color: colorScheme.tertiaryContainer,
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(20),
+                  ),
+                ),
+                child: Text(
+                  tutorial.description,
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
               MarkdownViewer(
                 content: tutorial.content,
                 syntax: syntax,
               ),
-              const SizedBox(height: 30),
-              const Heading(title: "Advertisement"),
-              const SizedBox(height: 8),
+              const SizedBox(height: 20),
               const NativeAdWidget(),
             ],
           ),
