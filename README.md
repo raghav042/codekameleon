@@ -17,9 +17,7 @@
 * **Frontend - Flutter**
 * **Backend - Firebase**
 
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_dark.jpg" width="220">
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts_dark.jpg" width="220">
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial_dark.jpg" width="220">
+<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts_light.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial_light.jpg" width="220">
 
 
 
