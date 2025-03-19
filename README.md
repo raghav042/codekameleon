@@ -1,15 +1,5 @@
 # Codekameleon
 
-### TODO
-* *7. Full Text Search*
-* *2. Quiz*
-* *6. Authentication*
-* *1. Leaderboard*
-* *0. Profile*
-* *3. Complete Progrms*
-* *4. Google ads*
-* *5. Settings*
-
 ### Features
 * **Onboarding**
 * **Register**
@@ -17,13 +7,20 @@
 * **Leaderboard**
 * **Articles**
 * **Quiz**
+* **Search**
+* **Profile**
+* **Google Ads**
+* **Settings**
+* **Notifications**
 
 ### Tech Stack
-* **Flutter**
-* **Firebase**
+* **Frontend - Flutter**
+* **Backend - Firebase**
 
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_light.jpg" width="220">
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_dark.jpg" width="220">
+<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_light.jpg" width="230"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home_dark.jpg" width="230">
+<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts_light.jpg" width="230"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts_dark.jpg" width="230">
+<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial_light.jpg" width="230"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial_dark.jpg" width="230">
+
 
 
 
