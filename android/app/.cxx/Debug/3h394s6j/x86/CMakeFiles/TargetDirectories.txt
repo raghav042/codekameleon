@@ -1,0 +1,2 @@
+/Users/apple/AndroidStudioProjects/codekameleon/android/app/.cxx/Debug/3h394s6j/x86/CMakeFiles/edit_cache.dir
+/Users/apple/AndroidStudioProjects/codekameleon/android/app/.cxx/Debug/3h394s6j/x86/CMakeFiles/rebuild_cache.dir
