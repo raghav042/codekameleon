@@ -25,7 +25,7 @@ This app is your all-in-one coding companion, designed to empower you with the k
 
 #### Screenshots
 
-<img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/home.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/ts.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/raghav/screenshots/tutorial.jpg" width="220">
+<img src="https://github.com/raghav042/codekameleon/blob/main/screenshots/home.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/main/screenshots/ts.jpg" width="220"> <img src="https://github.com/raghav042/codekameleon/blob/main/screenshots/tutorial.jpg" width="220">
 
 
 
