@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/heading.dart';
 
-
 class AccountSettings extends StatefulWidget {
   const AccountSettings({super.key});
 
@@ -71,7 +70,7 @@ class _AccountSettingsState extends State<AccountSettings> {
               },
               shape: RoundedRectangleBorder(
                 borderRadius:
-                BorderRadius.vertical(bottom: Radius.circular(16)),
+                    BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
               tileColor: colorScheme.surfaceContainerLowest,
               leading: Icon(Icons.info_outline),
@@ -92,7 +91,7 @@ class _AccountSettingsState extends State<AccountSettings> {
           children: [
             ListTile(
               onTap: () {
-               // UserProvider().signOut(context);
+                // UserProvider().signOut(context);
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -106,14 +105,14 @@ class _AccountSettingsState extends State<AccountSettings> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content:
-                    Text("Your account will be deleted within 24 hours"),
+                        Text("Your account will be deleted within 24 hours"),
                   ),
                 );
-               // UserProvider().signOut(context);
+                // UserProvider().signOut(context);
               },
               shape: RoundedRectangleBorder(
                 borderRadius:
-                BorderRadius.vertical(bottom: Radius.circular(16)),
+                    BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
               tileColor: colorScheme.surfaceContainerLowest,
               leading: Icon(Icons.delete_forever),
