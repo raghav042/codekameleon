@@ -26,7 +26,7 @@ class _AccountSettingsState extends State<AccountSettings> {
           title: const Text("Account Settings"),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,8 +42,8 @@ class _AccountSettingsState extends State<AccountSettings> {
   Widget editProfile(ColorScheme colorScheme) {
     return Column(
       children: [
-        SizedBox(height: 15),
-        Heading(title: "Profile"),
+        const SizedBox(height: 15),
+        const Heading(title: "Profile"),
         Column(
           children: [
             ListTile(
@@ -54,12 +54,12 @@ class _AccountSettingsState extends State<AccountSettings> {
                 //         builder: (context) =>
                 //         const RegistrationScreen(isRegister: false)));
               },
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.person_outline),
-              title: Text("Edit Profile"),
+              leading: const Icon(Icons.person_outline),
+              title: const Text("Edit Profile"),
             ),
             ListTile(
               onTap: () {
@@ -68,13 +68,13 @@ class _AccountSettingsState extends State<AccountSettings> {
                 //     MaterialPageRoute(
                 //         builder: (context) => const BasicInfoScreen()));
               },
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
               tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.info_outline),
-              title: Text("Edit Basic Information"),
+              leading: const Icon(Icons.info_outline),
+              title: const Text("Edit Basic Information"),
             ),
           ],
         ),
@@ -85,38 +85,38 @@ class _AccountSettingsState extends State<AccountSettings> {
   Widget manageAccount(ColorScheme colorScheme) {
     return Column(
       children: [
-        SizedBox(height: 15),
-        Heading(title: "Account"),
+        const SizedBox(height: 15),
+        const Heading(title: "Account"),
         Column(
           children: [
             ListTile(
               onTap: () {
                 // UserProvider().signOut(context);
               },
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.logout),
-              title: Text("Log Out"),
+              leading: const Icon(Icons.logout),
+              title: const Text("Log Out"),
             ),
             ListTile(
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content:
                         Text("Your account will be deleted within 24 hours"),
                   ),
                 );
                 // UserProvider().signOut(context);
               },
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
               tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.delete_forever),
-              title: Text("Delete Account"),
+              leading: const Icon(Icons.delete_forever),
+              title: const Text("Delete Account"),
             ),
           ],
         ),

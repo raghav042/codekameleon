@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../widgets/heading.dart';
@@ -28,12 +27,11 @@ class _SettingScreenState extends State<SettingScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Setting')),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
             account(colorScheme),
             helpAndSupport(colorScheme),
-            appInfo(colorScheme),
           ],
         ),
       ),
@@ -42,53 +40,54 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Widget account(ColorScheme colorScheme) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Heading(title: "Account"),
+        const Heading(title: "Account"),
         Column(
           children: [
             ListTile(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AccountSettings()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AccountSettings()));
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
-              leading: Icon(Icons.person_outline),
-              title: Text("Manage Account"),
+              leading: const Icon(Icons.person_outline),
+              title: const Text("Manage Account"),
             ),
             ListTile(
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => NotificationSettings()));
+                        builder: (context) => const NotificationSettings()));
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.notifications_outlined),
-              title: Text("Notifications"),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ThemeSettings()));
-              },
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.dark_mode_outlined),
-              title: Text("Theme Mode"),
+              leading: const Icon(Icons.notifications_outlined),
+              title: const Text("Notifications"),
             ),
             ListTile(
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => LanguageSettings()));
+                        builder: (context) => const ThemeSettings()));
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.translate),
-              title: Text("Language"),
-              shape: RoundedRectangleBorder(
+              leading: const Icon(Icons.dark_mode_outlined),
+              title: const Text("Theme Mode"),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LanguageSettings()));
+              },
+              leading: const Icon(Icons.translate),
+              title: const Text("Language"),
+              shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
@@ -101,9 +100,10 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Widget helpAndSupport(ColorScheme colorScheme) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 15),
-        Heading(title: "Help & Support"),
+        const SizedBox(height: 15),
+        const Heading(title: "Help & Support"),
         Column(
           children: [
             ListTile(
@@ -111,29 +111,26 @@ class _SettingScreenState extends State<SettingScreen> {
                 launchUrlString(
                     "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
               },
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.help_outline),
-              title: Text("Help"),
+              leading: const Icon(Icons.help_outline),
+              title: const Text("Help"),
             ),
             ListTile(
               onTap: () {
                 launchUrlString(
                     "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.feedback_outlined),
-              title: Text("Feedback"),
+              leading: const Icon(Icons.feedback_outlined),
+              title: const Text("Feedback"),
             ),
             ListTile(
               onTap: () {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.info_outline),
-              title: Text("About Us"),
+              leading: const Icon(Icons.info_outline),
+              title: const Text("About Us"),
             ),
 
             /// TODO: terms of use is mandatory for app store
@@ -146,38 +143,22 @@ class _SettingScreenState extends State<SettingScreen> {
                 launchUrlString(
                     "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: Icon(Icons.shield_outlined),
-              title: Text("Privacy Policy"),
+              leading: const Icon(Icons.shield_outlined),
+              title: const Text("Privacy Policy"),
             ),
             ListTile(
               onTap: () {
                 // launchUrlString(AppHelper.storeUrl);
               },
-              tileColor: colorScheme.surfaceContainerLowest,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
-              leading: Icon(Icons.star_rate_outlined),
-              title: Text("Rate Us on Play Store"),
+              leading: const Icon(Icons.star_rate_outlined),
+              title: const Text("Rate Us on Play Store"),
             ),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget appInfo(ColorScheme colorScheme) {
-    return Column(
-      children: [
-        SizedBox(height: 30),
-        Image.asset(
-          "assets/images/logo_with_name.png",
-          width: 150,
-          color: colorScheme.surfaceContainer,
-        ),
-        SizedBox(height: 20),
       ],
     );
   }
