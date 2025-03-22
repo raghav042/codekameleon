@@ -19,7 +19,7 @@ class LeaderboardCard extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: colorScheme.primaryContainer,
           child: Text(
-            "${student.rank}",
+            "#${student.rank}",
             style: TextStyle(color: colorScheme.onPrimaryContainer),
           ),
         ),

@@ -3,24 +3,24 @@
 // import 'package:learn_dart/data/quiz_list.tutorials';
 // import 'package:learn_dart/model/quiz_model.tutorials';
 // import 'package:learn_dart/ui/quiz/quiz_screen.tutorials';
-//
+
 // import '../data/app_constant.tutorials';
-//
+
 // class QuizProvider with ChangeNotifier {
 //   int currentIndex = 0;
 //   List<QuizModel> get currentQuiz => quizes;
-//
+
 //   int mainIndex = 0;
 //   Map<int, String?> selectedAnswers = {};
 //   int totalScore = 0;
-//
+
 //   AppinioSwiperController swiperController = AppinioSwiperController();
-//
+
 //   void updateIndex(int index) {
 //     currentIndex = index;
 //     notifyListeners();
 //   }
-//
+
 //   void openPlayground({required BuildContext context, int? index}) {
 //     updateIndex(index ?? currentIndex);
 //     if (MediaQuery.of(context).size.width < AppConstant.smallBreakPoint) {
@@ -28,7 +28,7 @@
 //           context, MaterialPageRoute(builder: (context) => const QuizScreen()));
 //     }
 //   }
-//
+
 //   List<Map<String, dynamic>> questions = [
 //     {
 //       'question': 'What is Flutter?',
@@ -115,34 +115,34 @@
 //     },
 //     // Add more questions as needed
 //   ];
-//
+
 //   String? get selectedAnswer {
 //     return selectedAnswers[mainIndex];
 //   }
-//
+
 //   void updateSelectedAnswer(String value) {
 //     selectedAnswers[mainIndex] = value;
 //     notifyListeners();
 //   }
-//
+
 //   bool isBack() {
 //     return mainIndex > 0;
 //   }
-//
+
 //   void goBack() {
 //     mainIndex--;
 //     swiperController.unswipe();
 //     notifyListeners();
 //   }
-//
+
 //   void checkAnswer(index) {
 //     if (selectedAnswers[index] == questions[index]['correctAnswer']) {
 //     } else {}
-//
+
 //     if (mainIndex < questions.length - 1) {
 //       // mainIndex++;
 //     } else {}
-//
+
 //     notifyListeners();
 //   }
 // }
