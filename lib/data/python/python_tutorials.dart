@@ -1,3 +1,4 @@
+import 'package:codekameleon/data/python/tutorials/operators.dart';
 import 'package:codekameleon/model/tutorial_model.dart';
 
 import 'tutorials/basics.dart';
@@ -19,8 +20,14 @@ const List<TutorialModel> pythonTutorials = [
   ),
   TutorialModel(
     title: "Variables and Data Types",
-    description: " Pthon variables and data types",
+    description: " Python variables and data types",
     duration: "6 min",
     content: pythonVariablesAndDataTpes,
+  ),
+  TutorialModel(
+    title: "Operators",
+    description: " Operators in python",
+    duration: "5 min",
+    content: pythonOperators,
   ),
 ];
