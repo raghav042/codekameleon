@@ -17,15 +17,16 @@ class TutorialList extends StatelessWidget {
         return ListTile(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TutorialScreen(
-                    tutorial: language.tutorials[index],
-                    syntax: language.syntax,
-                    iconPath: language.smallIcon,
-                    color: language.color,
-                  ),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => TutorialScreen(
+                  tutorial: language.tutorials[index],
+                  syntax: language.syntax,
+                  iconPath: language.smallIcon,
+                  color: language.color,
+                ),
+              ),
+            );
           },
           contentPadding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
           title: Text(

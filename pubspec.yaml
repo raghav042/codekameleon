@@ -1,5 +1,5 @@
 name: codekameleon
-description: "A new Flutter project."
+description: "Code Kameleon is your all-in-one coding companion. Learn popular languages like Java, Python, and JavaScript through engaging tutorials. Test your knowledge with quiz challenges, track your progress, and join a community of learners. Whether you're a beginner or looking to expand your skills, Code Kameleon has you covered."
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
@@ -27,6 +27,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   firebase_core: ^3.12.1
   equatable: ^2.0.7
+
 
 dev_dependencies:
   flutter_test:
