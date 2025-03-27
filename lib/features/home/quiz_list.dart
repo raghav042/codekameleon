@@ -1,3 +1,4 @@
+import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/languages.dart';
@@ -9,6 +10,7 @@ class QuizList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,12 +23,18 @@ class QuizList extends StatelessWidget {
             itemBuilder: (_, i) {
               return OutlinedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  QuizScreen(language: languages[i])));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              QuizScreen(language: languages[i])));
                 },
                 style: OutlinedButton.styleFrom(
+                  backgroundColor: colorScheme.surfaceContainerHigh,
+                  side: BorderSide.none,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

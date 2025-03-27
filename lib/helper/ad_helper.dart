@@ -8,11 +8,11 @@ class AdHelper {
   static const int maxFailedLoadAttempts = 3;
 
   static Future<void> initGoogleMobileAds() async {
-    print("initialize ads =======================================\n\n");
     await MobileAds.instance.initialize();
     MobileAds.instance.updateRequestConfiguration(
-      RequestConfiguration(testDeviceIds: [redmi12,oppoA38]),
+      RequestConfiguration(testDeviceIds: [redmi12, oppoA38]),
     );
-    print("completed ads initialization =================================");
   }
+
+
 }
