@@ -1,2 +1,0 @@
-/Users/apple/AndroidStudioProjects/codekameleon/android/app/.cxx/Debug/s4q6b553/armeabi-v7a/CMakeFiles/edit_cache.dir
-/Users/apple/AndroidStudioProjects/codekameleon/android/app/.cxx/Debug/s4q6b553/armeabi-v7a/CMakeFiles/rebuild_cache.dir
