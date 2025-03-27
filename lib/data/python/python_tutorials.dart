@@ -1,3 +1,7 @@
+import 'package:codekameleon/data/python/tutorials/controler_flow_statements.dart';
+import 'package:codekameleon/data/python/tutorials/data_structures.dart';
+import 'package:codekameleon/data/python/tutorials/functions.dart';
+import 'package:codekameleon/data/python/tutorials/loops.dart';
 import 'package:codekameleon/data/python/tutorials/operators.dart';
 import 'package:codekameleon/model/tutorial_model.dart';
 
@@ -29,5 +33,29 @@ const List<TutorialModel> pythonTutorials = [
     description: " Operators in python",
     duration: "5 min",
     content: pythonOperators,
+  ),
+  TutorialModel(
+    title: "Control Flow Statement",
+    description: "Python control flow statements",
+    duration: "9 min",
+    content: pythonControlFlowStatements,
+  ),
+  TutorialModel(
+    title: "Loops",
+    description: "loops in python",
+    duration: "12 min",
+    content: pythonLoops,
+  ),
+  TutorialModel(
+    title: "Functions",
+    description: "Python Functions",
+    duration: "8 min",
+    content: pythonFunctions,
+  ),
+  TutorialModel(
+    title: "Data Structure",
+    description: "Python Data Structures",
+    duration: "12 min",
+    content: pythonDataStructures,
   ),
 ];
