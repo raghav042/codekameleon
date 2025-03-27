@@ -73,21 +73,12 @@ class _NativeAdWidgetState extends State<NativeAdWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (_nativeAd == null) {
-      return AspectRatio(
-        aspectRatio: aspectRatio,
-        child: Container(
-          width: double.maxFinite,
-          color: context.colorScheme.surfaceContainerLowest,
-        ),
-      );
-    }
-
     return AspectRatio(
       aspectRatio: aspectRatio,
-      child: SizedBox(
+      child: Container(
         width: double.maxFinite,
-        child: AdWidget(ad: _nativeAd!),
+        color: context.colorScheme.surfaceContainerLowest,
+        child: _nativeAd != null ? AdWidget(ad: _nativeAd!) : const SizedBox(),
       ),
     );
   }
