@@ -33,56 +33,56 @@ class _HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()));
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(8),
-              child: Hero(
-                tag: "my_profile_pic",
-                child: CircleAvatar(),
-              ),
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NotificationScreen()));
-              },
-              icon: const Icon(Icons.notifications_outlined),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingScreen()));
-              },
-              icon: const Icon(Icons.settings_outlined),
-            ),
-          ],
-        ),
+        // appBar: AppBar(
+        //   leading: GestureDetector(
+        //     onTap: () {
+        //       Navigator.push(
+        //           context,
+        //           MaterialPageRoute(
+        //               builder: (context) => const ProfileScreen()));
+        //     },
+        //     child: const Padding(
+        //       padding: EdgeInsets.all(8),
+        //       child: Hero(
+        //         tag: "my_profile_pic",
+        //         child: CircleAvatar(),
+        //       ),
+        //     ),
+        //   ),
+        //   actions: [
+        //     IconButton(
+        //       onPressed: () {
+        //         Navigator.push(
+        //             context,
+        //             MaterialPageRoute(
+        //                 builder: (context) => const NotificationScreen()));
+        //       },
+        //       icon: const Icon(Icons.notifications_outlined),
+        //     ),
+        //     IconButton(
+        //       onPressed: () {
+        //         Navigator.push(
+        //             context,
+        //             MaterialPageRoute(
+        //                 builder: (context) => const SettingScreen()));
+        //       },
+        //       icon: const Icon(Icons.settings_outlined),
+        //     ),
+        //   ],
+        // ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SearchField(),
-                const QuizList(),
+                // const SearchField(),
+                // const QuizList(),
                 const SizedBox(height: 20),
                 if (LanguageHelper.recentLanguage != null)
                   const Heading(title: "Currently Learning"),
                 if (LanguageHelper.recentLanguage != null)
                   RecentLanguageTile(language: LanguageHelper.recentLanguage!),
-                const LeaderboardTile(),
+                // const LeaderboardTile(),
                 const Heading(title: "Popular Tutorials"),
                 Center(
                   child: Wrap(
