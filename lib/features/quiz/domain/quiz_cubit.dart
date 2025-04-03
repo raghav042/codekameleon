@@ -1,9 +1,11 @@
-import 'package:codekameleon/features/quiz/app_constants.dart';
+import 'dart:developer';
+
+import 'package:codekameleon/features/quiz/data/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
-import '../../model/language_model.dart';
-import 'quiz_screen.dart';
+import '../../../model/language_model.dart';
+import '../presentation/quiz_screen.dart';
 import 'quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
@@ -19,6 +21,14 @@ class QuizCubit extends Cubit<QuizState> {
     emit(state.copyWith(currentIndex: index));
     emit(state.copyWith(mainIndex: index));
     print("the main index ${state.mainIndex}");
+  }
+
+  void next() {
+    if (state.mainIndex < questions.length - 1) {
+      final newIndex = state.mainIndex + 1;
+      swiperController.swipeLeft();
+      emit(state.copyWith(mainIndex: newIndex));
+    }
   }
 
   void openPlayground({
@@ -44,7 +54,9 @@ class QuizCubit extends Cubit<QuizState> {
   void updateSelectedAnswer(String value) {
     final newSelectedAnswers = Map<int, String?>.from(state.selectedAnswers);
     newSelectedAnswers[state.mainIndex] = value;
+    // log("the selected answer")
     emit(state.copyWith(selectedAnswers: newSelectedAnswers));
+    log("the selected answer ${state.selectedAnswers}");
   }
 
   bool isBack() {

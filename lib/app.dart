@@ -3,7 +3,7 @@ import 'package:codekameleon/features/auth/auth_helpers/auth_repo.dart';
 import 'package:codekameleon/features/auth/auth_helpers/firebase_auth.dart';
 import 'package:codekameleon/features/auth/login_screen.dart';
 import 'package:codekameleon/features/home/home_screen.dart';
-import 'package:codekameleon/features/quiz/quiz_cubit.dart';
+import 'package:codekameleon/features/quiz/domain/quiz_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,9 +25,6 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AuthCubit(context.read<AuthRepository>()),
-        ),
-        BlocProvider(
-          create: (context) => QuizCubit(),
         ),
       ],
       child: MaterialApp(

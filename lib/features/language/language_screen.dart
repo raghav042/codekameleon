@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../model/language_model.dart';
 import '../../widgets/no_data_widget.dart';
-import '../quiz/quiz_screen.dart';
+import '../quiz/presentation/quiz_screen.dart';
 import '../tutorial/tutorial_list.dart';
 
 class LanguageScreen extends StatelessWidget {

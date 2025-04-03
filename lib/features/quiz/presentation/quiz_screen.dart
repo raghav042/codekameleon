@@ -1,13 +1,15 @@
-import 'package:codekameleon/features/quiz/quiz_state.dart';
+import 'dart:developer';
+
+import 'package:codekameleon/features/quiz/domain/quiz_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 
-import '../../model/language_model.dart';
-import '../../model/quiz_model.dart';
-import '../../widgets/no_data_widget.dart';
-import 'quiz_cubit.dart';
+import '../../../model/language_model.dart';
+import '../../../model/quiz_model.dart';
+import '../../../widgets/no_data_widget.dart';
+import '../domain/quiz_cubit.dart';
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key, required this.language});
@@ -65,14 +67,30 @@ class QuizScreen extends StatelessWidget {
                 },
               ),
             ),
-            if (cubit.isBack()) // Changed from state.isBack() to cubit.isBack()
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: cubit.goBack,
-                  child: const Text('Go Back'),
-                ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // if (cubit.isBack())
+                  ElevatedButton(
+                    onPressed: cubit.isBack() ? cubit.goBack : null,
+                    child: const Text('Previous'),
+                  ),
+                  // if (state.mainIndex < language.quizes.length - 1)
+                  ElevatedButton(
+                    onPressed: state.mainIndex < language.quizes.length - 1
+                        ? () {
+                            cubit.swiperController.swipeLeft();
+                            // cubit.next();
+                          }
+                        : null,
+                    child: const Text('Next'),
+                  ),
+                ],
               ),
+            ),
           ],
         );
       },
@@ -100,8 +118,8 @@ class QuizScreen extends StatelessWidget {
             blurRadius: 3,
             offset: const Offset(0, 2),
             color: isSelected
-                ? colorScheme.primary.withOpacity(0.5)
-                : colorScheme.tertiary.withOpacity(0.5),
+                ? colorScheme.primary.withValues(alpha: 0.5)
+                : colorScheme.tertiary.withValues(alpha: 0.5),
           )
         ],
       ),
@@ -114,21 +132,16 @@ class QuizScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Expanded(
-            child:
-                _buildOptions(quiz, index, colorScheme, selectedAnswer, cubit),
+            child: _buildOptions(
+                quiz, index, colorScheme, selectedAnswer, cubit, state),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildOptions(
-    QuizModel quiz,
-    int quizIndex,
-    ColorScheme colorScheme,
-    String? selectedAnswer,
-    QuizCubit cubit,
-  ) {
+  Widget _buildOptions(QuizModel quiz, int quizIndex, ColorScheme colorScheme,
+      String? selectedAnswer, QuizCubit cubit, QuizState state) {
     return ListView.builder(
       // shrinkWrap: true,
       itemCount: quiz.options.length,
@@ -136,9 +149,15 @@ class QuizScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         final option = quiz.options[index];
         final isSelected = selectedAnswer == option;
+        // final isCorrectAnswer = option == quiz.options[quiz.answer];
         return InkWell(
           onTap: () {
-            cubit.updateSelectedAnswer(option);
+            log("the bool ${state.selectedAnswers}a nd $index");
+            if (!state.selectedAnswers.containsKey(state.mainIndex)) {
+              cubit.updateSelectedAnswer(option);
+            } else {
+              log("the  else ${state.selectedAnswers}");
+            }
           },
           child: Material(
             color: Colors.transparent,
@@ -159,15 +178,19 @@ class QuizScreen extends StatelessWidget {
                   contentPadding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
                   leading: CircleAvatar(
                     backgroundColor: colorScheme.surfaceContainerLow,
-                    child: index == 2
+                    child: quiz.options.indexOf(state
+                                    .selectedAnswers[state.currentIndex]
+                                    .toString()) ==
+                                quiz.answer &&
+                            (index == quiz.answer)
                         ? Icon(
                             Icons.check,
                             color: Colors.green.shade700,
                           )
-                        : Text(index.toString()),
+                        : Text((index + 1).toString()),
                   ),
                   title: Text(
-                    quiz.options[index],
+                    option,
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),
@@ -206,7 +229,4 @@ class QuizScreen extends StatelessWidget {
       },
     );
   }
-
-  // Rest of the code (_buildQuizCard and _buildOptions) remains the same
-  // ... copy from your previous version
 }
