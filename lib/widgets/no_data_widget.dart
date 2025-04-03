@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NoDataWidget extends StatelessWidget {
-  const NoDataWidget({super.key, required this.imagePath, required this.title});
+  const NoDataWidget(
+      {super.key, required this.imagePath, required this.title, this.subtitle});
   final String imagePath;
   final String title;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class NoDataWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const Text("Please check again after some time"),
+        Text(subtitle ?? "Please check again after some time"),
       ],
     );
   }

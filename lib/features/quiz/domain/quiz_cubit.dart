@@ -13,22 +13,10 @@ class QuizCubit extends Cubit<QuizState> {
 
   final AppinioSwiperController swiperController = AppinioSwiperController();
 
-  final List<Map<String, dynamic>> questions = [
-    // ... your questions remain the same
-  ];
-
   void updateIndex(int index) {
     emit(state.copyWith(currentIndex: index));
     emit(state.copyWith(mainIndex: index));
     print("the main index ${state.mainIndex}");
-  }
-
-  void next() {
-    if (state.mainIndex < questions.length - 1) {
-      final newIndex = state.mainIndex + 1;
-      swiperController.swipeLeft();
-      emit(state.copyWith(mainIndex: newIndex));
-    }
   }
 
   void openPlayground({
@@ -71,18 +59,18 @@ class QuizCubit extends Cubit<QuizState> {
     }
   }
 
-  void checkAnswer(int index) {
-    final isCorrect =
-        state.selectedAnswers[index] == questions[index]['correctAnswer'];
-    final newScore = isCorrect ? state.totalScore + 1 : state.totalScore;
+  // void checkAnswer(int index) {
+  //   final isCorrect =
+  //       state.selectedAnswers[index] == questions[index]['correctAnswer'];
+  //   final newScore = isCorrect ? state.totalScore + 1 : state.totalScore;
 
-    if (state.mainIndex < questions.length - 1) {
-      emit(state.copyWith(
-        mainIndex: state.mainIndex + 1,
-        totalScore: newScore,
-      ));
-    } else {
-      emit(state.copyWith(totalScore: newScore));
-    }
-  }
+  //   if (state.mainIndex < questions.length - 1) {
+  //     emit(state.copyWith(
+  //       mainIndex: state.mainIndex + 1,
+  //       totalScore: newScore,
+  //     ));
+  //   } else {
+  //     emit(state.copyWith(totalScore: newScore));
+  //   }
+  // }
 }

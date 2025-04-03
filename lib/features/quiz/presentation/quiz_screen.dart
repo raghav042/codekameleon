@@ -145,7 +145,7 @@ class QuizScreen extends StatelessWidget {
     return ListView.builder(
       // shrinkWrap: true,
       itemCount: quiz.options.length,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final option = quiz.options[index];
         final isSelected = selectedAnswer == option;
