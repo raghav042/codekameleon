@@ -1,33 +1,31 @@
-import 'package:equatable/equatable.dart';
-
-class QuizState extends Equatable {
+class QuizState {
   final int currentIndex;
-  final Map<int, String?> selectedAnswers;
-  final int totalScore;
   final int mainIndex;
+  final int totalScore;
+  final bool isSubmitted;
+  final Map<int, String?> selectedAnswers;
 
   const QuizState({
     this.currentIndex = 0,
-    this.selectedAnswers = const {},
-    this.totalScore = 0,
     this.mainIndex = 0,
+    this.totalScore = 0,
+    this.isSubmitted = false,
+    this.selectedAnswers = const {},
   });
 
   QuizState copyWith({
     int? currentIndex,
-    Map<int, String?>? selectedAnswers,
-    int? totalScore,
     int? mainIndex,
+    int? totalScore,
+    bool? isSubmitted,
+    Map<int, String?>? selectedAnswers,
   }) {
     return QuizState(
       currentIndex: currentIndex ?? this.currentIndex,
-      selectedAnswers: selectedAnswers ?? this.selectedAnswers,
-      totalScore: totalScore ?? this.totalScore,
       mainIndex: mainIndex ?? this.mainIndex,
+      totalScore: totalScore ?? this.totalScore,
+      isSubmitted: isSubmitted ?? this.isSubmitted,
+      selectedAnswers: selectedAnswers ?? this.selectedAnswers,
     );
   }
-
-  @override
-  List<Object?> get props =>
-      [currentIndex, selectedAnswers, totalScore, mainIndex];
 }

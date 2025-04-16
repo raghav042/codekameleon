@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:codekameleon/data/dart/dart_quizes.dart';
+import 'package:codekameleon/data/languages.dart';
 import 'package:codekameleon/features/quiz/domain/quiz_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,17 +22,17 @@ class QuizScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("${language.name} Quiz"),
-        actions: [
-          BlocBuilder<QuizCubit, QuizState>(
-            builder: (context, state) => Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Text(
-                'Score: ${state.totalScore}',
-                style: const TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-        ],
+        // actions: [
+        //   BlocBuilder<QuizCubit, QuizState>(
+        //     builder: (context, state) => Padding(
+        //       padding: const EdgeInsets.only(right: 16.0),
+        //       child: Text(
+        //         'Score: ${state.totalScore}',
+        //         style: const TextStyle(fontSize: 18),
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: language.quizes.isEmpty
           ? const NoDataWidget(
@@ -80,13 +82,18 @@ class QuizScreen extends StatelessWidget {
                   ),
                   // if (state.mainIndex < language.quizes.length - 1)
                   ElevatedButton(
-                    onPressed: state.mainIndex < language.quizes.length - 1
-                        ? () {
-                            cubit.swiperController.swipeLeft();
-                            // cubit.next();
-                          }
-                        : null,
-                    child: const Text('Next'),
+                    onPressed: () {
+                      if (state.mainIndex == language.quizes.length - 1) {
+                        _showSubmitDialog(context, cubit, language);
+                      } else {
+                        cubit.swiperController.swipeLeft();
+                      }
+                      // cubit.next();
+                    },
+                    // : null,
+                    child: Text(state.mainIndex == language.quizes.length - 1
+                        ? "Submit"
+                        : 'Next'),
                   ),
                 ],
               ),
@@ -94,6 +101,32 @@ class QuizScreen extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  void _showSubmitDialog(
+      BuildContext context, QuizCubit cubit, LanguageModel c) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text("Submit Quiz"),
+        content: const Text("Are you sure you want to submit your answers?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // Navigator.of(context).pop();
+              // log("the submit ${language.name}");
+              cubit.submitQuiz(language.name, dartQuizes, language);
+            },
+            child: const Text("Submit"),
+          ),
+        ],
+      ),
     );
   }
 
@@ -151,8 +184,12 @@ class QuizScreen extends StatelessWidget {
         final isSelected = selectedAnswer == option;
         // final isCorrectAnswer = option == quiz.options[quiz.answer];
         return InkWell(
-          onTap: () {
-            log("the bool ${state.selectedAnswers}a nd $index");
+          onTap: () async {
+            // cubit.updateSelectedAnswer(option);
+            // log("the  actual ${dartQuizes[state.mainIndex].options[dartQuizes[state.mainIndex].answer]}");
+            // await Future.delayed(const Duration(seconds: 4));
+            // log("${quiz.options.indexOf(state.selectedAnswers[state.currentIndex].toString())} ₹{(index + 1) == quiz.answer)} ${quiz.answer} ${(index + 1)} and ${state.selectedAnswers}");
+            // log("the bool ${state.selectedAnswers}a nd $index");
             if (!state.selectedAnswers.containsKey(state.mainIndex)) {
               cubit.updateSelectedAnswer(option);
             } else {
@@ -178,16 +215,7 @@ class QuizScreen extends StatelessWidget {
                   contentPadding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
                   leading: CircleAvatar(
                     backgroundColor: colorScheme.surfaceContainerLow,
-                    child: quiz.options.indexOf(state
-                                    .selectedAnswers[state.currentIndex]
-                                    .toString()) ==
-                                quiz.answer &&
-                            (index == quiz.answer)
-                        ? Icon(
-                            Icons.check,
-                            color: Colors.green.shade700,
-                          )
-                        : Text((index + 1).toString()),
+                    child: Text((index + 1).toString()),
                   ),
                   title: Text(
                     option,

@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/features/quiz/domain/quiz_cubit.dart';
+import 'package:codekameleon/features/quiz/quiz_result.dart';
+import 'package:codekameleon/helper/ui_helper.dart';
+import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,17 +30,40 @@ class QuizList extends StatelessWidget {
             itemBuilder: (_, i) {
               return OutlinedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BlocProvider(
-                        create: (context) => QuizCubit(),
-                        child: QuizScreen(language: languages[i]),
+                  final quizResult =
+                      Preferences.getQuizResult(languages[i].name);
+                  if (quizResult == null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                          create: (context) => QuizCubit(),
+                          child: QuizScreen(language: languages[i]),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  } else {
+                    UiHelper.showGenericConfirmationDialog(
+                      context: context,
+                      title: "Quiz Already Taken",
+                      message:
+                          "You've already completed this quiz. Would you like to view your result?",
+                      confirmText: "View Result",
+                      onConfirmed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => QuizResultScreen(
+                              language: languages[i],
+                              result: quizResult,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
                 },
-                // onPressed: () {
+// onPressed: () {
                 //   Navigator.push(
                 //       context,
                 //       MaterialPageRoute(

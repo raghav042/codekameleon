@@ -4,6 +4,7 @@ import 'package:codekameleon/features/auth/auth_helpers/firebase_auth.dart';
 import 'package:codekameleon/features/auth/login_screen.dart';
 import 'package:codekameleon/features/home/home_screen.dart';
 import 'package:codekameleon/features/quiz/domain/quiz_cubit.dart';
+import 'package:codekameleon/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +29,7 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         title: 'Code Kameleon',
         home: HomeScreen(),
         themeMode: ThemeMode.system,

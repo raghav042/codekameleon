@@ -1,6 +1,12 @@
 import 'dart:developer';
 
+import 'package:codekameleon/data/languages.dart';
 import 'package:codekameleon/features/quiz/data/app_constants.dart';
+import 'package:codekameleon/features/quiz/quiz_result.dart';
+import 'package:codekameleon/helper/ui_helper.dart';
+import 'package:codekameleon/main.dart';
+import 'package:codekameleon/model/quiz_model.dart';
+import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
@@ -19,20 +25,67 @@ class QuizCubit extends Cubit<QuizState> {
     print("the main index ${state.mainIndex}");
   }
 
-  void openPlayground({
-    required BuildContext context,
-    int? index,
-    required LanguageModel language,
-  }) {
-    updateIndex(index ?? state.currentIndex);
-    if (MediaQuery.of(context).size.width < AppConstant.smallBreakPoint) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizScreen(language: language),
-        ),
+  // void openPlayground({
+  //   required BuildContext context,
+  //   int? index,
+  //   required LanguageModel language,
+  // }) {
+  //   updateIndex(index ?? state.currentIndex);
+  //   if (MediaQuery.of(context).size.width < AppConstant.smallBreakPoint) {
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => QuizScreen(language: language),
+  //       ),
+  //     );
+  //   }
+  // }
+
+  void submitQuiz(
+      String quizId, List<QuizModel> quizList, LanguageModel language) {
+    int totalScore = 0;
+    Map<String, String> correctAnswers = {};
+
+    for (int i = 0; i < quizList.length; i++) {
+      final selected = state.selectedAnswers[i];
+      final correctAnswer = quizList[i].options[quizList[i].answer - 1];
+      log("the selected at index $i $selected and correct $correctAnswer");
+
+      final isCorrect = selected == correctAnswer;
+      correctAnswers[i.toString()] = selected ?? "";
+
+      if (isCorrect) {
+        totalScore += 1;
+      }
+    }
+    log("the pref data$quizId and $correctAnswers");
+
+    Preferences.saveQuizResult(quizId, correctAnswers);
+    Navigator.pop(navigatorKey.currentContext!);
+    Navigator.pop(navigatorKey.currentContext!);
+    final quizResult = Preferences.getQuizResult(language.name);
+    if (quizResult != null) {
+      UiHelper.showGenericConfirmationDialog(
+        context: navigatorKey.currentContext!,
+        title: "Quiz Already Taken",
+        message:
+            "You've already completed this quiz. Would you like to view your result?",
+        confirmText: "View Result",
+        onConfirmed: () {
+          Navigator.push(
+            navigatorKey.currentContext!,
+            MaterialPageRoute(
+              builder: (_) => QuizResultScreen(
+                language: language,
+                result: quizResult,
+              ),
+            ),
+          );
+        },
       );
     }
+//  UiHelper.showGenericConfirmationDialog(s
+    emit(state.copyWith(totalScore: totalScore, isSubmitted: true));
   }
 
   String? getSelectedAnswer() {
