@@ -1,7 +1,5 @@
 import 'dart:developer';
 
-import 'package:codekameleon/data/languages.dart';
-import 'package:codekameleon/features/quiz/data/app_constants.dart';
 import 'package:codekameleon/features/quiz/quiz_result.dart';
 import 'package:codekameleon/helper/ui_helper.dart';
 import 'package:codekameleon/main.dart';
@@ -11,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import '../../../model/language_model.dart';
-import '../presentation/quiz_screen.dart';
 import 'quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/features/quiz/domain/quiz_cubit.dart';
 import 'package:codekameleon/features/quiz/quiz_result.dart';

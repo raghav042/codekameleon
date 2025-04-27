@@ -8,8 +8,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
-import '../../widgets/heading.dart';
-
 class TutorialScreen extends StatelessWidget {
   const TutorialScreen({
     super.key,

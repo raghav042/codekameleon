@@ -1,10 +1,9 @@
 import '../../model/quiz_model.dart';
 
-
 const List<QuizModel> dartQuizes = [
   QuizModel(
     question: 'What is Flutter?',
-    answer: 2,
+    answer: 1,
     options: [
       'A programming language',
       'A framework for building mobile apps',
@@ -14,7 +13,7 @@ const List<QuizModel> dartQuizes = [
   ),
   QuizModel(
     question: 'What language is used for Flutter app development?',
-    answer: 1,
+    answer: 0,
     options: [
       'Dart',
       'Java',
@@ -24,7 +23,7 @@ const List<QuizModel> dartQuizes = [
   ),
   QuizModel(
     question: 'What is the primary function of the MaterialApp widget?',
-    answer: 3,
+    answer: 2,
     options: [
       'Define the structure of the app',
       'Handle app navigation',
@@ -35,12 +34,12 @@ const List<QuizModel> dartQuizes = [
   QuizModel(
     question:
         'Which widget is used for creating a scrollable list of widgets in Flutter?',
-    answer: 1,
+    answer: 0,
     options: ['ListView', 'GridView', 'ScrollView', 'ListTile'],
   ),
   QuizModel(
     question: 'What is the purpose of the Scaffold widget in Flutter?',
-    answer: 2,
+    answer: 1,
     options: [
       'To create a floating action button',
       'To define the overall structure of the app',
@@ -50,7 +49,7 @@ const List<QuizModel> dartQuizes = [
   ),
   QuizModel(
     question: 'In Flutter, what does the term "widget" refer to?',
-    answer: 1,
+    answer: 0,
     options: [
       'A graphical user interface component',
       'A database entity',
@@ -60,13 +59,13 @@ const List<QuizModel> dartQuizes = [
   ),
   QuizModel(
     question: 'Which class is used for handling navigation in Flutter?',
-    answer: 1,
+    answer: 0,
     options: ['Navigator', 'Route', 'Router', 'NavigationController'],
   ),
   QuizModel(
     question:
         'What is the purpose of the pubspec.yaml file in a Flutter project?',
-    answer: 1,
+    answer: 0,
     options: [
       'To define project dependencies',
       'To configure the app\'s theme',
@@ -76,12 +75,12 @@ const List<QuizModel> dartQuizes = [
   ),
   QuizModel(
     question: 'Which package is commonly used for state management in Flutter?',
-    answer: 1,
+    answer: 0,
     options: ['Provider', 'Redux', 'MobX', 'Bloc'],
   ),
   QuizModel(
     question: 'What is a Flutter widget key used for?',
-    answer: 1,
+    answer: 0,
     options: [
       'To provide a unique identifier for a widget',
       'To handle user input',
