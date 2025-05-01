@@ -3,6 +3,7 @@ import 'package:codekameleon/features/auth/auth_helpers/auth_repo.dart';
 import 'package:codekameleon/features/auth/auth_helpers/firebase_auth.dart';
 
 import 'package:codekameleon/features/home/home_screen.dart';
+import 'package:codekameleon/loginAndSignup/signup.dart';
 import 'package:codekameleon/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,8 @@ class App extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: 'Code Kameleon',
-        home: const HomeScreen(),
+        home: const Signup(),
+        //home: const HomeScreen(),
         themeMode: ThemeMode.system,
         theme: lightTheme(),
         darkTheme: darkTheme(),
