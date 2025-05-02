@@ -1,3 +1,4 @@
+import 'package:codekameleon/features/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,11 +20,14 @@ class _SignupState extends State<Signup> {
   final _controllerPassword = TextEditingController();
   final _controllerConfirmPassword = TextEditingController();
   bool _validateUsername = false;
-  //bool _validateEmail = false;//was not used
-  //bool _validatePassword = false;//was not used
- // bool _validateConfirmPassword = false;//was not used
+  bool _validateEmail = false;//using these ensure that the validation is only done when the signup button is pressed
+  bool _validatePassword = false;//before using them the validation was done even when user has not entered any data
+  bool _validateConfirmPassword = false;//it was simply bad ui
   bool _obsecurePassword = true;
   bool _obscureConfirmPassword = true;
+  bool _emailIsCorrect = true;
+  bool _passwordIsCorrect = true;
+  bool _confirmPasswordIsCorrect = true;
 
   @override
   void dispose(){
@@ -37,18 +41,26 @@ class _SignupState extends State<Signup> {
   String? get _errorTextEmail{
     final textEmail = _controllerEmail.value.text;
     if(textEmail == null || textEmail.isEmpty){
+      _emailIsCorrect = false;
       return "Please enter email:";
     } else if ( !( textEmail.contains("@") && textEmail.contains("."))){
+      _emailIsCorrect = false;
       return "Invalid email";
+    } else {
+      _emailIsCorrect = true;
     }
     return null;
   }
   String? get _errorTextPassword{
     final textPassword = _controllerPassword.value.text;
     if(textPassword == null || textPassword.isEmpty){
+      _passwordIsCorrect = false;
       return "Please enter password:";
     } else if (textPassword.length < 8){
+      _passwordIsCorrect = false;
       return "Password must be at least 8 characters.";
+    } else{
+      _passwordIsCorrect = true;
     }
     return null;
   }
@@ -56,9 +68,13 @@ class _SignupState extends State<Signup> {
   String? get _errorTextConfirmPassword{
     final textConfirmPassword = _controllerConfirmPassword.value.text;
     if(textConfirmPassword == null || textConfirmPassword.isEmpty){
+      _confirmPasswordIsCorrect = false;
       return "Please enter password for confirmation";
     } else if (textConfirmPassword != _controllerPassword.text){
+      _confirmPasswordIsCorrect = false;
       return "Password does not match";
+    } else {
+      _confirmPasswordIsCorrect = true;
     }
     return null;
   }
@@ -71,10 +87,13 @@ class _SignupState extends State<Signup> {
         child: Column(
           children: [
             const SizedBox(height: 100,),
-            const Text(
+            Text(
               "Create an account:",
               style: TextStyle(
                 fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.brown[800]
+                //color: Colors.purple[900]
               ),
             ),
             const SizedBox(height: 40,),
@@ -105,7 +124,7 @@ class _SignupState extends State<Signup> {
               controller: _controllerEmail,
               decoration: InputDecoration(
                   labelText: "Email",
-                  errorText: _errorTextEmail,
+                  errorText: _validateEmail?_errorTextEmail: null,
                   filled: true,
                   fillColor: Colors.white,
                   prefixIcon: const Icon(Icons.email_outlined),
@@ -127,7 +146,7 @@ class _SignupState extends State<Signup> {
               obscureText: _obsecurePassword,
               decoration: InputDecoration(
                   labelText: "Password",
-                  errorText: _errorTextPassword,
+                  errorText: _validatePassword?_errorTextPassword: null,
                   filled: true,
                   fillColor: Colors.white,
                   prefixIcon: const Icon(Icons.password_outlined),
@@ -158,7 +177,7 @@ class _SignupState extends State<Signup> {
               obscureText: _obscureConfirmPassword,
               decoration: InputDecoration(
                   labelText: "Confirm Password",
-                  errorText: _errorTextConfirmPassword,
+                  errorText: _validateConfirmPassword? _errorTextConfirmPassword : null,
                   filled: true,
                   fillColor: Colors.white,
                   prefixIcon: const Icon(Icons.password_outlined),
@@ -192,36 +211,46 @@ class _SignupState extends State<Signup> {
                 onPressed: (){
                   setState(() {
                     _validateUsername = _controllerUsername.text.isEmpty;
+                    _validateEmail = !_validateEmail;
+                    _validatePassword = !_validatePassword;
+                    _validateConfirmPassword = !_validateConfirmPassword;
                   });
+                  if(!_validateUsername && _emailIsCorrect && _passwordIsCorrect && _confirmPasswordIsCorrect){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen()));
+                  }
                 },
-                child: const Text(
-                    "Sign Up",
-                  style: TextStyle(
-                    fontSize: 20
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                      "Sign Up",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                 )
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   "Already have an account?",
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold
                   ),
                 ),
                 TextButton(
                     onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Login()));
                     },
                     child: Text(
                       "Login",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue[900]
+                        color: Colors.purple[900]
                       ),
                     )
                 )
