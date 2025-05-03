@@ -1,12 +1,9 @@
-import 'package:codekameleon/features/auth/auth_helpers/auth_cubit.dart';
-import 'package:codekameleon/features/auth/auth_helpers/auth_repo.dart';
-import 'package:codekameleon/features/auth/auth_helpers/firebase_auth.dart';
 
-import 'package:codekameleon/features/home/home_screen.dart';
-import 'package:codekameleon/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:codekameleon/features/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/home/home_screen.dart';
+import 'main.dart';
+import 'provider/auth_provider.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
 
@@ -18,19 +15,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) =>
-              AuthRepository(FirebaseAuthService(FirebaseAuth.instance)),
-        ),
-        BlocProvider(
-          create: (context) => AuthCubit(context.read<AuthRepository>()),
-        ),
-      ],
+      providers: providers,
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: 'Code Kameleon',
-        home: const HomeScreen(),
+        home: SignupScreen(),//const HomeScreen(),
         themeMode: ThemeMode.system,
         theme: lightTheme(),
         darkTheme: darkTheme(),
@@ -39,9 +28,6 @@ class App extends StatelessWidget {
   }
 }
 
-List<BlocProvider> providers = [
-  BlocProvider(
-    create: (context) =>
-        AuthCubit(AuthRepository(FirebaseAuthService(FirebaseAuth.instance))),
-  ),
+final providers = [
+  ChangeNotifierProvider(create: (context) => AuthenticationProvider()),
 ];
