@@ -30,4 +30,24 @@ class AuthenticationProvider extends ChangeNotifier {
       }
     }
   }
+
+  Future<void> logIn({
+    required String email,
+    required String password,
+    required BuildContext context
+  }) async {
+    isLoading = true;
+    notifyListeners();
+    final UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+        
+    final User? user = userCredential.user;
+
+    if (user != null) {
+      MaterialPageRoute(builder: (context) => const HomeScreen());
+    }
+    isLoading = false;
+    notifyListeners();
+  }
+
 }

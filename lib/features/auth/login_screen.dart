@@ -1,6 +1,8 @@
 import 'package:codekameleon/features/auth/signup_screen.dart';
+import 'package:codekameleon/provider/authentication_provider.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,8 +12,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AuthenticationProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -26,9 +33,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const Heading(title: "Email"),
-              TextFormField(),
+              TextFormField(
+                controller: _email,
+              ),
               const Heading(title: 'Password'),
-              TextFormField(),
+              TextFormField(
+                controller: _password,
+              ),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -41,11 +52,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  onPressed: provider.isLoading
+                      ? null // So that button can't be pushed
+                      : () {
+                          provider.logIn(
+                              context: context,
+                              email: _email.text,
+                              password: _password.text);
+                        },
+                  child: provider.isLoading // It has already loading
+                      ? const CircularProgressIndicator()
+                      : const Text(
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
                 ),
               ),
               Row(
