@@ -74,28 +74,30 @@ class _SignupScreenState extends State<SignupScreen> {
                 obscureText: obscurePassword,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
-                      onPressed:(){
+                      onPressed: () {
                         setState(() {
                           obscurePassword = !obscurePassword;
                         });
                       },
-                      icon: obscurePassword? Icon(Icons.visibility_outlined): Icon(Icons.visibility_off_outlined)
+                      icon: obscurePassword
+                          ? const Icon(Icons.visibility_outlined)
+                          : const Icon(Icons.visibility_off_outlined)),
                 ),
-              ),
               ),
               const Heading(title: "Confirm Password"),
               TextFormField(
                 controller: confirmPasswordController,
                 obscureText: obscureConfirmPassword,
                 decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                      onPressed: (){
-                        setState(() {
-                          obscureConfirmPassword = !obscureConfirmPassword;
-                        });
-                      },
-                      icon: obscureConfirmPassword? Icon(Icons.visibility_outlined) : Icon(Icons.visibility_off_outlined))
-                ),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            obscureConfirmPassword = !obscureConfirmPassword;
+                          });
+                        },
+                        icon: obscureConfirmPassword
+                            ? const Icon(Icons.visibility_outlined)
+                            : const Icon(Icons.visibility_off_outlined))),
               ),
               const SizedBox(height: 50),
               SizedBox(
@@ -126,18 +128,17 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 20),
               Center(
                 child: TextButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword()));
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgotPassword()));
                     },
-                    child: Text(
+                    child: const Text(
                       "Forgot Password",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold
-                      ),
-
-                    )
-                ),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    )),
               )
             ],
           ),
