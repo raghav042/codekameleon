@@ -2,7 +2,10 @@ import 'package:codekameleon/features/auth/signup_screen.dart';
 import 'package:codekameleon/provider/authentication_provider.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,8 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +25,23 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
-                child: Text(
-                  'Welcome back',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              Text(
+                "Welcome back to your coding hub",
+                style: GoogleFonts.quicksand(fontSize: 30),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "Enter your email and password to access your learning space",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 40),
               const Heading(title: "Email"),
               TextFormField(
                 controller: _email,
@@ -43,8 +53,17 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
-                  child: const Text("Forget Password ?"),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const ForgetPasswordScreen()));
+                  },
+                  child: const Text(
+                    "Forget Password ?",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               const SizedBox(height: 50),
@@ -81,11 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => const SignupScreen()));
                     },
                     child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      'Register',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

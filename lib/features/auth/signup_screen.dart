@@ -1,9 +1,10 @@
-import 'package:codekameleon/provider/authentication_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../provider/authentication_provider.dart';
 import '../../widgets/heading.dart';
-import 'auth_helpers/forgot_password.dart';
+import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -28,42 +29,26 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AuthenticationProvider>(context);
-
-    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Become a ",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      "Code Kameleon",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.primary),
-                    ),
-                  ],
+              Text(
+                "Unleash Your Code Kameleon",
+                style: GoogleFonts.quicksand(fontSize: 28),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "Create your free account and start your coding evolution!",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Sign up to continue",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
+              const SizedBox(height: 40),
               const Heading(title: "Name"),
               TextFormField(
                 controller: nameController,
@@ -132,7 +117,12 @@ class _SignupScreenState extends State<SignupScreen> {
                 children: [
                   const Text("Already have an account ?"),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                    },
                     child: const Text(
                       "Login",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -140,21 +130,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Center(
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ForgotPassword()));
-                    },
-                    child: const Text(
-                      "Forgot Password",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )),
-              )
             ],
           ),
         ),

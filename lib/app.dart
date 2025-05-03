@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: 'Code Kameleon',
-        home: LoginScreen(),//const HomeScreen(),
+        home: SignupScreen(),//const HomeScreen(),
         themeMode: ThemeMode.system,
         theme: lightTheme(),
         darkTheme: darkTheme(),
