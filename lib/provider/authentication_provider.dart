@@ -59,7 +59,7 @@ class AuthenticationProvider extends ChangeNotifier {
     final signinUserCredential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
-    )
+    );
 
     final userCredential = await FirebaseAuth.instance.signInWithCredential(signinUserCredential);
     if(userCredential.user != null){
