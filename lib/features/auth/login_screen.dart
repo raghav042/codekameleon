@@ -15,26 +15,28 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Center(
-                child:  Text(
+                child: Text(
                   'Welcome back',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               const Heading(title: "Email"),
               TextFormField(),
-
-              // TODO: create ui for password
-
               const Heading(title: 'Password'),
-
               TextFormField(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text("Forget Password ?"),
+                ),
+              ),
               const SizedBox(height: 50),
-              // TODO: Creare a button
               SizedBox(
                 height: 50,
                 width: double.infinity,
@@ -46,7 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   )
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -75,63 +76,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-// import 'package:codekameleon/features/auth/auth_helpers/auth_cubit.dart';
-// import 'package:codekameleon/features/auth/auth_helpers/auth_state.dart';
-// import 'package:codekameleon/features/auth/auth_helpers/auth_status.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-//
-// class LoginScreen extends StatelessWidget {
-//   final _emailController = TextEditingController();
-//   final _passwordController = TextEditingController();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: BlocBuilder<AuthCubit, AuthState>(
-//         builder: (context, state) {
-//           if (state.status == AuthStatus.loading) {
-//             return const Center(child: CircularProgressIndicator());
-//           } else if (state.status == AuthStatus.authenticated) {
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               const SnackBar(
-//                 content: Text('You are already logged in'),
-//               ),
-//             );
-//           }
-//           return Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 TextField(
-//                   controller: _emailController,
-//                   decoration: const InputDecoration(labelText: 'Email'),
-//                 ),
-//                 TextField(
-//                   controller: _passwordController,
-//                   decoration: const InputDecoration(labelText: 'Password'),
-//                   obscureText: true,
-//                 ),
-//                 ElevatedButton(
-//                   onPressed: () =>
-//                       context.read<AuthCubit>().signInWithEmailAndPassword(
-//                             _emailController.text,
-//                             _passwordController.text,
-//                           ),
-//                   child: const Text('Sign In'),
-//                 ),
-//                 if (state.errorMessage != null)
-//                   Text(
-//                     state.errorMessage!,
-//                     style: const TextStyle(color: Colors.red),
-//                   ),
-//               ],
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
