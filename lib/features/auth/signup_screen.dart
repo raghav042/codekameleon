@@ -1,4 +1,7 @@
+import 'package:codekameleon/provider/auth_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/heading.dart';
 
@@ -78,7 +81,11 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 50,
                 width: double.maxFinite,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<AuthenticationProvider>().createAccount(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                  },
                   child: const Text(
                     "Create Account",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
