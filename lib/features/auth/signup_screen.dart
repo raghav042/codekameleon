@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/heading.dart';
+import 'auth_helpers/forgot_password.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -14,6 +15,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
   @override
   void initState() {
@@ -68,10 +71,31 @@ class _SignupScreenState extends State<SignupScreen> {
               const Heading(title: "Password"),
               TextFormField(
                 controller: passwordController,
+                obscureText: obscurePassword,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed:(){
+                        setState(() {
+                          obscurePassword = !obscurePassword;
+                        });
+                      },
+                      icon: obscurePassword? Icon(Icons.visibility_outlined): Icon(Icons.visibility_off_outlined)
+                ),
+              ),
               ),
               const Heading(title: "Confirm Password"),
               TextFormField(
                 controller: confirmPasswordController,
+                obscureText: obscureConfirmPassword,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: (){
+                        setState(() {
+                          obscureConfirmPassword = !obscureConfirmPassword;
+                        });
+                      },
+                      icon: obscureConfirmPassword? Icon(Icons.visibility_outlined) : Icon(Icons.visibility_off_outlined))
+                ),
               ),
               const SizedBox(height: 50),
               SizedBox(
@@ -99,6 +123,22 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
+              Center(
+                child: TextButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword()));
+                    },
+                    child: Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+
+                    )
+                ),
+              )
             ],
           ),
         ),
