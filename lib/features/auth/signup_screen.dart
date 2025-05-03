@@ -22,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -29,16 +30,33 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
-              
-              Row(
-                children: [
-                  Image.asset(("assets/icons/app_logo.png"), height: 70,),
-
-                ],
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Become a ",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      "Code Kameleon",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.primary),
+                    ),
+                  ],
+                ),
               ),
-              Text("Code Kameleon"),
-              Text("Craft Your Code"),
+              const Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "Sign up to continue",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
               const Heading(title: "Name"),
               TextFormField(
                 controller: nameController,
@@ -71,10 +89,10 @@ class _SignupScreenState extends State<SignupScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already have an account ?"),
+                  const Text("Already have an account ?"),
                   TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Login",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
