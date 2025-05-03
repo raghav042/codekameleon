@@ -5,6 +5,8 @@ import 'package:codekameleon/features/leaderboard/leaderboard_screen.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
+
 class LeaderboardTile extends StatelessWidget {
   const LeaderboardTile({super.key});
   static final List<Student> _students = [
@@ -22,7 +24,7 @@ class LeaderboardTile extends StatelessWidget {
     Student(name: "Sarah", rank: 6, score: 70),
     Student(name: "Aishwarya", rank: 5, score: 80),
     Student(name: "Sarah", rank: 6, score: 70),
-  ];
+  ]; // did not add names in the app_strings file because we do not want to translate names
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class LeaderboardTile extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(12, 12, 12, 0),
                   child: Heading(
-                    title: "Leaderboard",
+                    title: AppStrings.leaderboard,
                     padding: EdgeInsets.zero,
                   ),
                 ),

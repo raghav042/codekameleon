@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../constant/app_strings.dart';
 import 'forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,23 +31,23 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome back to your coding hub",
+                AppStrings.welcomeMessage,
                 style: GoogleFonts.quicksand(fontSize: 30),
               ),
               const SizedBox(height: 10),
               const Text(
-                "Enter your email and password to access your learning space",
+                AppStrings.howToAccessLearningSpace,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              const Heading(title: "Email"),
+              const Heading(title: AppStrings.email),
               TextFormField(
                 controller: _email,
               ),
-              const Heading(title: 'Password'),
+              const Heading(title: AppStrings.password),
               TextFormField(
                 controller: _password,
               ),
@@ -61,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const ForgetPasswordScreen()));
                   },
                   child: const Text(
-                    "Forget Password ?",
+                    AppStrings.forgetPassword,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: provider.isLoading // It has already loading
                       ? const CircularProgressIndicator()
                       : const Text(
-                          'Login',
+                          AppStrings.login,
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
@@ -91,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Don\'t have an account ?'),
+                  const Text(AppStrings.doNotHaveAccount),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -100,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => const SignupScreen()));
                     },
                     child: const Text(
-                      'Register',
+                      AppStrings.register,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   )

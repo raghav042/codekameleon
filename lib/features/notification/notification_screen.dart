@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -7,7 +9,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Notifications"),
+        title: const Text(AppStrings.notifications),
       ),
     );
   }

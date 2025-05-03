@@ -8,6 +8,7 @@ import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
 import '../../widgets/recent_language_tile.dart';
 import '../notification/notification_screen.dart';
 import '../setting/setting_screen.dart';
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Padding(
               padding: EdgeInsets.all(8),
               child: Hero(
-                tag: "my_profile_pic",
+                tag: AppStrings.profilePicTag,
                 child: CircleAvatar(),
               ),
             ),
@@ -79,11 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 const QuizList(),
                 const SizedBox(height: 20),
                 if (LanguageHelper.recentLanguage != null)
-                  const Heading(title: "Currently Learning"),
+                  const Heading(title: AppStrings.currentlyLearning),
                 if (LanguageHelper.recentLanguage != null)
                   RecentLanguageTile(language: LanguageHelper.recentLanguage!),
                 const LeaderboardTile(),
-                const Heading(title: "Popular Tutorials"),
+                const Heading(title: AppStrings.popularTutorials),
                 Center(
                   child: Wrap(
                     spacing: 15,

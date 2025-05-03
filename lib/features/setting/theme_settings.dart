@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
+
 class ThemeSettings extends StatefulWidget {
   const ThemeSettings({super.key});
 
@@ -11,7 +13,7 @@ class _ThemeSettingsState extends State<ThemeSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Theme")),
+      appBar: AppBar(title: Text(AppStrings.theme)),
     );
   }
 }

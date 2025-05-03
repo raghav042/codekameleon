@@ -2,6 +2,7 @@ import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constant/app_strings.dart';
 import '../search/search.dart';
 
 class SearchField extends StatelessWidget {
@@ -32,7 +33,7 @@ class SearchField extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Search anything", style: GoogleFonts.poppins()),
+            Text(AppStrings.searchAnything, style: GoogleFonts.poppins()),
             const Icon(Icons.search),
           ],
         ),

@@ -3,6 +3,8 @@ import 'package:codekameleon/helper/language_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constant/app_strings.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -17,14 +19,14 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Hero(
-              tag: "my_profile_pic",
+              tag: AppStrings.profilePicTag,
               child: CircleAvatar(
                 radius: size.width / 4,
               ),
             ),
             const SizedBox(height: 10, width: double.maxFinite),
             const Text(
-              "Victor Timely",
+              AppStrings.victorTimely,
               style: TextStyle(fontSize: 35),
             ),
             const SizedBox(height: 10),
@@ -36,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25),
               ),
               child: const Text(
-                "something about user useful information or anything else",
+                AppStrings.sthAbtUserInfo,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16),
               ),
@@ -65,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(width: 12),
                             Expanded(
                               child: Text(
-                                "Progress Points",
+                                AppStrings.progressPoints,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -108,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                             const SizedBox(width: 12),
                             const Expanded(
                               child: Text(
-                                "Currently Learning",
+                                AppStrings.currentlyLearning,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -144,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                   const Icon(Icons.data_object),
                   const SizedBox(width: 12),
                   Text(
-                    "my_profile.txt",
+                    AppStrings.myProfileTxt,
                     style: GoogleFonts.quicksand(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -171,7 +173,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Name = ",
+                        AppStrings.assignName,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -179,7 +181,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "Myiee Name",
+                        //"Myiee Name",
+                        AppStrings.myName,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,
@@ -193,7 +196,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Email = ",
+                        AppStrings.assignEmail,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -201,7 +204,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "my.awesome@email.com",
+                        AppStrings.someRandomEmail,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,
@@ -215,7 +218,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Points = ",
+                        AppStrings.assignPoints,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -237,7 +240,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Online = ",
+                        AppStrings.assignOnline,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -245,7 +248,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "False",
+                        AppStrings.falseValue,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.tertiary,
@@ -259,7 +262,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Status = ",
+                        AppStrings.assignStatus,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -267,7 +270,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "Active",
+                        AppStrings.active,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.tertiary,
@@ -281,7 +284,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Last Seen At = ",
+                        AppStrings.lastSeenAt,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -289,7 +292,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "3 min ago",
+                        AppStrings.randomLastSeenAt,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.secondary,
@@ -303,7 +306,7 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Registered At = ",
+                        AppStrings.registeredAt,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -311,7 +314,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "5 March 2025",
+                        AppStrings.randomRegisteredAt,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.secondary,
@@ -324,7 +327,7 @@ class ProfileScreen extends StatelessWidget {
                   RichText(
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "Bio = ",
+                        text: AppStrings.assignBio,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.onSurface.withValues(alpha: 0.8),
@@ -332,7 +335,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text:
-                            "Some long bio and about information, most of which is fake or I did not even understand",
+                            AppStrings.randomBio,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,
