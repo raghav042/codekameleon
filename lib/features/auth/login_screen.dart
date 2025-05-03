@@ -1,3 +1,4 @@
+import 'package:codekameleon/features/auth/signup_screen.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
@@ -18,9 +19,55 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Heading(title: "Email"),
+              const Center(
+                child:  Text(
+                  'Welcome back',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Heading(title: "Email"),
               TextFormField(),
+
               // TODO: create ui for password
+
+              const Heading(title: 'Password'),
+
+              TextFormField(),
+              const SizedBox(height: 50),
+              // TODO: Creare a button
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Don\'t have an account ?'),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignupScreen()));
+                    },
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),
@@ -28,10 +75,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-
-
-
 
 // import 'package:codekameleon/features/auth/auth_helpers/auth_cubit.dart';
 // import 'package:codekameleon/features/auth/auth_helpers/auth_state.dart';
