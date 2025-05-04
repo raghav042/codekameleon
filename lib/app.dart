@@ -1,11 +1,8 @@
-
-import 'package:codekameleon/features/auth/login_screen.dart';
-import 'package:codekameleon/features/auth/signup_screen.dart';
-import 'package:codekameleon/provider/auth_provider.dart';
-import 'package:codekameleon/provider/authentication_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'features/auth/splash_screen.dart';
 import 'main.dart';
+import 'provider/authentication_provider.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
 
@@ -16,13 +13,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context)=> AuthenticationProvider()),
-      ],
+      providers: providers,
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: 'Code Kameleon',
-        home: SignupScreen(),//const HomeScreen(),
+        home: const SplashScreen(),
         themeMode: ThemeMode.system,
         theme: lightTheme(),
         darkTheme: darkTheme(),
@@ -32,5 +27,5 @@ class App extends StatelessWidget {
 }
 
 final providers = [
-  //ChangeNotifierProvider(create: (context) => AuthenticationProvider()),
+  ChangeNotifierProvider(create: (context) => AuthenticationProvider()),
 ];

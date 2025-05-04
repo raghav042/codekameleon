@@ -7,14 +7,14 @@ import 'package:provider/provider.dart';
 
 import 'forget_password_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: provider.isLoading
                       ? null // So that button can't be pushed
                       : () {
-                          provider.logIn(
+                          provider.signInWithEmail(
                               context: context,
                               email: _email.text,
                               password: _password.text);
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SignupScreen()));
+                              builder: (context) => const SignUpScreen()));
                     },
                     child: const Text(
                       'Register',

@@ -1,3 +1,4 @@
+import 'package:codekameleon/helper/validator_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -6,14 +7,14 @@ import '../../provider/authentication_provider.dart';
 import '../../widgets/heading.dart';
 import 'login_screen.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -52,6 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
               const Heading(title: "Name"),
               TextFormField(
                 controller: nameController,
+                validator: ValidatorHelper.validateName,
               ),
               const Heading(title: "Email"),
               TextFormField(
@@ -96,7 +98,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   onPressed: provider.isLoading
                       ? null
                       : () {
-                          provider.createAccount(
+                          provider.signUpWithEmail(
                             context: context,
                             email: emailController.text,
                             password: passwordController.text,
@@ -121,7 +123,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
+                              builder: (context) => const SignInScreen()));
                     },
                     child: const Text(
                       "Login",
