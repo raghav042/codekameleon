@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
+
 class NotificationSettings extends StatefulWidget {
   const NotificationSettings({super.key});
 
@@ -11,7 +13,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Notification Settings")),
+      appBar: AppBar(title: const Text(AppStrings.notificationSettings)),
     );
   }
 }

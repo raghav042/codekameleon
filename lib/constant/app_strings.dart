@@ -1,0 +1,86 @@
+class AppStrings{
+  static const String lostYourCodingComouflage = "Lost Your Coding Camouflage?";
+  static const String enterEmailToResetPassword = "Don't worry, enter your email to reset your password";
+  static const String email = "Email";
+  static const String continueWord = "Continue";
+  static const String welcomeMessage = "Welcome back to your coding hub";
+  static const String howToAccessLearningSpace = "Enter your email and password to access your learning space";
+  static const String password = "Password";
+  static const String forgetPassword = "Forget Password ?";
+  static const String login = "Login";
+  static const String doNotHaveAccount = "Don't have an account ?";
+  static const String register = "Register";
+  static const String unleashMessage = "Unleash Your Code Kameleon";
+  static const String createAccountMessage = "Create your free account and start your coding evolution!";
+  static const String name = "Name";
+  static const String confirmPassword = "Confirm Password";
+  static const String createAccount = "Create Account";
+  static const String loginMessage = "Already have an account ?";
+  static const String profilePicTag = "my_profile_pic";
+  static const String currentlyLearning = "Currently Learning";
+  static const String popularTutorials = "Popular Tutorials";
+  static const String leaderboard = "Leaderboard";
+  static const String quizzes = "Quizes";
+  static const String quiz = "Quiz";
+  static const String quizAlreadyTaken = "Quiz Already Taken";
+  static const String resultMessage = "You have already completed this quiz. Would you like to view your result?";
+  static const String viewResult = "View Result";
+  static const String searchAnything = "Search anything";
+  static const String noTutorialsFound = "No Tutorial Found";
+  static const String notifications = "Notifications";
+  static const String victorTimely = "Victor Timely";
+  static const String sthAbtUserInfo = "something about user useful information or anything else";
+  static const String progressPoints = "Progress Points";
+  static const String myProfileTxt = "my_profile.txt";
+  static const String assignName = "Name = ";
+  static const String myName = "My Name";
+  static const String assignEmail = "Email = ";
+  static const String someRandomEmail = "my.awesome@email.com";
+  static const String assignPoints = "Points = ";
+  static const String assignOnline = "Online = ";
+  static const String falseValue = "False";
+  static const String assignStatus = "Status = ";
+  static const String active = "Active";
+  static const String lastSeenAt = "Last Seen At = ";
+  static const String randomLastSeenAt = "3 min ago";
+  static const String registeredAt = "Registered At = ";
+  static const String randomRegisteredAt = "5 March 2025";
+  static const String assignBio = "Bio = ";
+  static const String randomBio = "Some long bio and about information, most of which is fake or I did not even understand";
+  static const String noQuizFound = "No Quiz Found";
+  static const String previous = "Previous";
+  static const String submit = "Submit";
+  static const String next = "Next";
+  static const String submitQuiz = "Submit Quiz";
+  static const String areYouSure = "Are you sure you want to submit your answers?";
+  static const String cancel = "Cancel";
+  static const String excellent = "Excellent!";
+  static const String goodJob = "Good job!";
+  static const String keepPracticing = "Keep practicing!";
+  static const String accountSettings = "Account Settings";
+  static const String profile = "Profile";
+  static const String editProfile = "Edit Profile";
+  static const String editBasicInformation = "Edit Basic Information";
+  static const String logOut = "Log Out";
+  static const String deleteAccountMessage = "Your account will be deleted within 24 hours";
+  static const String deleteAccount = "Delete Account";
+  static const String account = "Account";
+  static const String manageAccount = "Manage Account";
+  static const String language = "Language";
+  static const String notificationSettings = "Notification Settings";
+  static const String setting = "Setting";
+  static const String theme = "Theme";
+  static const String themeMode = "Theme Mode";
+  static const String helpAndSupport = "Help & Support";
+  static const String help = "Help";
+  static const String feedback = "Feedback";
+  static const String aboutUs = "About Us";
+  static const String privacyPolicy = "Privacy Policy";
+  static const String rateUsOnPlayStore = "Rate Us on Play Store";
+  static const String codeKameleon = "Code Kameleon";
+
+
+
+
+
+}

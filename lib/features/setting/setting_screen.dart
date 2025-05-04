@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../constant/app_strings.dart';
 import '../../widgets/heading.dart';
 
 import 'account_settings.dart';
@@ -25,7 +26,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('Setting')),
+      appBar: AppBar(title: const Text(AppStrings.setting)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
@@ -42,7 +43,7 @@ class _SettingScreenState extends State<SettingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Heading(title: "Account"),
+        const Heading(title: AppStrings.account),
         Column(
           children: [
             ListTile(
@@ -56,7 +57,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               leading: const Icon(Icons.person_outline),
-              title: const Text("Manage Account"),
+              title: const Text(AppStrings.manageAccount),
             ),
             ListTile(
               onTap: () {
@@ -66,7 +67,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         builder: (context) => const NotificationSettings()));
               },
               leading: const Icon(Icons.notifications_outlined),
-              title: const Text("Notifications"),
+              title: const Text(AppStrings.notifications),
             ),
             ListTile(
               onTap: () {
@@ -76,7 +77,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         builder: (context) => const ThemeSettings()));
               },
               leading: const Icon(Icons.dark_mode_outlined),
-              title: const Text("Theme Mode"),
+              title: const Text(AppStrings.themeMode),
             ),
             ListTile(
               onTap: () {
@@ -86,7 +87,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         builder: (context) => const LanguageSettings()));
               },
               leading: const Icon(Icons.translate),
-              title: const Text("Language"),
+              title: const Text(AppStrings.language),
               shape: const RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16)),
@@ -103,7 +104,7 @@ class _SettingScreenState extends State<SettingScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 15),
-        const Heading(title: "Help & Support"),
+        const Heading(title: AppStrings.helpAndSupport),
         Column(
           children: [
             ListTile(
@@ -115,7 +116,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               leading: const Icon(Icons.help_outline),
-              title: const Text("Help"),
+              title: const Text(AppStrings.help),
             ),
             ListTile(
               onTap: () {
@@ -123,14 +124,14 @@ class _SettingScreenState extends State<SettingScreen> {
                     "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
               },
               leading: const Icon(Icons.feedback_outlined),
-              title: const Text("Feedback"),
+              title: const Text(AppStrings.feedback),
             ),
             ListTile(
               onTap: () {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
               },
               leading: const Icon(Icons.info_outline),
-              title: const Text("About Us"),
+              title: const Text(AppStrings.aboutUs),
             ),
 
             /// TODO: terms of use is mandatory for app store
@@ -144,7 +145,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
               },
               leading: const Icon(Icons.shield_outlined),
-              title: const Text("Privacy Policy"),
+              title: const Text(AppStrings.privacyPolicy),
             ),
             ListTile(
               onTap: () {
@@ -155,7 +156,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     BorderRadius.vertical(bottom: Radius.circular(16)),
               ),
               leading: const Icon(Icons.star_rate_outlined),
-              title: const Text("Rate Us on Play Store"),
+              title: const Text(AppStrings.rateUsOnPlayStore),
             ),
           ],
         ),

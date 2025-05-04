@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
+import '../../constant/app_strings.dart';
+
 class TutorialScreen extends StatelessWidget {
   const TutorialScreen({
     super.key,
@@ -63,7 +65,7 @@ class TutorialScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Code Kameleon",
+                            AppStrings.codeKameleon,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,

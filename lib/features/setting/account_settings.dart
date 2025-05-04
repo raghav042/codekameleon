@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
 import '../../widgets/heading.dart';
 
 class AccountSettings extends StatefulWidget {
@@ -23,7 +24,7 @@ class _AccountSettingsState extends State<AccountSettings> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Account Settings"),
+          title: const Text(AppStrings.accountSettings),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -43,7 +44,7 @@ class _AccountSettingsState extends State<AccountSettings> {
     return Column(
       children: [
         const SizedBox(height: 15),
-        const Heading(title: "Profile"),
+        const Heading(title: AppStrings.profile),
         Column(
           children: [
             ListTile(
@@ -59,7 +60,7 @@ class _AccountSettingsState extends State<AccountSettings> {
               ),
               tileColor: colorScheme.surfaceContainerLowest,
               leading: const Icon(Icons.person_outline),
-              title: const Text("Edit Profile"),
+              title: const Text(AppStrings.editProfile),
             ),
             ListTile(
               onTap: () {
@@ -74,7 +75,7 @@ class _AccountSettingsState extends State<AccountSettings> {
               ),
               tileColor: colorScheme.surfaceContainerLowest,
               leading: const Icon(Icons.info_outline),
-              title: const Text("Edit Basic Information"),
+              title: const Text(AppStrings.editBasicInformation),
             ),
           ],
         ),
@@ -86,7 +87,7 @@ class _AccountSettingsState extends State<AccountSettings> {
     return Column(
       children: [
         const SizedBox(height: 15),
-        const Heading(title: "Account"),
+        const Heading(title: AppStrings.account),
         Column(
           children: [
             ListTile(
@@ -98,14 +99,14 @@ class _AccountSettingsState extends State<AccountSettings> {
               ),
               tileColor: colorScheme.surfaceContainerLowest,
               leading: const Icon(Icons.logout),
-              title: const Text("Log Out"),
+              title: const Text(AppStrings.logOut),
             ),
             ListTile(
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content:
-                        Text("Your account will be deleted within 24 hours"),
+                        Text(AppStrings.deleteAccountMessage),
                   ),
                 );
                 // UserProvider().signOut(context);
@@ -116,7 +117,7 @@ class _AccountSettingsState extends State<AccountSettings> {
               ),
               tileColor: colorScheme.surfaceContainerLowest,
               leading: const Icon(Icons.delete_forever),
-              title: const Text("Delete Account"),
+              title: const Text(AppStrings.deleteAccount),
             ),
           ],
         ),

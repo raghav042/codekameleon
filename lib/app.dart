@@ -1,13 +1,11 @@
-
-import 'package:codekameleon/features/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'features/home/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'features/auth/splash_screen.dart';
 import 'main.dart';
-import 'provider/auth_provider.dart';
+import 'provider/authentication_provider.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
 
-import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -19,7 +17,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: 'Code Kameleon',
-        home: SignupScreen(),//const HomeScreen(),
+        home: const SplashScreen(),
         themeMode: ThemeMode.system,
         theme: lightTheme(),
         darkTheme: darkTheme(),

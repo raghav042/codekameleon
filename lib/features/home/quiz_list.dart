@@ -6,6 +6,7 @@ import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../constant/app_strings.dart';
 import '../../data/languages.dart';
 import '../../widgets/heading.dart';
 import '../quiz/presentation/quiz_screen.dart';
@@ -19,7 +20,7 @@ class QuizList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Heading(title: "Quizes"),
+        const Heading(title: AppStrings.quizzes),
         SizedBox(
           height: 100,
           child: ListView.separated(
@@ -43,10 +44,10 @@ class QuizList extends StatelessWidget {
                   } else {
                     UiHelper.showGenericConfirmationDialog(
                       context: context,
-                      title: "Quiz Already Taken",
+                      title: AppStrings.quizAlreadyTaken,
                       message:
-                          "You've already completed this quiz. Would you like to view your result?",
-                      confirmText: "View Result",
+                          AppStrings.resultMessage,
+                      confirmText: AppStrings.viewResult,
                       onConfirmed: () {
                         Navigator.push(
                           context,

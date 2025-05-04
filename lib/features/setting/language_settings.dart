@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
+
 class LanguageSettings extends StatefulWidget {
   const LanguageSettings({super.key});
 
@@ -11,7 +13,7 @@ class _LanguageSettingsState extends State<LanguageSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Language")),
+      appBar: AppBar(title: const Text(AppStrings.language)),
     );
   }
 }

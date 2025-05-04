@@ -1,22 +1,27 @@
-import 'package:codekameleon/provider/auth_provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:codekameleon/helper/validator_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../constant/app_strings.dart';
+import '../../provider/authentication_provider.dart';
 import '../../widgets/heading.dart';
+import 'login_screen.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
   @override
   void initState() {
@@ -25,82 +30,105 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final provider = Provider.of<AuthenticationProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Become a ",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Text(
-                      "Code Kameleon",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.primary),
-                    ),
-                  ],
+              Text(
+                AppStrings.unleashMessage,
+                style: GoogleFonts.quicksand(fontSize: 28),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                AppStrings.createAccountMessage,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "Sign up to continue",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              const Heading(title: "Name"),
+              const SizedBox(height: 40),
+              const Heading(title: AppStrings.name),
               TextFormField(
                 controller: nameController,
+                validator: ValidatorHelper.validateName,
               ),
-              const Heading(title: "Email"),
+              const Heading(title: AppStrings.email),
               TextFormField(
                 controller: emailController,
               ),
-              const Heading(title: "Password"),
+              const Heading(title: AppStrings.password),
               TextFormField(
                 controller: passwordController,
+                obscureText: obscurePassword,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscurePassword = !obscurePassword;
+                        });
+                      },
+                      icon: obscurePassword
+                          ? const Icon(Icons.visibility_outlined)
+                          : const Icon(Icons.visibility_off_outlined)),
+                ),
               ),
-              const Heading(title: "Confirm Password"),
+              const Heading(title: AppStrings.confirmPassword),
               TextFormField(
                 controller: confirmPasswordController,
+                obscureText: obscureConfirmPassword,
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            obscureConfirmPassword = !obscureConfirmPassword;
+                          });
+                        },
+                        icon: obscureConfirmPassword
+                            ? const Icon(Icons.visibility_outlined)
+                            : const Icon(Icons.visibility_off_outlined))),
               ),
               const SizedBox(height: 50),
               SizedBox(
                 height: 50,
                 width: double.maxFinite,
                 child: ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthenticationProvider>().createAccount(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim());
-                  },
-                  child: const Text(
-                    "Create Account",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  onPressed: provider.isLoading
+                      ? null
+                      : () {
+                          provider.signUpWithEmail(
+                            context: context,
+                            name: nameController.text.trim(),
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          );
+                        },
+                  child: provider.isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text(
+                          AppStrings.createAccount,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
                 ),
               ),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account ?"),
+                  const Text(AppStrings.loginMessage),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignInScreen()));
+                    },
                     child: const Text(
-                      "Login",
+                      AppStrings.login,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

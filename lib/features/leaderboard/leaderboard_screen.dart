@@ -3,6 +3,8 @@ import 'package:codekameleon/features/leaderboard/podium_item.dart';
 import 'package:codekameleon/model/student_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
+
 class LeaderboardScreen extends StatelessWidget {
   const LeaderboardScreen({super.key, required this.students});
 
@@ -15,7 +17,7 @@ class LeaderboardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Leaderboard"),
+        title: const Text(AppStrings.leaderboard),
         elevation: 2,
       ),
       body: SingleChildScrollView(

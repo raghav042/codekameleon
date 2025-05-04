@@ -2,6 +2,7 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import '../../../model/language_model.dart';
 import '../../../model/quiz_model.dart';
+import '../../constant/app_strings.dart';
 
 class QuizResultScreen extends StatelessWidget {
   const QuizResultScreen({
@@ -93,13 +94,13 @@ class QuizResultScreen extends StatelessWidget {
 
     if (percentage >= 80) {
       resultColor = Colors.amber;
-      resultMessage = "Excellent!";
+      resultMessage = AppStrings.excellent;
     } else if (percentage >= 60) {
       resultColor = Colors.amber;
-      resultMessage = "Good job!";
+      resultMessage = AppStrings.goodJob;
     } else {
       resultColor = Colors.red;
-      resultMessage = "Keep practicing!";
+      resultMessage = AppStrings.keepPracticing;
     }
 
     return Container(
