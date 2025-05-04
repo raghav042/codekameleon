@@ -101,8 +101,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       : () {
                           provider.signUpWithEmail(
                             context: context,
-                            email: emailController.text,
-                            password: passwordController.text,
+                            name: nameController.text.trim(),
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
                           );
                         },
                   child: provider.isLoading
