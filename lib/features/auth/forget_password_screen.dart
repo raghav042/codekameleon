@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../constant/app_strings.dart';
 import '../../provider/authentication_provider.dart';
 import '../../widgets/heading.dart';
 
@@ -19,19 +20,19 @@ class ForgetPasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Lost Your Coding Camouflage?",
+                AppStrings.lostYourCodingComouflage,
                 style: GoogleFonts.quicksand(fontSize: 30),
               ),
               const SizedBox(height: 10),
               const Text(
-                "Don't worry, enter your email to reset your password",
+                AppStrings.enterEmailToResetPassword,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              const Heading(title: "Email"),
+              const Heading(title: AppStrings.email),
               TextFormField(),
               const SizedBox(height: 50),
               SizedBox(
@@ -44,7 +45,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   child: provider.isLoading // It has already loading
                       ? const CircularProgressIndicator()
                       : const Text(
-                          'Continue',
+                          AppStrings.continueWord,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

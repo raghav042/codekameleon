@@ -8,6 +8,7 @@ import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
+import '../../../constant/app_strings.dart';
 import '../../../model/language_model.dart';
 import 'quiz_state.dart';
 
@@ -64,10 +65,10 @@ class QuizCubit extends Cubit<QuizState> {
     if (quizResult != null) {
       UiHelper.showGenericConfirmationDialog(
         context: navigatorKey.currentContext!,
-        title: "Quiz Already Taken",
+        title: AppStrings.quizAlreadyTaken,
         message:
-            "You've already completed this quiz. Would you like to view your result?",
-        confirmText: "View Result",
+            AppStrings.resultMessage,
+        confirmText: AppStrings.viewResult,
         onConfirmed: () {
           Navigator.push(
             navigatorKey.currentContext!,

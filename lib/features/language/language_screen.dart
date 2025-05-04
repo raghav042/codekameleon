@@ -1,6 +1,7 @@
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 
+import '../../constant/app_strings.dart';
 import '../../model/language_model.dart';
 import '../../widgets/no_data_widget.dart';
 import '../quiz/presentation/quiz_screen.dart';
@@ -55,7 +56,7 @@ class LanguageScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       const Text(
-                        "Quiz",
+                        AppStrings.quiz,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -73,7 +74,7 @@ class LanguageScreen extends StatelessWidget {
             ? TutorialList(language: language)
             : const NoDataWidget(
                 imagePath: "assets/images/no_data.svg",
-                title: "No Tutorial Found",
+                title: AppStrings.noTutorialsFound,
               ),
       ),
     );

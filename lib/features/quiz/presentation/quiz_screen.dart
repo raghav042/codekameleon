@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 
+import '../../../constant/app_strings.dart';
 import '../../../model/language_model.dart';
 import '../../../model/quiz_model.dart';
 import '../../../widgets/no_data_widget.dart';
@@ -37,7 +38,7 @@ class QuizScreen extends StatelessWidget {
       body: language.quizes.isEmpty
           ? const NoDataWidget(
               imagePath: "assets/images/no_data.svg",
-              title: "No Quiz Found",
+              title: AppStrings.noQuizFound,
             )
           : _buildQuizContent(context),
     );
@@ -78,7 +79,7 @@ class QuizScreen extends StatelessWidget {
                   // if (cubit.isBack())
                   ElevatedButton(
                     onPressed: cubit.isBack() ? cubit.goBack : null,
-                    child: const Text('Previous'),
+                    child: const Text(AppStrings.previous),
                   ),
                   // if (state.mainIndex < language.quizes.length - 1)
                   ElevatedButton(
@@ -92,8 +93,8 @@ class QuizScreen extends StatelessWidget {
                     },
                     // : null,
                     child: Text(state.mainIndex == language.quizes.length - 1
-                        ? "Submit"
-                        : 'Next'),
+                        ? AppStrings.submit
+                        : AppStrings.next),
                   ),
                 ],
               ),
@@ -110,12 +111,12 @@ class QuizScreen extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text("Submit Quiz"),
-        content: const Text("Are you sure you want to submit your answers?"),
+        title: const Text(AppStrings.submitQuiz),
+        content: const Text(AppStrings.areYouSure),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text("Cancel"),
+            child: const Text(AppStrings.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -123,7 +124,7 @@ class QuizScreen extends StatelessWidget {
               // log("the submit ${language.name}");
               cubit.submitQuiz(language.name, dartQuizes, language);
             },
-            child: const Text("Submit"),
+            child: const Text(AppStrings.submit),
           ),
         ],
       ),

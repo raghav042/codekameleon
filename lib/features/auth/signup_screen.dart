@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../constant/app_strings.dart';
 import '../../provider/authentication_provider.dart';
 import '../../widgets/heading.dart';
 import 'login_screen.dart';
@@ -38,28 +39,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Unleash Your Code Kameleon",
+                AppStrings.unleashMessage,
                 style: GoogleFonts.quicksand(fontSize: 28),
               ),
               const SizedBox(height: 10),
               const Text(
-                "Create your free account and start your coding evolution!",
+                AppStrings.createAccountMessage,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              const Heading(title: "Name"),
+              const Heading(title: AppStrings.name),
               TextFormField(
                 controller: nameController,
                 validator: ValidatorHelper.validateName,
               ),
-              const Heading(title: "Email"),
+              const Heading(title: AppStrings.email),
               TextFormField(
                 controller: emailController,
               ),
-              const Heading(title: "Password"),
+              const Heading(title: AppStrings.password),
               TextFormField(
                 controller: passwordController,
                 obscureText: obscurePassword,
@@ -75,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           : const Icon(Icons.visibility_off_outlined)),
                 ),
               ),
-              const Heading(title: "Confirm Password"),
+              const Heading(title: AppStrings.confirmPassword),
               TextFormField(
                 controller: confirmPasswordController,
                 obscureText: obscureConfirmPassword,
@@ -107,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: provider.isLoading
                       ? const CircularProgressIndicator()
                       : const Text(
-                          "Create Account",
+                          AppStrings.createAccount,
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
@@ -117,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account ?"),
+                  const Text(AppStrings.loginMessage),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -126,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               builder: (context) => const SignInScreen()));
                     },
                     child: const Text(
-                      "Login",
+                      AppStrings.login,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
