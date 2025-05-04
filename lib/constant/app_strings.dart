@@ -78,9 +78,4 @@ class AppStrings{
   static const String privacyPolicy = "Privacy Policy";
   static const String rateUsOnPlayStore = "Rate Us on Play Store";
   static const String codeKameleon = "Code Kameleon";
-
-
-
-
-
 }

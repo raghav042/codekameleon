@@ -12,11 +12,11 @@ class UserModel {
   });
   final String name;
   final String email;
-  final String imageUrl;
+  final String? imageUrl;
   final String bio;
   final int points;
   final bool isOnline;
-  final String recentLanguage;
+  final String? recentLanguage;
   final String registeredAt;
   final String lastSeenAt;
 

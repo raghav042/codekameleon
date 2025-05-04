@@ -18,28 +18,35 @@ class AuthenticationProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final UserCredential userCredential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    final UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
 
     if (userCredential.user == null) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Something went wrong")));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Something went wrong")));
       }
       isLoading = false;
       notifyListeners();
       return;
     }
 
+    final UserModel user = UserModel(
+      name: name,
+      email: email,
+      imageUrl: null,
+      bio: "bio",
+      points: 0,
+      isOnline: true,
+      recentLanguage: null,
+      registeredAt: DateTime.now().toIso8601String(),
+      lastSeenAt: DateTime.now().toIso8601String(),
+    );
+
     await FirebaseFirestore.instance
         .collection("users")
         .doc(userCredential.user?.uid)
-        .set({
-      "name": name,
-      "email": email,
-    });
+        .set(user.toJson());
 
     isLoading = false;
     notifyListeners();
@@ -56,19 +63,22 @@ class AuthenticationProvider extends ChangeNotifier {
       required BuildContext context}) async {
     isLoading = true;
     notifyListeners();
+
     final UserCredential userCredential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
 
-    final User? user = userCredential.user;
-
-    if (user != null) {
+    if (userCredential.user != null) {
       MaterialPageRoute(builder: (context) => const HomeScreen());
     }
+
     isLoading = false;
     notifyListeners();
   }
 
-  Future<void> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
+    isLoading = true;
+    notifyListeners();
+
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -83,11 +93,44 @@ class AuthenticationProvider extends ChangeNotifier {
     );
 
     // Once signed in, get the UserCredential
-    final userCredentials =
+    final userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
 
-    if (userCredentials.user != null) {
-      MaterialPageRoute(builder: (context) => const HomeScreen());
+    if (userCredential.user == null) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Something went wrong")));
+      }
+      isLoading = false;
+      notifyListeners();
+      return;
+    }
+
+    if (userCredential.additionalUserInfo?.isNewUser == true) {
+      final UserModel user = UserModel(
+        name: userCredential.user?.displayName ?? "",
+        email: userCredential.user?.email ?? "",
+        imageUrl: userCredential.user?.photoURL,
+        bio: "bio",
+        points: 0,
+        isOnline: true,
+        recentLanguage: null,
+        registeredAt: DateTime.now().toIso8601String(),
+        lastSeenAt: DateTime.now().toIso8601String(),
+      );
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userCredential.user?.uid)
+          .set(user.toJson());
+    }
+
+    isLoading = false;
+    notifyListeners();
+
+    if (context.mounted) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     }
   }
 
@@ -95,7 +138,9 @@ class AuthenticationProvider extends ChangeNotifier {
 
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const SignInScreen()));
+    if (context.mounted) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const SignInScreen()));
+    }
   }
 }
