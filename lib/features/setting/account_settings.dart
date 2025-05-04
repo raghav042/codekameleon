@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';
+import '../../provider/authentication_provider.dart';
 import '../../widgets/heading.dart';
+import 'package:provider/provider.dart';
 
 class AccountSettings extends StatefulWidget {
   const AccountSettings({super.key});
@@ -93,6 +95,7 @@ class _AccountSettingsState extends State<AccountSettings> {
             ListTile(
               onTap: () {
                 // UserProvider().signOut(context);
+                context.read<AuthenticationProvider>().signOut(context);
               },
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),

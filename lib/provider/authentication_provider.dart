@@ -1,3 +1,4 @@
+import 'package:codekameleon/data/dart/tutorials/try_catch.dart';
 import 'package:codekameleon/features/auth/login_screen.dart';
 import 'package:codekameleon/features/home/home_screen.dart';
 import 'package:codekameleon/model/user_model.dart';
@@ -18,11 +19,12 @@ class AuthenticationProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final UserCredential userCredential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+      final UserCredential userCredential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
 
     if (userCredential.user == null) {
       if (context.mounted) {
@@ -33,13 +35,13 @@ class AuthenticationProvider extends ChangeNotifier {
       return;
     }
 
+    UserModel user = UserModel(name: name, email: email, imageUrl: "", bio: "", points: 0, isOnline: true, recentLanguage: "", registeredAt: DateTime.now().toIso8601String(), lastSeenAt: DateTime.now().toIso8601String());
+
+
     await FirebaseFirestore.instance
         .collection("users")
         .doc(userCredential.user?.uid)
-        .set({
-      "name": name,
-      "email": email,
-    });
+        .set(user.toJson());
 
     isLoading = false;
     notifyListeners();
@@ -98,4 +100,6 @@ class AuthenticationProvider extends ChangeNotifier {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const SignInScreen()));
   }
+
+
 }
