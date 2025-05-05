@@ -4,14 +4,14 @@ class AppStrings{
   static const String email = "Email";
   static const String continueWord = "Continue";
   static const String welcomeMessage = "Welcome back to your coding hub";
-  static const String howToAccessLearningSpace = "Enter your email and password to access your learning space";
+  static const String howToAccessLearningSpace = "Enter your email and password to continue";
   static const String password = "Password";
   static const String forgetPassword = "Forget Password ?";
   static const String login = "Login";
   static const String doNotHaveAccount = "Don't have an account ?";
   static const String register = "Register";
   static const String unleashMessage = "Unleash Your Code Kameleon";
-  static const String createAccountMessage = "Create your free account and start your coding evolution!";
+  static const String createAccountMessage = "Create your account to start learning";
   static const String name = "Name";
   static const String confirmPassword = "Confirm Password";
   static const String createAccount = "Create Account";

@@ -7,7 +7,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
+  bool showRegisterScreen = true;
   bool isLoading = false;
+
+  void toggleRegisterScreen(bool isRegister){
+    showRegisterScreen = isRegister;
+    notifyListeners();
+  }
 
   Future<void> signUpWithEmail({
     required BuildContext context,
