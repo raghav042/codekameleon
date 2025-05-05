@@ -17,29 +17,17 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -59,4 +47,47 @@ class DefaultFirebaseOptions {
     projectId: 'codekameleon',
     storageBucket: 'codekameleon.firebasestorage.app',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBN1NYR90zE1rbOSfFyt20auXS_CKtnh50',
+    appId: '1:481621239614:web:4d136510a9f1bca0912e6f',
+    messagingSenderId: '481621239614',
+    projectId: 'codekameleon',
+    authDomain: 'codekameleon.firebaseapp.com',
+    storageBucket: 'codekameleon.firebasestorage.app',
+    measurementId: 'G-0RFJLGJWG7',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAir-Ztha5l1otGtFH9aDWlJudEsO6bn1w',
+    appId: '1:481621239614:ios:cf367ebf0631b17e912e6f',
+    messagingSenderId: '481621239614',
+    projectId: 'codekameleon',
+    storageBucket: 'codekameleon.firebasestorage.app',
+    androidClientId: '481621239614-7v709hcfdsj9vt3bpj1luuanmgtdlv5k.apps.googleusercontent.com',
+    iosClientId: '481621239614-sjm7m17k76l9prtke3l7gavghteudbjv.apps.googleusercontent.com',
+    iosBundleId: 'com.techlyverse.codekameleon',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAir-Ztha5l1otGtFH9aDWlJudEsO6bn1w',
+    appId: '1:481621239614:ios:cf367ebf0631b17e912e6f',
+    messagingSenderId: '481621239614',
+    projectId: 'codekameleon',
+    storageBucket: 'codekameleon.firebasestorage.app',
+    androidClientId: '481621239614-7v709hcfdsj9vt3bpj1luuanmgtdlv5k.apps.googleusercontent.com',
+    iosClientId: '481621239614-sjm7m17k76l9prtke3l7gavghteudbjv.apps.googleusercontent.com',
+    iosBundleId: 'com.techlyverse.codekameleon',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyBN1NYR90zE1rbOSfFyt20auXS_CKtnh50',
+    appId: '1:481621239614:web:2739a2ccdcac3309912e6f',
+    messagingSenderId: '481621239614',
+    projectId: 'codekameleon',
+    authDomain: 'codekameleon.firebaseapp.com',
+    storageBucket: 'codekameleon.firebasestorage.app',
+    measurementId: 'G-YNX0RQVKCR',
+  );
+
 }

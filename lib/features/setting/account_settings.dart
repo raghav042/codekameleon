@@ -1,4 +1,6 @@
+import 'package:codekameleon/provider/authentication_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
 import '../../widgets/heading.dart';
@@ -42,42 +44,38 @@ class _AccountSettingsState extends State<AccountSettings> {
 
   Widget editProfile(ColorScheme colorScheme) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 15),
         const Heading(title: AppStrings.profile),
-        Column(
-          children: [
-            ListTile(
-              onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) =>
-                //         const RegistrationScreen(isRegister: false)));
-              },
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-              ),
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: const Icon(Icons.person_outline),
-              title: const Text(AppStrings.editProfile),
-            ),
-            ListTile(
-              onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => const BasicInfoScreen()));
-              },
-              shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(16)),
-              ),
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: const Icon(Icons.info_outline),
-              title: const Text(AppStrings.editBasicInformation),
-            ),
-          ],
+        ListTile(
+          onTap: () {
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) =>
+            //         const RegistrationScreen(isRegister: false)));
+          },
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          ),
+          tileColor: colorScheme.surfaceContainerLowest,
+          leading: const Icon(Icons.person_outline),
+          title: const Text(AppStrings.editProfile),
+        ),
+        ListTile(
+          onTap: () {
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => const BasicInfoScreen()));
+          },
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+          ),
+          tileColor: colorScheme.surfaceContainerLowest,
+          leading: const Icon(Icons.info_outline),
+          title: const Text(AppStrings.editBasicInformation),
         ),
       ],
     );
@@ -85,41 +83,36 @@ class _AccountSettingsState extends State<AccountSettings> {
 
   Widget manageAccount(ColorScheme colorScheme) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 15),
         const Heading(title: AppStrings.account),
-        Column(
-          children: [
-            ListTile(
-              onTap: () {
-                // UserProvider().signOut(context);
-              },
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        ListTile(
+          onTap: () {
+            context.read<AuthenticationProvider>().signOut(context);
+          },
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          ),
+          tileColor: colorScheme.surfaceContainerLowest,
+          leading: const Icon(Icons.logout),
+          title: const Text(AppStrings.logOut),
+        ),
+        ListTile(
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(AppStrings.deleteAccountMessage),
               ),
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: const Icon(Icons.logout),
-              title: const Text(AppStrings.logOut),
-            ),
-            ListTile(
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content:
-                        Text(AppStrings.deleteAccountMessage),
-                  ),
-                );
-                // UserProvider().signOut(context);
-              },
-              shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(16)),
-              ),
-              tileColor: colorScheme.surfaceContainerLowest,
-              leading: const Icon(Icons.delete_forever),
-              title: const Text(AppStrings.deleteAccount),
-            ),
-          ],
+            );
+            // UserProvider().signOut(context);
+          },
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+          ),
+          tileColor: colorScheme.surfaceContainerLowest,
+          leading: const Icon(Icons.delete_forever),
+          title: const Text(AppStrings.deleteAccount),
         ),
       ],
     );

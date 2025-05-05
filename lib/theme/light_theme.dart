@@ -32,9 +32,15 @@ ThemeData lightTheme() {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: scheme.surfaceContainer,
       border: OutlineInputBorder(
         borderSide: const BorderSide(),
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(50.0),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(50.0),
       ),
     ),
     listTileTheme: ListTileThemeData(

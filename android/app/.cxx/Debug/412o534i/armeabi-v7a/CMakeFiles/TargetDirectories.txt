@@ -1,2 +1,0 @@
-C:/Development/flutter/tv/codekameleon/android/app/.cxx/Debug/412o534i/armeabi-v7a/CMakeFiles/edit_cache.dir
-C:/Development/flutter/tv/codekameleon/android/app/.cxx/Debug/412o534i/armeabi-v7a/CMakeFiles/rebuild_cache.dir

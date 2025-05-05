@@ -334,8 +334,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text:
-                            AppStrings.randomBio,
+                        text: AppStrings.randomBio,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,
