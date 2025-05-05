@@ -10,6 +10,7 @@ class UserModel {
     required this.registeredAt,
     required this.lastSeenAt,
   });
+
   final String name;
   final String email;
   final String? imageUrl;
