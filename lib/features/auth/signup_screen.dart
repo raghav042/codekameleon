@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
-import '../../provider/authentication_provider.dart';
+import '../../provider/user_provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AuthenticationProvider>(context);
+    final provider = Provider.of<UserProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -81,6 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       : const Icon(Icons.visibility_off_outlined))),
         ),
         const SizedBox(height: 50),
+        if(!provider.isLoading)
         SizedBox(
           height: 50,
           width: double.maxFinite,

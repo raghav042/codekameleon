@@ -1,5 +1,5 @@
 import 'package:codekameleon/features/auth/signup_screen.dart';
-import 'package:codekameleon/provider/authentication_provider.dart';
+import 'package:codekameleon/provider/user_provider.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +21,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AuthenticationProvider>(context);
+    final provider = Provider.of<UserProvider>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,6 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
         const SizedBox(height: 10),
+        if(!provider.isLoading)
         SizedBox(
           height: 50,
           width: double.infinity,

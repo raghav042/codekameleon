@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
-import '../../provider/authentication_provider.dart';
+import '../../provider/user_provider.dart';
 import '../../widgets/heading.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -11,7 +11,8 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AuthenticationProvider>(context);
+    final provider = Provider.of<UserProvider>(context);
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -21,19 +22,30 @@ class ForgetPasswordScreen extends StatelessWidget {
             children: [
               Text(
                 AppStrings.lostYourCodingComouflage,
-                style: GoogleFonts.quicksand(fontSize: 30),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                AppStrings.enterEmailToResetPassword,
-                style: TextStyle(
-                  fontSize: 14,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.quicksand(
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 10),
+              Center(
+                child: Text(
+                  AppStrings.enterEmailToResetPassword,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onSurface.withValues(alpha: 0.7),
+                  ),
+                ),
+              ),
               const SizedBox(height: 40),
-              const Heading(title: AppStrings.email),
-              TextFormField(),
+              TextFormField(
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.email_outlined),
+                  labelText: AppStrings.email,
+                ),
+              ),
               const SizedBox(height: 50),
               SizedBox(
                 height: 50,

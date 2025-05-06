@@ -1,6 +1,6 @@
 class AppStrings{
   static const String lostYourCodingComouflage = "Lost Your Coding Camouflage?";
-  static const String enterEmailToResetPassword = "Don't worry, enter your email to reset your password";
+  static const String enterEmailToResetPassword = "Enter your email to reset your password";
   static const String email = "Email";
   static const String continueWord = "Continue";
   static const String welcomeMessage = "Welcome back to your coding hub";

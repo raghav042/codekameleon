@@ -1,6 +1,6 @@
 import 'package:codekameleon/features/auth/login_screen.dart';
 import 'package:codekameleon/features/auth/signup_screen.dart';
-import 'package:codekameleon/provider/authentication_provider.dart';
+import 'package:codekameleon/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,39 +13,44 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final provider = context.watch<AuthenticationProvider>();
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          child: Column(
-            children: [
-              buildTitle(provider, colorScheme),
-              const SizedBox(height: 40),
-              buildHeaderButtons(provider, colorScheme),
-              const SizedBox(height: 40),
-              provider.showRegisterScreen
-                  ? const SignUpScreen()
-                  : const SignInScreen(),
-              const Row(
-                children: [
-                  Expanded(child: Divider()),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text("Or continue with"),
-                  ),
-                  Expanded(child: Divider()),
-                ],
-              ),
-              buildGoogleButton(provider, colorScheme),
-            ],
+    final provider = context.watch<UserProvider>();
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            child: Column(
+              children: [
+                buildTitle(provider, colorScheme),
+                const SizedBox(height: 40),
+                buildHeaderButtons(provider, colorScheme),
+                const SizedBox(height: 40),
+                provider.showRegisterScreen
+                    ? const SignUpScreen()
+                    : const SignInScreen(),
+                const Row(
+                  children: [
+                    Expanded(child: Divider()),
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Text("Or"),
+                    ),
+                    Expanded(child: Divider()),
+                  ],
+                ),
+                buildGoogleButton(context,provider, colorScheme),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget buildTitle(AuthenticationProvider provider, ColorScheme colorScheme) {
+  Widget buildTitle(UserProvider provider, ColorScheme colorScheme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -75,7 +80,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   Widget buildHeaderButtons(
-      AuthenticationProvider provider, ColorScheme colorScheme) {
+      UserProvider provider, ColorScheme colorScheme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -132,22 +137,31 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget buildGoogleButton(
-      AuthenticationProvider provider, ColorScheme colorScheme) {
+  Widget buildGoogleButton(BuildContext context,
+      UserProvider provider, ColorScheme colorScheme) {
     return SizedBox(
       height: 50,
       width: double.maxFinite,
       child: OutlinedButton(
-        onPressed: provider.isLoading ? null : () {},
+        onPressed: provider.isLoading ? null : () {
+          provider.signInWithGoogle(context);
+        },
         style: OutlinedButton.styleFrom(
           backgroundColor: colorScheme.surfaceContainerLowest,
           foregroundColor: colorScheme.onSurface,
         ),
         child: provider.isLoading
             ? const CircularProgressIndicator()
-            : const Text(
-                "Continue with Google",
-                style: TextStyle(fontWeight: FontWeight.bold),
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/icons/google.png", height: 35),
+                  const SizedBox(width: 12),
+                  const Text(
+                    "Continue with Google",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
       ),
     );

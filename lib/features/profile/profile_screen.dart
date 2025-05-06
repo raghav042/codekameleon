@@ -1,7 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/helper/language_helper.dart';
+import 'package:codekameleon/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 
 import '../../constant/app_strings.dart';
 
@@ -12,6 +16,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final colorScheme = context.colorScheme;
+    final provider = Provider.of<UserProvider>(context);
+
+    if(provider.user == null) return const SizedBox();
+
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -22,6 +30,9 @@ class ProfileScreen extends StatelessWidget {
               tag: AppStrings.profilePicTag,
               child: CircleAvatar(
                 radius: size.width / 4,
+                backgroundImage: provider.user!.imageUrl != null ?
+
+                CachedNetworkImageProvider(provider.user!.imageUrl!) : null,
               ),
             ),
             const SizedBox(height: 10, width: double.maxFinite),
