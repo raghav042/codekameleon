@@ -1,30 +1,38 @@
 import 'package:animations/animations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/features/leaderboard/leaderboard_card.dart';
-import 'package:codekameleon/model/student_model.dart';
 import 'package:codekameleon/features/leaderboard/leaderboard_screen.dart';
+import 'package:codekameleon/model/user_model.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';
 
-class LeaderboardTile extends StatelessWidget {
+class LeaderboardTile extends StatefulWidget {
   const LeaderboardTile({super.key});
-  static final List<Student> _students = [
-    Student(name: "Raghav Shukla", rank: 1, score: 100),
-    Student(name: "Dhiren", rank: 2, score: 90),
-    Student(name: "Vinay", rank: 3, score: 80),
-    Student(name: "Roshni", rank: 4, score: 70),
-    Student(name: "Aishwarya", rank: 5, score: 80),
-    Student(name: "Sarah", rank: 6, score: 70),
-    Student(name: "Aishwarya", rank: 5, score: 80),
-    Student(name: "Sarah", rank: 6, score: 70),
-    Student(name: "Aishwarya", rank: 5, score: 80),
-    Student(name: "Sarah", rank: 6, score: 70),
-    Student(name: "Aishwarya", rank: 5, score: 80),
-    Student(name: "Sarah", rank: 6, score: 70),
-    Student(name: "Aishwarya", rank: 5, score: 80),
-    Student(name: "Sarah", rank: 6, score: 70),
-  ]; // did not add names in the app_strings file because we do not want to translate names
+
+  @override
+  State<LeaderboardTile> createState() => _LeaderboardTileState();
+}
+
+class _LeaderboardTileState extends State<LeaderboardTile> {
+  List<UserModel> users = [];
+  Future<void> getUsers() async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .orderBy("points", descending: true)
+        .limit(3)
+        .get();
+    final docs = snapshot.docs.map((e) => UserModel.fromJson(e.data()));
+    users.addAll(docs);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +58,12 @@ class LeaderboardTile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                ..._students
-                    .take(3)
-                    .map((student) => LeaderboardCard(student: student)),
+                ...users.map((student) => LeaderboardCard(user: student)),
               ],
             ),
           );
         },
-        openBuilder: (_, __) => LeaderboardScreen(
-          students: _students,
-        ),
+        openBuilder: (_, __) => const LeaderboardScreen(),
       ),
     );
   }

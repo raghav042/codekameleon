@@ -1,13 +1,12 @@
 import 'package:codekameleon/extension/context_extension.dart';
-import 'package:codekameleon/model/student_model.dart';
+import 'package:codekameleon/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PodiumItem extends StatelessWidget {
-  final Student student;
+  const PodiumItem({super.key, required this.user, required this.position});
+  final UserModel user;
   final int position;
-
-  const PodiumItem({super.key, required this.student, required this.position});
 
   static const _heights = {1: 90.0, 2: 75.0, 3: 60.0};
 
@@ -33,14 +32,14 @@ class PodiumItem extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          student.name,
+          user.name,
           style: GoogleFonts.quicksand(
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          "${student.score} pts",
+          "${user.points} pts",
           style: GoogleFonts.quicksand(
             fontSize: 14,
             fontWeight: FontWeight.bold,

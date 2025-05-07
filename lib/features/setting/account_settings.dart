@@ -1,4 +1,4 @@
-import 'package:codekameleon/provider/authentication_provider.dart';
+import 'package:codekameleon/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -89,7 +89,7 @@ class _AccountSettingsState extends State<AccountSettings> {
         const Heading(title: AppStrings.account),
         ListTile(
           onTap: () {
-            context.read<AuthenticationProvider>().signOut(context);
+            context.read<UserProvider>().signOut(context);
           },
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -100,12 +100,7 @@ class _AccountSettingsState extends State<AccountSettings> {
         ),
         ListTile(
           onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(AppStrings.deleteAccountMessage),
-              ),
-            );
-            // UserProvider().signOut(context);
+            context.read<UserProvider>().deleteAccount(context);
           },
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
