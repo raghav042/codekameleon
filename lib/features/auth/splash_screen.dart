@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/features/auth/signup_screen.dart';
+
 import 'package:codekameleon/features/auth/welcome_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
       final snapshot = await FirebaseFirestore.instance.collection("users").doc(user.uid).get();
       context.read<UserProvider>().initUserAndNavigate(context, UserModel.fromJson(snapshot.data()!));
     } else {
+
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+
     }
   }
 
