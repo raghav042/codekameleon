@@ -1,4 +1,6 @@
 
+import 'package:codekameleon/data/kotlin/kotlin_tutorials.dart';
+import 'package:codekameleon/data/kotlin/quizes.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 import '../../constant/app_colors.dart';
@@ -10,5 +12,6 @@ const LanguageModel kotlinCourse = LanguageModel(
   largeIcon: "assets/icons/kotlin_large.png",
   syntax: Syntax.KOTLIN,
   color: AppColor.kotlin,
-  tutorials: [],quizes: [],
+  tutorials: kotlinTutorials,
+  quizes: kotlinQuizzes,
 );
