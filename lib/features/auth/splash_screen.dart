@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:codekameleon/features/auth/signup_screen.dart';
+import 'package:codekameleon/features/auth/signup_form.dart';
 
 import 'package:codekameleon/features/auth/welcome_screen.dart';
 

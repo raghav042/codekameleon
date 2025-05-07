@@ -1,5 +1,5 @@
-import 'package:codekameleon/features/auth/login_screen.dart';
-import 'package:codekameleon/features/auth/signup_screen.dart';
+import 'package:codekameleon/features/auth/login_form.dart';
+import 'package:codekameleon/features/auth/signup_form.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
