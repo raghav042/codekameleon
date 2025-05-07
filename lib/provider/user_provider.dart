@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../constant/app_strings.dart';
+import '../features/auth/welcome_screen.dart';
 
 class UserProvider extends ChangeNotifier {
   late UserModel user;
@@ -20,11 +21,12 @@ class UserProvider extends ChangeNotifier {
     if (userModel != null) {
       user = userModel;
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     } else {
       //TODO: show snackBar that user does not exist
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
-
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()));
     }
   }
 
@@ -80,9 +82,7 @@ class UserProvider extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     if (context.mounted) {
       Navigator.push(context,
-
           MaterialPageRoute(builder: (context) => const WelcomeScreen()));
-
     }
   }
 
