@@ -5,14 +5,14 @@ import 'package:provider/provider.dart';
 import '../../constant/app_strings.dart';
 import 'forget_password_screen.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignInForm extends StatefulWidget {
+  const SignInForm({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignInForm> createState() => _SignInFormState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInFormState extends State<SignInForm> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 

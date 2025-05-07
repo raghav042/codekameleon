@@ -1,7 +1,6 @@
-import 'package:codekameleon/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'features/auth/splash_screen.dart';
+import 'features/auth/welcome_screen.dart';
 import 'main.dart';
 import 'provider/user_provider.dart';
 import 'theme/dark_theme.dart';
@@ -17,7 +16,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         title: 'Code Kameleon',
-        home: const HomeScreen(),
+        home: const WelcomeScreen(),
         themeMode: ThemeMode.system,
         theme: lightTheme(),
         darkTheme: darkTheme(),
