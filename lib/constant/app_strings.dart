@@ -1,17 +1,17 @@
 class AppStrings{
   static const String lostYourCodingComouflage = "Lost Your Coding Camouflage?";
-  static const String enterEmailToResetPassword = "Don't worry, enter your email to reset your password";
+  static const String enterEmailToResetPassword = "Enter your email to reset your password";
   static const String email = "Email";
   static const String continueWord = "Continue";
   static const String welcomeMessage = "Welcome back to your coding hub";
-  static const String howToAccessLearningSpace = "Enter your email and password to access your learning space";
+  static const String howToAccessLearningSpace = "Enter your email and password to continue";
   static const String password = "Password";
   static const String forgetPassword = "Forget Password ?";
   static const String login = "Login";
   static const String doNotHaveAccount = "Don't have an account ?";
   static const String register = "Register";
   static const String unleashMessage = "Unleash Your Code Kameleon";
-  static const String createAccountMessage = "Create your free account and start your coding evolution!";
+  static const String createAccountMessage = "Create your account to start learning";
   static const String name = "Name";
   static const String confirmPassword = "Confirm Password";
   static const String createAccount = "Create Account";
@@ -32,20 +32,18 @@ class AppStrings{
   static const String sthAbtUserInfo = "something about user useful information or anything else";
   static const String progressPoints = "Progress Points";
   static const String myProfileTxt = "my_profile.txt";
-  static const String assignName = "Name = ";
-  static const String myName = "My Name";
-  static const String assignEmail = "Email = ";
-  static const String someRandomEmail = "my.awesome@email.com";
-  static const String assignPoints = "Points = ";
-  static const String assignOnline = "Online = ";
+  static const String assignName = "Name : ";
+  static const String assignEmail = "Email : ";
+  static const String assignPoints = "Points : ";
+  static const String assignOnline = "Online : ";
   static const String falseValue = "False";
-  static const String assignStatus = "Status = ";
+  static const String assignStatus = "Status : ";
   static const String active = "Active";
-  static const String lastSeenAt = "Last Seen At = ";
+  static const String lastSeenAt = "Last Seen At : ";
   static const String randomLastSeenAt = "3 min ago";
-  static const String registeredAt = "Registered At = ";
+  static const String registeredAt = "Registered At : ";
   static const String randomRegisteredAt = "5 March 2025";
-  static const String assignBio = "Bio = ";
+  static const String assignBio = "Bio : ";
   static const String randomBio = "Some long bio and about information, most of which is fake or I did not even understand";
   static const String noQuizFound = "No Quiz Found";
   static const String previous = "Previous";
@@ -78,9 +76,4 @@ class AppStrings{
   static const String privacyPolicy = "Privacy Policy";
   static const String rateUsOnPlayStore = "Rate Us on Play Store";
   static const String codeKameleon = "Code Kameleon";
-
-
-
-
-
 }

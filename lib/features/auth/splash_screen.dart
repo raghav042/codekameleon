@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/features/auth/signup_screen.dart';
-import 'package:codekameleon/features/home/home_screen.dart';
+import 'package:codekameleon/features/auth/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../model/user_model.dart';
+import '../../provider/user_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,11 +20,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> authService() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      final snapshot = await FirebaseFirestore.instance.collection("users").doc(user.uid).get();
+      context.read<UserProvider>().initUserAndNavigate(context, UserModel.fromJson(snapshot.data()!));
     } else {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const SignUpScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
     }
   }
 
