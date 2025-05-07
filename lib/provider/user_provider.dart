@@ -1,4 +1,3 @@
-import 'package:codekameleon/features/auth/login_screen.dart';
 import 'package:codekameleon/features/home/home_screen.dart';
 import 'package:codekameleon/helper/auth_helper.dart';
 import 'package:codekameleon/model/user_model.dart';
@@ -20,12 +19,12 @@ class UserProvider extends ChangeNotifier {
   void initUserAndNavigate(BuildContext context, UserModel? userModel) {
     if (userModel != null) {
       user = userModel;
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     } else {
       //TODO: show snackBar that user does not exist
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const SignInScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+
     }
   }
 
@@ -81,7 +80,9 @@ class UserProvider extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     if (context.mounted) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const SignInScreen()));
+
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+
     }
   }
 

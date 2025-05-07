@@ -29,8 +29,10 @@ class WelcomeScreen extends StatelessWidget {
                 buildHeaderButtons(provider, colorScheme),
                 const SizedBox(height: 40),
                 provider.showRegisterScreen
-                    ? const SignUpScreen()
-                    : const SignInScreen(),
+
+                    ? const SignUpForm()
+                    : const SignInForm(),
+
                 const Row(
                   children: [
                     Expanded(child: Divider()),
