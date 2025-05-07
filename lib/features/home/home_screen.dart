@@ -1,12 +1,14 @@
-import 'package:codekameleon/extension/context_extension.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codekameleon/features/home/leaderboard_tile.dart';
 import 'package:codekameleon/features/home/search_field.dart';
 import 'package:codekameleon/features/profile/profile_screen.dart';
 import 'package:codekameleon/helper/ad_helper.dart';
 import 'package:codekameleon/helper/language_helper.dart';
+import 'package:codekameleon/provider/user_provider.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant/app_strings.dart';
 import '../../widgets/recent_language_tile.dart';
@@ -30,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.colorScheme;
+    final user = context.read<UserProvider>().user;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -42,11 +44,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(
                       builder: (context) => const ProfileScreen()));
             },
-            child: const Padding(
-              padding: EdgeInsets.all(8),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
               child: Hero(
                 tag: AppStrings.profilePicTag,
-                child: CircleAvatar(),
+                child: CircleAvatar(
+                  backgroundImage: user.imageUrl != null
+                      ? CachedNetworkImageProvider(user.imageUrl!)
+                      : null,
+                ),
               ),
             ),
           ),

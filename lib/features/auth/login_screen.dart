@@ -1,8 +1,5 @@
-import 'package:codekameleon/features/auth/signup_screen.dart';
 import 'package:codekameleon/provider/user_provider.dart';
-import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';

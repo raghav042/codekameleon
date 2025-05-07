@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/features/auth/signup_screen.dart';
-import 'package:codekameleon/features/auth/welcome_screen.dart';
-import 'package:codekameleon/features/home/home_screen.dart';
 import 'package:codekameleon/model/user_model.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,4 +1,3 @@
-import 'package:codekameleon/features/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/auth/splash_screen.dart';

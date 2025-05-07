@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 import '../../constant/app_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -16,9 +15,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final colorScheme = context.colorScheme;
-    final provider = Provider.of<UserProvider>(context);
-
-    if(provider.user == null) return const SizedBox();
+    final user = context.read<UserProvider>().user;
 
     return Scaffold(
       appBar: AppBar(),
@@ -30,15 +27,15 @@ class ProfileScreen extends StatelessWidget {
               tag: AppStrings.profilePicTag,
               child: CircleAvatar(
                 radius: size.width / 4,
-                backgroundImage: provider.user!.imageUrl != null ?
-
-                CachedNetworkImageProvider(provider.user!.imageUrl!) : null,
+                backgroundImage: user.imageUrl != null
+                    ? CachedNetworkImageProvider(user.imageUrl!)
+                    : null,
               ),
             ),
             const SizedBox(height: 10, width: double.maxFinite),
-            const Text(
-              AppStrings.victorTimely,
-              style: TextStyle(fontSize: 35),
+            Text(
+              user.name,
+              style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 10),
             Container(
@@ -48,10 +45,10 @@ class ProfileScreen extends StatelessWidget {
                 color: colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: const Text(
-                AppStrings.sthAbtUserInfo,
+              child: Text(
+                user.bio,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
             const SizedBox(height: 40),
@@ -89,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "225",
+                        user.points.toString(),
                         style: GoogleFonts.quicksand(
                           fontSize: 50,
                           color: colorScheme.primary,
@@ -192,8 +189,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        //"Myiee Name",
-                        AppStrings.myName,
+                        user.name,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,
@@ -215,7 +211,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        AppStrings.someRandomEmail,
+                        user.email,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,
@@ -237,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        "225",
+                        user.points.toString(),
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.tertiary,
@@ -259,7 +255,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        AppStrings.falseValue,
+                        user.isOnline.toString(),
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.tertiary,
@@ -303,7 +299,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        AppStrings.randomLastSeenAt,
+                        user.lastSeenAt.split("T").first,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.secondary,
@@ -325,7 +321,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        AppStrings.randomRegisteredAt,
+                        user.registeredAt.split("T").first,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.secondary,
@@ -345,7 +341,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: AppStrings.randomBio,
+                        text: user.bio,
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.primary,

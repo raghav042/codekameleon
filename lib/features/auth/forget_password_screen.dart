@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
 import '../../provider/user_provider.dart';
-import '../../widgets/heading.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
