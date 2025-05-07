@@ -100,12 +100,7 @@ class _AccountSettingsState extends State<AccountSettings> {
         ),
         ListTile(
           onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(AppStrings.deleteAccountMessage),
-              ),
-            );
-            // UserProvider().signOut(context);
+            context.read<UserProvider>().deleteAccount(context);
           },
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),

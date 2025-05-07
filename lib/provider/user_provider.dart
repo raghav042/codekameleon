@@ -5,25 +5,27 @@ import 'package:codekameleon/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../constant/app_strings.dart';
+
 class UserProvider extends ChangeNotifier {
   late UserModel user;
   bool showRegisterScreen = true;
   bool isLoading = false;
-
 
   void toggleRegisterScreen(bool isRegister) {
     showRegisterScreen = isRegister;
     notifyListeners();
   }
 
-  void initUserAndNavigate(BuildContext context, UserModel? userModel){
-    if(userModel != null){
+  void initUserAndNavigate(BuildContext context, UserModel? userModel) {
+    if (userModel != null) {
       user = userModel;
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-    }
-    else{
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    } else {
       //TODO: show snackBar that user does not exist
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInScreen()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const SignInScreen()));
     }
   }
 
@@ -36,24 +38,29 @@ class UserProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final userModel = await AuthHelper.signUpWithEmail(context, name: name, email: email, password: password);
+    final userModel = await AuthHelper.signUpWithEmail(context,
+        name: name, email: email, password: password);
 
     isLoading = false;
     notifyListeners();
 
-    if(context.mounted) initUserAndNavigate(context, userModel);
+    if (context.mounted) initUserAndNavigate(context, userModel);
   }
 
-  Future<void> signInWithEmail({required BuildContext context, required String email, required String password}) async {
+  Future<void> signInWithEmail(
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     isLoading = true;
     notifyListeners();
 
-    final userModel = await AuthHelper.signInWithEmail(context, email: email, password: password);
+    final userModel = await AuthHelper.signInWithEmail(context,
+        email: email, password: password);
 
     isLoading = false;
     notifyListeners();
 
-    if(context.mounted) initUserAndNavigate(context, userModel);
+    if (context.mounted) initUserAndNavigate(context, userModel);
   }
 
   Future<void> signInWithGoogle(BuildContext context) async {
@@ -65,7 +72,7 @@ class UserProvider extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
 
-    if(context.mounted) initUserAndNavigate(context, userModel);
+    if (context.mounted) initUserAndNavigate(context, userModel);
   }
 
   Future<void> sendResetPasswordEmail() async {}
@@ -76,5 +83,14 @@ class UserProvider extends ChangeNotifier {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const SignInScreen()));
     }
+  }
+
+  Future<void> deleteAccount(BuildContext context) async {
+    signOut(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(AppStrings.deleteAccountMessage),
+      ),
+    );
   }
 }
