@@ -1,5 +1,6 @@
 
 import 'package:codekameleon/data/c++/cpp_tutorials.dart';
+import 'package:codekameleon/data/c++/quizes.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 import '../../constant/app_colors.dart';
@@ -12,5 +13,5 @@ const LanguageModel cppCourse = LanguageModel(
   syntax: Syntax.CPP,
   color: AppColor.cpp,
   tutorials: cppTutorials,
-  quizes: [],
+  quizes: cppQuizzes,
 );
