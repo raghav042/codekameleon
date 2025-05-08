@@ -1,15 +1,13 @@
 import 'package:codekameleon/extension/context_extension.dart';
-import 'package:codekameleon/features/quiz/domain/quiz_cubit.dart';
 import 'package:codekameleon/features/quiz/quiz_result.dart';
 import 'package:codekameleon/helper/ui_helper.dart';
 import 'package:codekameleon/preferences/preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant/app_strings.dart';
 import '../../data/languages.dart';
 import '../../widgets/heading.dart';
-import '../quiz/presentation/quiz_screen.dart';
+import '../quiz/quiz_screen.dart';
 
 class QuizList extends StatelessWidget {
   const QuizList({super.key});
@@ -35,10 +33,7 @@ class QuizList extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BlocProvider(
-                          create: (context) => QuizCubit(),
-                          child: QuizScreen(language: languages[i]),
-                        ),
+                        builder: (context) => QuizScreen(language: languages[i]),
                       ),
                     );
                   } else {

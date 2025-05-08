@@ -8,12 +8,12 @@ import 'package:codekameleon/provider/user_provider.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant/app_strings.dart';
 import '../../widgets/recent_language_tile.dart';
 import '../notification/notification_screen.dart';
 import '../setting/setting_screen.dart';
+import 'package:provider/provider.dart';
 import 'quiz_list.dart';
 
 class HomeScreen extends StatefulWidget {
