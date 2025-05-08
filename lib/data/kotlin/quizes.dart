@@ -111,4 +111,67 @@ const List<QuizModel> kotlinQuizzes = [
         'None of the above'
       ],
   ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin when expression?',
+      answer: 3,
+      options: [
+        'It is used to compare a single value against multiple conditions',
+        'Kotlin when expression can be used in place of if..else if expression'
+        'Kotlin when branches can be integer, string, array or ranges',
+        'All of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'Kotlin when is inspired by which of the following Java statement?',
+      answer: 0,
+      options: [
+        'switch statement',
+        'if statement',
+        'do...while statement',
+        'None of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin for loop?',
+      answer: 3,
+      options: [
+        'It is used to loop through an iterator.',
+        'Kotlin does not provide conventional for loop like C, C++ or Java.',
+        'Kotlin for loop is equivalent to the foreach loop in languages like C#.',
+        'All of the above',
+
+
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is a loop statement in Kotlin?',
+      answer: 3,
+      options: [
+        'for',
+        'while',
+        'do...while',
+        'All of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'What is difference between while and do...while loops?',
+      answer: 2,
+      options: [
+        'while loop is faster than do...while loop',
+        'do...while loop is faster than while loop',
+        'while loop checks condition before executing its body, where as do...while checksthe condition after executing its body atleast once.',
+        'There is no difference between two types of loops'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin Collections?',
+      answer: 3,
+      options: [
+        'Kotlin provides mutable and immutable collection',
+        'List, Set and Map are Kotlin Collections',
+        'Kotlin Map can store values in Key-Value pairs',
+        'All of the above'
+      ]
+  )
+
 ];
