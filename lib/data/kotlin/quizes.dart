@@ -163,5 +163,15 @@ const List<QuizModel> kotlinQuizzes = [
         'There is no difference between two types of loops'
       ],
   ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin Collections?',
+      answer: 3,
+      options: [
+        'Kotlin provides mutable and immutable collection',
+        'List, Set and Map are Kotlin Collections',
+        'Kotlin Map can store values in Key-Value pairs',
+        'All of the above'
+      ]
+  )
 
 ];
