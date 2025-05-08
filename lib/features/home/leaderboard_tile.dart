@@ -57,7 +57,7 @@ class _LeaderboardTileState extends State<LeaderboardTile> {
                     padding: EdgeInsets.zero,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 20, width: double.maxFinite),
                 ...users.map((student) => LeaderboardCard(user: student)),
               ],
             ),
