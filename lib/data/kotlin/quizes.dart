@@ -51,4 +51,64 @@ const List<QuizModel> kotlinQuizzes = [
         'None of the above'
       ],
   ),
+  QuizModel(
+      question: 'Which of the following is a logical inverse operator:',
+      answer: 1,
+      options: [
+        'inv()',
+        '!',
+        '&&',
+        '||'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin Boolean Data type?',
+      answer: 0,
+      options: [
+        'Boolean data type can have two values true and false',
+        'Boolean data type can have two values 0 and 1',
+        'We can assign Boolean value to integer variable',
+        'All of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin Arrays?',
+      answer: 3,
+      options: [
+        'Kotlin arrays are capable to store all data types.',
+        'Kotlin arrays can be created using either arrayOf() or arrayOfNulls() functions.',
+        'Kotlin provides a rich set of properties and functions to manipulate arrays.',
+        'All of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is true about Control Flow Statement?',
+      answer: 3,
+      options: [
+        'Control flow controls the execution of the program',
+        'Loops and Decision Statements are part of control flow',
+        'Control flow is an essential part of modern programming languages',
+        'All of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is true about Kotlin if expression?',
+      answer: 3,
+      options: [
+        'Kotlin support traditional if...else expression.',
+        'Kotlin if...else expression can be nested.',
+        'Kotlin if...else expression returns a value which can be assigned to a variable.',
+        'All of the above'
+      ],
+  ),
+  QuizModel(
+      question: 'Which of the following is not supported by Kotlin?',
+      answer: 1,
+      options: [
+        'if...else if...else',
+        'if...then...else',
+        'if...else...',
+        'None of the above'
+      ],
+  ),
 ];
