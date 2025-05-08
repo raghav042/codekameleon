@@ -71,7 +71,7 @@ using namespace std;
 
 int main() {
 
-    string name = "TutorialsPoint";   // String type variable
+    string name = "Learning Variables";   // String type variable
     int started_year = 2006;  // Integer type variable
     double pi = 3.14159;    // Double type variable
     char grade = 'A';       // Char type variable

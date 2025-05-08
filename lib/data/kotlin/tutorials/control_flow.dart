@@ -36,7 +36,7 @@ if (condition) {
 ```
 Here **if** statement is executed and the given **condition** is checked. If this condition is evaluated to **true** then code block A is executed, otherwise program goes into else part and code block B is executed.
 
-### Example
+### **Example**
 
 You can try the following example:
 ```
@@ -73,7 +73,7 @@ val result = if (condition) {
 ```
 If you're using if as an expression, for example, for returning its value or assigning it to a variable, the else branch is mandatory.
 
-### Examples
+### **Example**
 ```
 
 fun main(args: Array<String>) {
@@ -145,7 +145,7 @@ if(condition1) {
 }
 
 ```
-### Example
+### **Example**
 ```
 
 fun main(args: Array<String>) {

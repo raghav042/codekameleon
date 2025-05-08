@@ -69,6 +69,7 @@ Apple
 
 Orange
 
+
 Kotlin also provides **get()** and **set()** member functions to get and set the value at a particular index. Check the following example:
 
 ### Example
@@ -114,6 +115,7 @@ fun main(args: Array<String>) {
 When you run the above Kotlin program, it will generate the following output:
 
 Size of fruits array 4
+
 
 We can also use **count()** member function to get the size of the array.
 

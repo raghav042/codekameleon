@@ -1,5 +1,4 @@
 const cppInputAndOutput = '''
-# C++ Basic Input/Output
 
 The C++ standard libraries provide an extensive set of input/output capabilities, we will discuss very basic and most common I/O operations required for C++ programming.
 

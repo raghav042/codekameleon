@@ -60,7 +60,7 @@ Kotlin uses **fun** keyword to define a function, so if we we will try to use it
 ```
 
 fun main() {
-   var fun = "Zara Ali"  // Not allowed, throws an exception
+   var fun = "Some Name"  // Not allowed, throws an exception
    var age = 19          // Valid variable name
 
    println("Name = " + fun)
@@ -81,7 +81,7 @@ Kotlin variables are created using either **var** or **val** keywords and then a
 Following is a simple syntax to create two variables and then assign them different values:
 ```
 
-var name = "Zara Ali"
+var name = "Some Name"
 var age = 19
 var height = 5.2
 
@@ -93,7 +93,7 @@ Once a variable is created and assigned a value, later we can access its value u
 ```
 
 fun main() {
-   var name = "Zara Ali"
+   var name = "Some Name"
    var age = 19
 
    println(name)
@@ -103,7 +103,7 @@ fun main() {
 ```
 When you run the above Kotlin program, it will generate the following output:
 
-Zara Ali
+Some Name
 
 19
 

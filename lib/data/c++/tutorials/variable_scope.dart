@@ -1,5 +1,5 @@
 const variable_scope_in_cpp = '''
-#Variable Scope in C++
+## Variable Scope in C++
 
 A scope is a region of the program and broadly speaking there are three places, where variables can be declared −
 
@@ -146,5 +146,4 @@ Value of g (Local variable): 10
 Value of g (Global variable): 20
 
 
-Following is the example using local variables −
 ''';
