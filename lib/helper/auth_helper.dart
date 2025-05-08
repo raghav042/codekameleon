@@ -8,7 +8,17 @@ class AuthHelper{
   const AuthHelper._();
 
   static Future<UserModel?> signUpWithEmail( BuildContext context,{required String name, required String email, required String password}) async {
-    final UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    late UserCredential userCredential;
+    try{
+      userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    }
+    on FirebaseAuthException catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message ?? "An error occurred")));
+    }
+    catch (e){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Something went wrong")));
+    }
+
 
     if (userCredential.user == null && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Something went wrong")));
@@ -38,6 +48,7 @@ class AuthHelper{
 
 
   static Future<UserModel?> signInWithEmail(BuildContext context, {required String email, required String password}) async {
+    //TODO: add try catch here
     final UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
 
     if (userCredential.user == null && context.mounted) {
@@ -52,6 +63,7 @@ class AuthHelper{
 
 
   static Future<UserModel?> signInWithGoogle(BuildContext context) async {
+    //TODO: add try catch
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
