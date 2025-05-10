@@ -17,7 +17,7 @@ dependencies:
   google_fonts: ^6.2.1
   appinio_swiper: ^2.1.0
   flutter_markdown: ^0.7.5
-  url_launcher: ^6.1.14
+  url_launcher: ^6.3.1
   shared_preferences: ^2.5.1
   animations: ^2.0.11
   google_mobile_ads: ^5.3.1

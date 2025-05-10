@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
+import '../../helper/snackbar_helper.dart';
 import '../../helper/ui_helper.dart';
 import '../../main.dart';
 import '../../model/language_model.dart';
@@ -232,7 +233,11 @@ class _QuizScreenState extends State<QuizScreen> {
         content: const Text(AppStrings.areYouSure),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            //onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              Navigator.of(context).pop();
+              SnackbarHelper.snackbarFunction(context, "Cancelled");
+            },
             child: const Text(AppStrings.cancel),
           ),
           ElevatedButton(
@@ -240,6 +245,7 @@ class _QuizScreenState extends State<QuizScreen> {
               // Navigator.of(context).pop();
               // log("the submit ${widget.language.name}");
               submitQuiz(widget.language.name, currentQuiz, widget.language);
+              SnackbarHelper.snackbarFunction(context, "Quiz submitted");
             },
             child: const Text(AppStrings.submit),
           ),
