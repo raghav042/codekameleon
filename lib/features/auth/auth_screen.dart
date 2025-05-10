@@ -1,4 +1,5 @@
 import 'package:codekameleon/provider/user_provider.dart';
+import 'package:codekameleon/widgets/reusable_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -56,17 +57,19 @@ class _AuthScreenState extends State<AuthScreen> {
                 buildHeaderButtons(colorScheme),
                 const SizedBox(height: 40),
                 showRegisterScreen ? signUpForm() : signInForm(),
-                const Row(
-                  children: [
-                    Expanded(child: Divider()),
-                    Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Text("Or"),
-                    ),
-                    Expanded(child: Divider()),
-                  ],
-                ),
-                buildGoogleButton(colorScheme),
+                if (!isLoading) ...[
+                  const Row(
+                    children: [
+                      Expanded(child: Divider()),
+                      Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Text("Or"),
+                      ),
+                      Expanded(child: Divider()),
+                    ],
+                  ),
+                  buildGoogleButton(colorScheme),
+                ]
               ],
             ),
           ),
@@ -228,26 +231,35 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          if (!isLoading)
-            SizedBox(
-              height: 50,
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: isLoading
-                    ? null
-                    : () {
-                        if (signInFormKey.currentState!.validate()) {
-                          signInWithEmail();
-                        }
-                      },
-                child: isLoading // It has already loading
-                    ? const CircularProgressIndicator()
-                    : const Text(
-                        AppStrings.login,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-              ),
-            ),
+
+          // if (!isLoading)
+          ReusableElevatedButton(
+            title: "Login",
+            onPressed: () async {
+              if (signInFormKey.currentState!.validate()) {
+                await signInWithEmail();
+              }
+            },
+          ),
+          // SizedBox(
+          //   height: 50,
+          //   width: double.infinity,
+          //   child: ElevatedButton(
+          //     onPressed: isLoading
+          //         ? null
+          //         : () {
+          //             if (signInFormKey.currentState!.validate()) {
+          //               signInWithEmail();
+          //             }
+          //           },
+          //     child: isLoading // It has already loading
+          //         ? const CircularProgressIndicator()
+          //         : const Text(
+          //             AppStrings.login,
+          //             style: TextStyle(fontWeight: FontWeight.bold),
+          //           ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -317,26 +329,34 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           const SizedBox(height: 50),
-          if (!isLoading)
-            SizedBox(
-              height: 50,
-              width: double.maxFinite,
-              child: ElevatedButton(
-                onPressed: isLoading
-                    ? null
-                    : () {
-                        if (signUpFormKey.currentState!.validate()) {
-                          signUpWithEmail();
-                        }
-                      },
-                child: isLoading
-                    ? const CircularProgressIndicator()
-                    : const Text(
-                        AppStrings.createAccount,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-              ),
-            ),
+          // if (!isLoading)
+          ReusableElevatedButton(
+            title: AppStrings.createAccount,
+            onPressed: () async {
+              if (signUpFormKey.currentState!.validate()) {
+                await signUpWithEmail();
+              }
+            },
+          )
+          // SizedBox(
+          //   height: 50,
+          //   width: double.maxFinite,
+          //   child: ElevatedButton(
+          //     onPressed: isLoading
+          //         ? null
+          //         : () {
+          //             if (signUpFormKey.currentState!.validate()) {
+          //               signUpWithEmail();
+          //             }
+          //           },
+          //     child: isLoading
+          //         ? const CircularProgressIndicator()
+          //         : const Text(
+          //             AppStrings.createAccount,
+          //             style: TextStyle(fontWeight: FontWeight.bold),
+          //           ),
+          //   ),
+          // ),
         ],
       ),
     );
