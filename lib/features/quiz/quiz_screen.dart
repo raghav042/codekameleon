@@ -38,7 +38,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppHelper.getRandomImage()),
+          image: AssetImage(image),
           fit: BoxFit.cover,
         ),
       ),
@@ -82,8 +82,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white38,
-        border: Border.all(color: Colors.white10, width: 2),
+        color: Colors.white30,
+        border: Border.all(color: Colors.white30, width: 2),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
       ),
       child: ClipRRect(
@@ -306,7 +306,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void goBack() {
-    //image = AppHelper.getRandomImage();
+    image = AppHelper.getRandomImage();
     if (questionIndex > 0) {
       setState(() {
         questionIndex = questionIndex - 1;
@@ -315,7 +315,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void goNext() {
-    //image = AppHelper.getRandomImage();
+    image = AppHelper.getRandomImage();
     if (questionIndex == widget.language.quizes.length - 1) {
       _showSubmitDialog();
     } else if (questionIndex < widget.language.quizes.length - 1) {
