@@ -21,13 +21,21 @@ class _AuthScreenState extends State<AuthScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
   bool isLoading = false;
   bool showRegisterScreen = true;
 
-  //TODO: write functions to validate data before login or register
-  //TODO: write functions to dispose controllers after use
+  //TODO: write functions to dispose controlers after use
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,6 +197,7 @@ class _AuthScreenState extends State<AuthScreen> {
           const SizedBox(height: 15),
           TextFormField(
             controller: emailController,
+            validator: ValidatorHelper.validateEmail,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.email_outlined),
               labelText: AppStrings.email,
@@ -197,6 +206,7 @@ class _AuthScreenState extends State<AuthScreen> {
           const SizedBox(height: 15),
           TextFormField(
             controller: passwordController,
+            validator: ValidatorHelper.validatePassword,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.lock_outline),
               labelText: AppStrings.password,
@@ -218,12 +228,18 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          if (isLoading)
+          if (!isLoading)
             SizedBox(
               height: 50,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: isLoading ? null : signInWithEmail,
+                onPressed: isLoading
+                    ? null
+                    : () {
+                        if (signInFormKey.currentState!.validate()) {
+                          signInWithEmail();
+                        }
+                      },
                 child: isLoading // It has already loading
                     ? const CircularProgressIndicator()
                     : const Text(
@@ -253,6 +269,7 @@ class _AuthScreenState extends State<AuthScreen> {
           const SizedBox(height: 15),
           TextFormField(
             controller: emailController,
+            validator: ValidatorHelper.validateEmail,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.email_outlined),
               labelText: AppStrings.email,
@@ -262,6 +279,7 @@ class _AuthScreenState extends State<AuthScreen> {
           TextFormField(
             controller: passwordController,
             obscureText: obscurePassword,
+            validator: ValidatorHelper.validatePassword,
             decoration: InputDecoration(
               labelText: AppStrings.password,
               prefixIcon: const Icon(Icons.lock_outline),
@@ -281,6 +299,8 @@ class _AuthScreenState extends State<AuthScreen> {
           TextFormField(
             controller: confirmPasswordController,
             obscureText: obscureConfirmPassword,
+            validator: (value) => ValidatorHelper.validateConfirmPassword(
+                value, passwordController.text),
             decoration: InputDecoration(
               labelText: AppStrings.confirmPassword,
               prefixIcon: const Icon(Icons.lock_outline),
@@ -302,7 +322,13 @@ class _AuthScreenState extends State<AuthScreen> {
               height: 50,
               width: double.maxFinite,
               child: ElevatedButton(
-                onPressed: isLoading ? null : signUpWithEmail,
+                onPressed: isLoading
+                    ? null
+                    : () {
+                        if (signUpFormKey.currentState!.validate()) {
+                          signUpWithEmail();
+                        }
+                      },
                 child: isLoading
                     ? const CircularProgressIndicator()
                     : const Text(
@@ -327,18 +353,22 @@ class _AuthScreenState extends State<AuthScreen> {
       isLoading = true;
     });
 
-    final userModel = await AuthHelper.signUpWithEmail(
-      context,
-      name: nameController.text.trim(),
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+    try {
+      final userModel = await AuthHelper.signUpWithEmail(
+        context,
+        name: nameController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
 
-    setState(() {
-      isLoading = false;
-    });
-
-    if (mounted) UserProvider().initUserAndNavigate(context, userModel);
+      if (mounted) UserProvider().initUserAndNavigate(context, userModel);
+    } catch (e) {
+      throw Exception(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   Future<void> signInWithEmail() async {
@@ -346,17 +376,21 @@ class _AuthScreenState extends State<AuthScreen> {
       isLoading = true;
     });
 
-    final userModel = await AuthHelper.signInWithEmail(
-      context,
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+    try {
+      final userModel = await AuthHelper.signInWithEmail(
+        context,
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
 
-    setState(() {
-      isLoading = false;
-    });
-
-    if (mounted) UserProvider().initUserAndNavigate(context, userModel);
+      if (mounted) UserProvider().initUserAndNavigate(context, userModel);
+    } catch (e) {
+      throw Exception(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   Future<void> signInWithGoogle() async {
@@ -364,12 +398,16 @@ class _AuthScreenState extends State<AuthScreen> {
       isLoading = true;
     });
 
-    final userModel = await AuthHelper.signInWithGoogle(context);
+    try {
+      final userModel = await AuthHelper.signInWithGoogle(context);
 
-    setState(() {
-      isLoading = false;
-    });
-
-    if (mounted) UserProvider().initUserAndNavigate(context, userModel);
+      if (mounted) UserProvider().initUserAndNavigate(context, userModel);
+    } catch (e) {
+      throw Exception(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }
