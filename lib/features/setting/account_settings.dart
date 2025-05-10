@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
+import '../../helper/snackbar_helper.dart';
 import '../../widgets/heading.dart';
 
 class AccountSettings extends StatefulWidget {
@@ -55,6 +56,8 @@ class _AccountSettingsState extends State<AccountSettings> {
             //     MaterialPageRoute(
             //         builder: (context) =>
             //         const RegistrationScreen(isRegister: false)));
+            SnackbarHelper.snackbarFunction(context, "Coming Soon");
+
           },
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -90,6 +93,7 @@ class _AccountSettingsState extends State<AccountSettings> {
         ListTile(
           onTap: () {
             context.read<UserProvider>().signOut(context);
+            SnackbarHelper.snackbarFunction(context, "Logged Out");
           },
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -101,6 +105,8 @@ class _AccountSettingsState extends State<AccountSettings> {
         ListTile(
           onTap: () {
             context.read<UserProvider>().deleteAccount(context);
+            //SnackbarHelper.snackbarFunction(context, "Account Deleted");
+            //no need because the deleteAccount function already has a snackbar
           },
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),

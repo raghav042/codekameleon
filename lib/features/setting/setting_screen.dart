@@ -8,6 +8,7 @@ import 'account_settings.dart';
 import 'language_settings.dart';
 import 'notification_settings.dart';
 import 'theme_settings.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -59,40 +60,40 @@ class _SettingScreenState extends State<SettingScreen> {
               leading: const Icon(Icons.person_outline),
               title: const Text(AppStrings.manageAccount),
             ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NotificationSettings()));
-              },
-              leading: const Icon(Icons.notifications_outlined),
-              title: const Text(AppStrings.notifications),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ThemeSettings()));
-              },
-              leading: const Icon(Icons.dark_mode_outlined),
-              title: const Text(AppStrings.themeMode),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const LanguageSettings()));
-              },
-              leading: const Icon(Icons.translate),
-              title: const Text(AppStrings.language),
-              shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(16)),
-              ),
-            ),
+            // ListTile(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const NotificationSettings()));
+            //   },
+            //   leading: const Icon(Icons.notifications_outlined),
+            //   title: const Text(AppStrings.notifications),
+            // ),
+            // ListTile(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const ThemeSettings()));
+            //   },
+            //   leading: const Icon(Icons.dark_mode_outlined),
+            //   title: const Text(AppStrings.themeMode),
+            // ),
+            // ListTile(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const LanguageSettings()));
+            //   },
+            //   leading: const Icon(Icons.translate),
+            //   title: const Text(AppStrings.language),
+            //   shape: const RoundedRectangleBorder(
+            //     borderRadius:
+            //         BorderRadius.vertical(bottom: Radius.circular(16)),
+            //   ),
+            // ),
           ],
         ),
       ],
@@ -108,9 +109,15 @@ class _SettingScreenState extends State<SettingScreen> {
         Column(
           children: [
             ListTile(
-              onTap: () {
-                launchUrlString(
-                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
+              onTap: () async {
+                //launchUrlString(
+                //    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
+                const urlHelp = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                if(await canLaunchUrl(Uri.parse(urlHelp))){
+                await launchUrl(Uri.parse(urlHelp));
+                } else {
+                throw("Could not launch $urlHelp");
+                }
               },
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -119,16 +126,28 @@ class _SettingScreenState extends State<SettingScreen> {
               title: const Text(AppStrings.help),
             ),
             ListTile(
-              onTap: () {
-                launchUrlString(
-                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
+              onTap: () async {
+                const urlFeedback = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                //launchUrlString(
+                //    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
+                if(await canLaunchUrl(Uri.parse(urlFeedback))){
+                  await launchUrl(Uri.parse(urlFeedback));
+                } else {
+                  throw("Could not launch $urlFeedback");
+                }
               },
               leading: const Icon(Icons.feedback_outlined),
               title: const Text(AppStrings.feedback),
             ),
             ListTile(
-              onTap: () {
+              onTap: () async {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
+                const urlAboutus = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                if(await canLaunchUrl(Uri.parse(urlAboutus))){
+                await launchUrl(Uri.parse(urlAboutus));
+                } else {
+                throw("Could not launch $urlAboutus");
+                }
               },
               leading: const Icon(Icons.info_outline),
               title: const Text(AppStrings.aboutUs),
@@ -140,16 +159,27 @@ class _SettingScreenState extends State<SettingScreen> {
             //   title: Text("Terms of Use"),
             // ),
             ListTile(
-              onTap: () {
-                launchUrlString(
-                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
+              onTap: () async {
+                //launchUrlString(
+                //    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
+                const urlPrivacy = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                if(await canLaunchUrl(Uri.parse(urlPrivacy))){
+                await launchUrl(Uri.parse(urlPrivacy));
+                } else {
+                throw("Could not launch $urlPrivacy");
+                }
               },
               leading: const Icon(Icons.shield_outlined),
               title: const Text(AppStrings.privacyPolicy),
             ),
             ListTile(
-              onTap: () {
-                // launchUrlString(AppHelper.storeUrl);
+              onTap: () async {
+                 const urlRateUs = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                 if(await canLaunchUrl(Uri.parse(urlRateUs))){
+                await launchUrl(Uri.parse(urlRateUs));
+                } else {
+                throw("Could not launch $urlRateUs");
+                }
               },
               shape: const RoundedRectangleBorder(
                 borderRadius:
