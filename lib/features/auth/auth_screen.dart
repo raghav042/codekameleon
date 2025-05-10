@@ -218,7 +218,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          if (isLoading)
+          if (!isLoading)
             SizedBox(
               height: 50,
               width: double.infinity,
