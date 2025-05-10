@@ -1,19 +1,19 @@
+import 'package:codekameleon/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightTheme() {
-  final scheme = ColorScheme.fromSeed(seedColor: Colors.purple);
+  final scheme = AppColor.lightScheme;
   return ThemeData(
     colorScheme: scheme,
-    textTheme: GoogleFonts.ubuntuTextTheme(),
-    scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
+    textTheme: GoogleFonts.openSansTextTheme(),
+    appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: false,
       surfaceTintColor: Colors.transparent,
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle(
+      backgroundColor: scheme.surface,
+      systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
@@ -32,33 +32,36 @@ ThemeData lightTheme() {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: scheme.surfaceContainer,
       border: OutlineInputBorder(
         borderSide: const BorderSide(),
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(50.0),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(50.0),
       ),
     ),
-    navigationBarTheme: NavigationBarThemeData(
-      elevation: 0,
-      labelTextStyle: WidgetStatePropertyAll(GoogleFonts.ubuntu()),
-      backgroundColor: scheme.tertiaryContainer,
-      indicatorColor: scheme.primary,
-    ),
-    navigationRailTheme: NavigationRailThemeData(
-      selectedLabelTextStyle: GoogleFonts.ubuntu(color: scheme.onSurface),
-      unselectedLabelTextStyle: GoogleFonts.ubuntu(color: scheme.onSurface),
-      backgroundColor: scheme.tertiaryContainer,
-      indicatorColor: scheme.primary,
-    ),
     listTileTheme: ListTileThemeData(
+      tileColor: scheme.surfaceContainer,
       selectedColor: scheme.onSurface,
       selectedTileColor: scheme.secondaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
-    chipTheme: ChipThemeData(
-      shape: RoundedRectangleBorder(
+    tabBarTheme: TabBarTheme(
+      dividerColor: Colors.transparent,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicator: BoxDecoration(
+        color: scheme.tertiaryContainer,
         borderRadius: BorderRadius.circular(25),
-        side: BorderSide(color: scheme.surfaceContainerHighest),
       ),
+      labelPadding: const EdgeInsets.symmetric(vertical: 10),
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: scheme.onTertiaryContainer,
+      ),
+      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
     ),
   );
 }

@@ -1,4 +1,5 @@
-const function = ''''## Functions
+const function = '''
+# Functions
 
 ### A function can be defined by providing the name of the function with the appropriate parameter and return type.
 

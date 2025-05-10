@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'features/home/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'features/auth/splash_screen.dart';
+import 'features/auth/auth_screen.dart';
+import 'main.dart';
+import 'provider/user_provider.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
 
@@ -8,12 +12,20 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Code Kameleon',
-      home: const HomeScreen(),
-      themeMode: ThemeMode.system,
-      theme: lightTheme(),
-      darkTheme: darkTheme(),
+    return MultiProvider(
+      providers: providers,
+      child: MaterialApp(
+        navigatorKey: navigatorKey,
+        title: 'Code Kameleon',
+        home: const SplashScreen(),
+        themeMode: ThemeMode.system,
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+      ),
     );
   }
 }
+
+final providers = [
+  ChangeNotifierProvider(create: (context) => UserProvider()),
+];
