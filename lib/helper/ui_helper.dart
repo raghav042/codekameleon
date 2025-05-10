@@ -1,4 +1,3 @@
-// utils/ui_helper.dart
 import 'package:flutter/material.dart';
 
 class UiHelper {
