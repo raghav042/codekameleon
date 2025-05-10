@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/data/dart/dart_quizes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:codekameleon/extension/context_extension.dart';
@@ -72,7 +74,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   ElevatedButton(
                     onPressed: () {
                       if (questionIndex == widget.language.quizes.length - 1) {
-                        _showSubmitDialog();
+                        _showSubmitDialog(widget.language.quizes);
                       } else {
                         swiperController.swipeLeft();
                       }
@@ -111,7 +113,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  void _showSubmitDialog() {
+  void _showSubmitDialog(List<QuizModel> currentQuiz) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -127,7 +129,7 @@ class _QuizScreenState extends State<QuizScreen> {
             onPressed: () {
               // Navigator.of(context).pop();
               // log("the submit ${widget.language.name}");
-              submitQuiz(widget.language.name, dartQuizes, widget.language);
+              submitQuiz(widget.language.name, currentQuiz, widget.language);
             },
             child: const Text(AppStrings.submit),
           ),
@@ -269,7 +271,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void submitQuiz(
-      String quizId, List<QuizModel> quizList, LanguageModel language) {
+      String quizId, List<QuizModel> quizList, LanguageModel language) async {
     int totalScore = 0;
     Map<String, String> correctAnswers = {};
 
@@ -285,6 +287,13 @@ class _QuizScreenState extends State<QuizScreen> {
         totalScore += 1;
       }
     }
+    log("the selected total answer $totalScore");
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      log("the user uid ${user.uid}");
+      await updateUser(user: user, score: totalScore);
+    }
+
     log("the pref data$quizId and $correctAnswers");
 
     Preferences.saveQuizResult(quizId, correctAnswers);
@@ -315,6 +324,16 @@ class _QuizScreenState extends State<QuizScreen> {
       totalScore = totalScore;
       isSubmitted = true;
     });
+  }
+
+  Future<void> updateUser({required User user, required num score}) async {
+    log("tge yodate ${score}");
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .update({'points': score})
+        .then((value) => log("User Updated"))
+        .catchError((error) => log("Failed to update user: $error"));
   }
 
   void updateSelectedAnswer(String value) {

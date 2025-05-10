@@ -17,7 +17,7 @@ class LeaderboardScreen extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
             stream: FirebaseFirestore.instance
                 .collection("users")
-                .orderBy("points")
+                .orderBy("points", descending: true)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -26,19 +26,19 @@ class LeaderboardScreen extends StatelessWidget {
                 return const Center(child: Text("Something went wrong"));
               } else if (snapshot.data != null &&
                   snapshot.data!.docs.isNotEmpty) {
-                final users = snapshot.data!.docs.map((e)=> UserModel.fromJson(e.data())).toList();
+                final users = snapshot.data!.docs
+                    .map((e) => UserModel.fromJson(e.data()))
+                    .toList();
                 return buildList(users);
               } else {
                 return const Center(child: Text("No data found"));
               }
-
             }),
       ),
     );
   }
 
-
-  Widget buildList(List<UserModel> users){
+  Widget buildList(List<UserModel> users) {
     final topThree = users.take(3).toList();
     final others = users.skip(3).toList();
 
@@ -62,8 +62,7 @@ class LeaderboardScreen extends StatelessWidget {
         ),
         // Rest of the list
         ListView.builder(
-          padding:
-          const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: others.length,
