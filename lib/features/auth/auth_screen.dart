@@ -361,13 +361,13 @@ class _AuthScreenState extends State<AuthScreen> {
         password: passwordController.text.trim(),
       );
 
-      setState(() {
-        isLoading = false;
-      });
-
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
       throw Exception(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -383,13 +383,13 @@ class _AuthScreenState extends State<AuthScreen> {
         password: passwordController.text.trim(),
       );
 
-      setState(() {
-        isLoading = false;
-      });
-
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
       throw Exception(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -401,13 +401,13 @@ class _AuthScreenState extends State<AuthScreen> {
     try {
       final userModel = await AuthHelper.signInWithGoogle(context);
 
-      setState(() {
-        isLoading = false;
-      });
-
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
       throw Exception(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }
