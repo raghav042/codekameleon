@@ -116,7 +116,7 @@ const List<QuizModel> kotlinQuizzes = [
       answer: 3,
       options: [
         'It is used to compare a single value against multiple conditions',
-        'Kotlin when expression can be used in place of if..else if expression'
+        'Kotlin when expression can be used in place of if..else if expression',
         'Kotlin when branches can be integer, string, array or ranges',
         'All of the above'
       ],
