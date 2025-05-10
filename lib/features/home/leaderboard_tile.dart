@@ -58,7 +58,22 @@ class _LeaderboardTileState extends State<LeaderboardTile> {
                   ),
                 ),
                 const SizedBox(height: 20, width: double.maxFinite),
-                ...users.map((student) => LeaderboardCard(user: student)),
+                SizedBox(
+                  height: users.length *
+                      80.0, // Adjust height based on item size (optional)
+                  child: ListView.builder(
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Disable scroll (since container is static)
+                    shrinkWrap: true,
+                    itemCount: users.length,
+                    itemBuilder: (context, index) {
+                      final student = users[index];
+                      return LeaderboardCard(user: student, index: index + 1);
+                    },
+                  ),
+                ),
+
+                // ...users.map((student) => LeaderboardCard(user: student)),
               ],
             ),
           );

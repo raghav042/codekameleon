@@ -1,12 +1,15 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/data/dart/dart_quizes.dart';
+import 'package:codekameleon/helper/app_helper.dart';
+import 'package:codekameleon/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
 import '../../helper/ui_helper.dart';
@@ -17,7 +20,7 @@ import '../../preferences/preferences.dart';
 import '../../widgets/no_data_widget.dart';
 import 'quiz_result.dart';
 
-//TODO: simplify quiz screen code
+//TODO: simplify quiz screen code use provider and create class widgets
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key, required this.language});
@@ -28,88 +31,195 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  final AppinioSwiperController swiperController = AppinioSwiperController();
   int questionIndex = 0;
   int score = 0;
   bool isSubmitted = false;
   Map<int, String?> selectedAnswers = {};
+  String image = AppHelper.getRandomImage();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("${widget.language.name} Quiz"),
-        // actions: [
-        //   BlocBuilder<QuizCubit, QuizState>(
-        //     builder: (context, state) => Padding(
-        //       padding: const EdgeInsets.only(right: 16.0),
-        //       child: Text(
-        //         'Score: ${state.totalScore}',
-        //         style: const TextStyle(fontSize: 18),
-        //       ),
-        //     ),
-        //   ),
-        // ],
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(image),
+          fit: BoxFit.cover,
+        ),
       ),
-      body: widget.language.quizes.isEmpty
-          ? const NoDataWidget(
-              imagePath: "assets/images/no_data.svg",
-              title: AppStrings.noQuizFound,
-            )
-          : _buildQuizContent(),
-      bottomNavigationBar: widget.language.quizes.isEmpty
-          ? null
-          : Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // if (cubit.isBack())
-                  ElevatedButton(
-                    onPressed: questionIndex > 0 ? goBack : null,
-                    child: const Text(AppStrings.previous),
-                  ),
-                  // if (state.mainIndex < widget.language.quizes.length - 1)
-                  ElevatedButton(
-                    onPressed: () {
-                      if (questionIndex == widget.language.quizes.length - 1) {
-                        _showSubmitDialog(widget.language.quizes);
-                      } else {
-                        swiperController.swipeLeft();
-                      }
-                      // cubit.next();
-                    },
-                    // : null,
-                    child: Text(
-                        questionIndex == widget.language.quizes.length - 1
-                            ? AppStrings.submit
-                            : AppStrings.next),
-                  ),
-                ],
-              ),
-            ),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.black54, Colors.transparent],
+            stops: [0.1, 0.4],
+          ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text("${widget.language.name} Quiz"),
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.white,
+          ),
+          body: widget.language.quizes.isEmpty
+              ? noDataWidget()
+              : _buildQuizCard(),
+        ),
+      ),
     );
   }
 
-  Widget _buildQuizContent() {
-    final colorScheme = context.colorScheme;
+  Widget noDataWidget() {
+    return const NoDataWidget(
+      imagePath: "assets/images/no_data.svg",
+      title: AppStrings.noQuizFound,
+    );
+  }
 
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: AppinioSwiper(
-        controller: swiperController,
-        cardCount: widget.language.quizes.length,
-        onSwipeEnd: (previousIndex, targetIndex, activity) {
-          if (targetIndex != -1) {
-            updateIndex(targetIndex);
-          }
-        },
-        cardBuilder: (context, index) {
-          final quiz = widget.language.quizes[index];
-          return _buildQuizCard(quiz, index, colorScheme);
-        },
+  Widget quizSheet() {
+    QuizModel quiz = widget.language.quizes[questionIndex];
+    int index = questionIndex;
+    ColorScheme colorScheme = context.colorScheme;
+    selectedAnswers.containsKey(index);
+    final selectedAnswer = selectedAnswers[questionIndex];
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white30,
+        border: Border.all(color: Colors.white30, width: 2),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
       ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: quiz.options.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final option = quiz.options[index];
+                    final isSelected = selectedAnswer == option;
+                    // final isCorrectAnswer = option == quiz.options[quiz.answer];
+
+                    return GestureDetector(
+                      onTap: () async {
+                        // cubit.updateSelectedAnswer(option);
+                        // log("the  actual ${dartQuizes[state.mainIndex].options[dartQuizes[state.mainIndex].answer]}");
+                        // await Future.delayed(const Duration(seconds: 4));
+                        // log("${quiz.options.indexOf(state.selectedAnswers[state.currentIndex].toString())} ₹{(index + 1) == quiz.answer)} ${quiz.answer} ${(index + 1)} and ${state.selectedAnswers}");
+                        // log("the bool ${state.selectedAnswers}a nd $index");
+                        if (!selectedAnswers.containsKey(questionIndex)) {
+                          updateSelectedAnswer(option);
+                        } else {
+                          log("the  else $selectedAnswers");
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        margin: const EdgeInsets.symmetric(vertical: 6),
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.black54 : Colors.white70,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: colorScheme.surfaceContainerLow,
+                              child: Text(
+                                (index + 1).toString(),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                option,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              if (widget.language.quizes.isNotEmpty) buildNavButtons(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildNavButtons() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            height: 45,
+            child: ElevatedButton(
+              onPressed: questionIndex > 0 ? goBack : null,
+              child: const Text(AppStrings.previous),
+            ),
+          ),
+          // if (state.mainIndex < widget.language.quizes.length - 1)
+          SizedBox(
+            height: 45,
+            child: ElevatedButton(
+              onPressed: () {
+                goNext();
+              },
+              child: Text(questionIndex == widget.language.quizes.length - 1
+                  ? AppStrings.submit
+                  : AppStrings.next),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuizCard() {
+    QuizModel quiz = widget.language.quizes[questionIndex];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12.0,
+            vertical: 16,
+          ),
+          child: Text(
+            quiz.question,
+            style: GoogleFonts.quicksand(
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        quizSheet(),
+      ],
     );
   }
 
@@ -135,132 +245,6 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildQuizCard(
-    QuizModel quiz,
-    int index,
-    ColorScheme colorScheme,
-  ) {
-    final isSelected = selectedAnswers.containsKey(index);
-    final selectedAnswer = selectedAnswers[questionIndex];
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 2),
-            color: isSelected
-                ? colorScheme.primary.withValues(alpha: 0.5)
-                : colorScheme.tertiary.withValues(alpha: 0.5),
-          )
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              quiz.question,
-              style: GoogleFonts.quicksand(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Expanded(
-              child: Center(
-                  child:
-                      _buildOptions(quiz, index, colorScheme, selectedAnswer))),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildOptions(QuizModel quiz, int quizIndex, ColorScheme colorScheme,
-      String? selectedAnswer) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: quiz.options.length,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        final option = quiz.options[index];
-        final isSelected = selectedAnswer == option;
-        // final isCorrectAnswer = option == quiz.options[quiz.answer];
-        return InkWell(
-          onTap: () async {
-            // cubit.updateSelectedAnswer(option);
-            // log("the  actual ${dartQuizes[state.mainIndex].options[dartQuizes[state.mainIndex].answer]}");
-            // await Future.delayed(const Duration(seconds: 4));
-            // log("${quiz.options.indexOf(state.selectedAnswers[state.currentIndex].toString())} ₹{(index + 1) == quiz.answer)} ${quiz.answer} ${(index + 1)} and ${state.selectedAnswers}");
-            // log("the bool ${state.selectedAnswers}a nd $index");
-            if (!selectedAnswers.containsKey(questionIndex)) {
-              updateSelectedAnswer(option);
-            } else {
-              log("the  else $selectedAnswers");
-            }
-          },
-          child: Material(
-            color: Colors.transparent,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListTile(
-                    selected: isSelected,
-                    tileColor: colorScheme.surfaceContainerLowest,
-                    selectedTileColor: colorScheme.primary,
-                    selectedColor: colorScheme.onPrimary,
-                    contentPadding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-                    leading: CircleAvatar(
-                      backgroundColor: colorScheme.surfaceContainerLow,
-                      child: Text((index + 1).toString()),
-                    ),
-                    title: Text(
-                      option,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-
-        // return Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 4.0),
-        //   child: ListTile(
-        //     onTap: () => cubit.updateSelectedAnswer(option),
-        //     selected: isSelected,
-        //     selectedColor: colorScheme.onPrimary,
-        //     textColor: colorScheme.onPrimaryContainer,
-        //     tileColor: quizIndex % 2 == 0
-        //         ? colorScheme.primaryContainer
-        //         : colorScheme.tertiaryContainer,
-        //     selectedTileColor:
-        //         quizIndex % 2 == 0 ? colorScheme.primary : colorScheme.tertiary,
-        //     contentPadding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-        //     leading: CircleAvatar(
-        //       backgroundColor: colorScheme.surfaceContainerLow,
-        //       child: isSelected
-        //           ? Icon(Icons.check, color: Colors.green.shade700)
-        //           : Text('${index + 1}'),
-        //     ),
-        //     title: Text(option, style: const TextStyle(fontSize: 16)),
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(8),
-        //     ),
-        //   ),
-        // );
-      },
     );
   }
 
@@ -328,10 +312,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Future<void> updateUser({required User user, required num score}) async {
     log("tge yodate ${score}");
-    return await FirebaseFirestore.instance
+
+    await FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
-        .update({'points': score})
+        .update({'points': context.read<UserProvider>().user.points + score})
         .then((value) => log("User Updated"))
         .catchError((error) => log("Failed to update user: $error"));
   }
@@ -345,11 +330,23 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void goBack() {
+    image = AppHelper.getRandomImage();
     if (questionIndex > 0) {
       setState(() {
         questionIndex = questionIndex - 1;
       });
-      swiperController.unswipe();
     }
+  }
+
+  void goNext() {
+    image = AppHelper.getRandomImage();
+    if (questionIndex == widget.language.quizes.length - 1) {
+      _showSubmitDialog(widget.language.quizes);
+    } else if (questionIndex < widget.language.quizes.length - 1) {
+      setState(() {
+        questionIndex = questionIndex + 1;
+      });
+    }
+    // cubit.next();
   }
 }

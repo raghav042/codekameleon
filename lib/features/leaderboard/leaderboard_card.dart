@@ -3,8 +3,9 @@ import 'package:codekameleon/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardCard extends StatelessWidget {
-  const LeaderboardCard({super.key, required this.user});
+  const LeaderboardCard({super.key, required this.user, required this.index});
   final UserModel user;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class LeaderboardCard extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: colorScheme.primaryContainer,
           child: Text(
-            "#${user.points}",
+            "#${index}",
             style: TextStyle(color: colorScheme.onPrimaryContainer),
           ),
         ),
