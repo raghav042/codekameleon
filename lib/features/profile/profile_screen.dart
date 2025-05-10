@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codekameleon/extension/context_extension.dart';
+import 'package:codekameleon/extension/datettime_extension.dart';
 import 'package:codekameleon/helper/language_helper.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -299,7 +300,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        user.lastSeenAt.split("T").first,
+                        user.lastSeenAt.toFullDateTimeFormat(),
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.secondary,
@@ -321,7 +322,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       //  SizedBox(width: 10),
                       Text(
-                        user.registeredAt.split("T").first,
+                        user.registeredAt.toFullDateTimeFormat(),
                         style: TextStyle(
                           fontSize: 16,
                           color: colorScheme.secondary,

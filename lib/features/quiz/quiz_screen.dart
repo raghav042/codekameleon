@@ -1,11 +1,15 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/data/dart/dart_quizes.dart';
 import 'package:codekameleon/helper/app_helper.dart';
+import 'package:codekameleon/provider/user_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant/app_strings.dart';
 import '../../helper/snackbar_helper.dart';
@@ -181,7 +185,9 @@ class _QuizScreenState extends State<QuizScreen> {
           SizedBox(
             height: 45,
             child: ElevatedButton(
-              onPressed: goNext,
+              onPressed: () {
+                goNext();
+              },
               child: Text(questionIndex == widget.language.quizes.length - 1
                   ? AppStrings.submit
                   : AppStrings.next),
@@ -218,7 +224,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  void _showSubmitDialog() {
+  void _showSubmitDialog(List<QuizModel> currentQuiz) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -228,7 +234,7 @@ class _QuizScreenState extends State<QuizScreen> {
         actions: [
           TextButton(
             //onPressed: () => Navigator.of(context).pop(),
-            onPressed: (){
+            onPressed: () {
               Navigator.of(context).pop();
               SnackbarHelper.snackbarFunction(context, "Cancelled");
             },
@@ -238,7 +244,7 @@ class _QuizScreenState extends State<QuizScreen> {
             onPressed: () {
               // Navigator.of(context).pop();
               // log("the submit ${widget.language.name}");
-              submitQuiz(widget.language.name, dartQuizes, widget.language);
+              submitQuiz(widget.language.name, currentQuiz, widget.language);
               SnackbarHelper.snackbarFunction(context, "Quiz submitted");
             },
             child: const Text(AppStrings.submit),
@@ -255,13 +261,13 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void submitQuiz(
-      String quizId, List<QuizModel> quizList, LanguageModel language) {
+      String quizId, List<QuizModel> quizList, LanguageModel language) async {
     int totalScore = 0;
     Map<String, String> correctAnswers = {};
 
     for (int i = 0; i < quizList.length; i++) {
       final selected = selectedAnswers[i];
-      final correctAnswer = quizList[i].options[quizList[i].answer - 1];
+      final correctAnswer = quizList[i].options[quizList[i].answer];
       log("the selected at index $i $selected and correct $correctAnswer");
 
       final isCorrect = selected == correctAnswer;
@@ -271,6 +277,13 @@ class _QuizScreenState extends State<QuizScreen> {
         totalScore += 1;
       }
     }
+    log("the selected total answer $totalScore");
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      log("the user uid ${user.uid}");
+      await updateUser(user: user, score: totalScore);
+    }
+
     log("the pref data$quizId and $correctAnswers");
 
     Preferences.saveQuizResult(quizId, correctAnswers);
@@ -303,6 +316,17 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
+  Future<void> updateUser({required User user, required num score}) async {
+    log("tge yodate ${score}");
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .update({'points': context.read<UserProvider>().user.points + score})
+        .then((value) => log("User Updated"))
+        .catchError((error) => log("Failed to update user: $error"));
+  }
+
   void updateSelectedAnswer(String value) {
     setState(() {
       selectedAnswers[questionIndex] = value;
@@ -323,7 +347,7 @@ class _QuizScreenState extends State<QuizScreen> {
   void goNext() {
     image = AppHelper.getRandomImage();
     if (questionIndex == widget.language.quizes.length - 1) {
-      _showSubmitDialog();
+      _showSubmitDialog(widget.language.quizes);
     } else if (questionIndex < widget.language.quizes.length - 1) {
       setState(() {
         questionIndex = questionIndex + 1;

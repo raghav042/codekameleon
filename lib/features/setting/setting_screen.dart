@@ -1,3 +1,4 @@
+import 'package:codekameleon/helper/review_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -112,11 +113,12 @@ class _SettingScreenState extends State<SettingScreen> {
               onTap: () async {
                 //launchUrlString(
                 //    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
-                const urlHelp = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
-                if(await canLaunchUrl(Uri.parse(urlHelp))){
-                await launchUrl(Uri.parse(urlHelp));
+                const urlHelp =
+                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                if (await canLaunchUrl(Uri.parse(urlHelp))) {
+                  await launchUrl(Uri.parse(urlHelp));
                 } else {
-                throw("Could not launch $urlHelp");
+                  throw ("Could not launch $urlHelp");
                 }
               },
               shape: const RoundedRectangleBorder(
@@ -127,13 +129,14 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             ListTile(
               onTap: () async {
-                const urlFeedback = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                const urlFeedback =
+                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
                 //launchUrlString(
                 //    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
-                if(await canLaunchUrl(Uri.parse(urlFeedback))){
+                if (await canLaunchUrl(Uri.parse(urlFeedback))) {
                   await launchUrl(Uri.parse(urlFeedback));
                 } else {
-                  throw("Could not launch $urlFeedback");
+                  throw ("Could not launch $urlFeedback");
                 }
               },
               leading: const Icon(Icons.feedback_outlined),
@@ -142,11 +145,12 @@ class _SettingScreenState extends State<SettingScreen> {
             ListTile(
               onTap: () async {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
-                const urlAboutus = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
-                if(await canLaunchUrl(Uri.parse(urlAboutus))){
-                await launchUrl(Uri.parse(urlAboutus));
+                const urlAboutus =
+                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                if (await canLaunchUrl(Uri.parse(urlAboutus))) {
+                  await launchUrl(Uri.parse(urlAboutus));
                 } else {
-                throw("Could not launch $urlAboutus");
+                  throw ("Could not launch $urlAboutus");
                 }
               },
               leading: const Icon(Icons.info_outline),
@@ -162,11 +166,12 @@ class _SettingScreenState extends State<SettingScreen> {
               onTap: () async {
                 //launchUrlString(
                 //    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8");
-                const urlPrivacy = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
-                if(await canLaunchUrl(Uri.parse(urlPrivacy))){
-                await launchUrl(Uri.parse(urlPrivacy));
+                const urlPrivacy =
+                    "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                if (await canLaunchUrl(Uri.parse(urlPrivacy))) {
+                  await launchUrl(Uri.parse(urlPrivacy));
                 } else {
-                throw("Could not launch $urlPrivacy");
+                  throw ("Could not launch $urlPrivacy");
                 }
               },
               leading: const Icon(Icons.shield_outlined),
@@ -174,12 +179,13 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             ListTile(
               onTap: () async {
-                 const urlRateUs = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
-                 if(await canLaunchUrl(Uri.parse(urlRateUs))){
-                await launchUrl(Uri.parse(urlRateUs));
-                } else {
-                throw("Could not launch $urlRateUs");
-                }
+                InAppReviewRepository().requestReview();
+                //  const urlRateUs = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
+                //  if(await canLaunchUrl(Uri.parse(urlRateUs))){
+                // await launchUrl(Uri.parse(urlRateUs));
+                // } else {
+                // throw("Could not launch $urlRateUs");
+                // }
               },
               shape: const RoundedRectangleBorder(
                 borderRadius:
