@@ -1,14 +1,10 @@
 import 'package:codekameleon/helper/review_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../constant/app_strings.dart';
 import '../../widgets/heading.dart';
 
 import 'account_settings.dart';
-import 'language_settings.dart';
-import 'notification_settings.dart';
-import 'theme_settings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatefulWidget {
