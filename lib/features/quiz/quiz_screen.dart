@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:codekameleon/data/dart/dart_quizes.dart';
 import 'package:codekameleon/helper/app_helper.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -317,7 +316,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Future<void> updateUser({required User user, required num score}) async {
-    log("tge yodate ${score}");
+    log("tge yodate $score");
 
     await FirebaseFirestore.instance
         .collection('users')

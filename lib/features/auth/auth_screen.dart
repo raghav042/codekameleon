@@ -1,3 +1,4 @@
+import 'package:codekameleon/helper/snackbar_helper.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:codekameleon/widgets/reusable_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -383,6 +384,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
+      SnackbarHelper.snackbarFunction(context, e.toString());
       throw Exception(e.toString());
     } finally {
       setState(() {
@@ -405,6 +407,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
+      SnackbarHelper.snackbarFunction(context, e.toString());
+
       throw Exception(e.toString());
     } finally {
       setState(() {
