@@ -180,12 +180,12 @@ class _SettingScreenState extends State<SettingScreen> {
             ListTile(
               onTap: () async {
                 InAppReviewRepository().requestReview();
-                //  const urlRateUs = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
-                //  if(await canLaunchUrl(Uri.parse(urlRateUs))){
-                // await launchUrl(Uri.parse(urlRateUs));
-                // } else {
-                // throw("Could not launch $urlRateUs");
-                // }
+                 const urlRateUs = "https://play.google.com/store/apps/details?id=com.techlyverse.codekameleon";
+                 if(await canLaunchUrl(Uri.parse(urlRateUs))){
+                await launchUrl(Uri.parse(urlRateUs));
+                } else {
+                throw("Could not launch $urlRateUs");
+                }
               },
               shape: const RoundedRectangleBorder(
                 borderRadius:
