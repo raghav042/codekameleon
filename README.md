@@ -11,18 +11,18 @@ This app is your all-in-one coding companion, designed to empower you with the k
 * **Backend - Firebase**
 
 #### Features
-* *Onboarding*
+* *Onboarding* - todo
 * *Register*
 * *Profile*
 * *Leaderboard*
 * *Articles*
 * *Quiz*
 * *Search*
-* *Profile*
 * *Google Ads*
 * *Settings*
-* *Notifications*
+* *Notifications* - todo
 * *Dark Mode*
+* *Localisation* - todo
 
 #### Screenshots
 
