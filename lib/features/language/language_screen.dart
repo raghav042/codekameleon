@@ -1,4 +1,8 @@
 import 'package:codekameleon/extension/context_extension.dart';
+import 'package:codekameleon/features/quiz/quiz_result.dart';
+import 'package:codekameleon/helper/ui_helper.dart';
+import 'package:codekameleon/preferences/preferences.dart';
+import 'package:codekameleon/provider/quiz_provider.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';
@@ -31,11 +35,86 @@ class LanguageScreen extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => QuizScreen(language: language)),
-                    );
+                    final quizResult = Preferences.getQuizResult(language.name);
+                    if (quizResult == null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuizScreen(language: language),
+                        ),
+                      );
+                    } else {
+                      UiHelper.showGenericConfirmationDialog(
+                        context: context,
+                        title: AppStrings.quizAlreadyTaken,
+                        message: AppStrings.resultMessage,
+                        confirmText: AppStrings.viewResult,
+                        onConfirmed: () {
+                          // loadAd();
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => QuizResultScreen(
+                                language: language,
+                                result: quizResult,
+                              ),
+                            ),
+                          );
+                        },
+                        thirdOption: "Re-Attempt",
+                        thirdClick: () async {
+                          QuizProvider()
+                              .quizReattempt(language); // await loadAd();
+                          // if (_rewardedAd != null) {
+                          //   _rewardedAd?.show(onUserEarnedReward:
+                          //       (AdWithoutView ad, RewardItem rewardItem) {
+                          //     log("the reward ${rewardItem.amount}");
+
+                          //     // Dispose ad after showing
+                          //     // _rewardedAd?.dispose();
+                          //     // _rewardedAd;
+
+                          //     // Start quiz
+                          //     // if(rewardItem.amount.i)
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             QuizScreen(language: languages[i]),
+                          //       ),
+                          //     );
+                          //   });
+                          // }
+                          // else {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) =>
+                          //           QuizScreen(language: languages[i]),
+                          //     ),
+                          //   );
+                          // }
+                        },
+
+                        // thirdClick: () async {
+                        //   // await loadAd();
+                        //   if (_rewardedAd != null) {
+                        //     _rewardedAd?.show(onUserEarnedReward:
+                        //         (AdWithoutView ad, RewardItem rewardItem) {
+                        //       log("the reward ${rewardItem.amount}");
+                        //       // Reward the user for watching an ad.
+                        //     });
+                        //   }
+                        // },
+                      );
+                    }
+
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => QuizScreen(language: language)),
+                    // );
                   },
                   style: TextButton.styleFrom(
                     foregroundColor: colorScheme.onSurface,

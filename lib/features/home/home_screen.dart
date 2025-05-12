@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SearchField(),
-                const QuizList(),
+                QuizList(),
                 const SizedBox(height: 20),
                 if (LanguageHelper.recentLanguage != null)
                   const Heading(title: AppStrings.currentlyLearning),

@@ -1,3 +1,4 @@
+import 'package:codekameleon/provider/quiz_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/auth/splash_screen.dart';
@@ -26,5 +27,6 @@ class App extends StatelessWidget {
 }
 
 final providers = [
+  // ChangeNotifierProvider<QuizProvider>(create: (context) => QuizProvider()),
   ChangeNotifierProvider(create: (context) => UserProvider()),
 ];
