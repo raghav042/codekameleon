@@ -68,7 +68,7 @@ class LeaderboardScreen extends StatelessWidget {
           itemCount: others.length,
           itemBuilder: (context, index) => LeaderboardCard(
             user: others[index],
-            index: index + 1,
+            index: index + 4,
           ),
         ),
       ],

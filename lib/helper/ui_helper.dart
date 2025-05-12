@@ -8,6 +8,8 @@ class UiHelper {
     required VoidCallback onConfirmed,
     String cancelText = "Cancel",
     String confirmText = "OK",
+    String? thirdOption,
+    VoidCallback? thirdClick,
   }) {
     showDialog(
       context: context,
@@ -26,6 +28,16 @@ class UiHelper {
             },
             child: Text(confirmText),
           ),
+          if (thirdOption != null)
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                if (thirdClick != null) {
+                  thirdClick();
+                }
+              },
+              child: Text(thirdOption),
+            ),
         ],
       ),
     );

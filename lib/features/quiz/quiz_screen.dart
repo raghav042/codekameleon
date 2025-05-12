@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/helper/app_helper.dart';
+import 'package:codekameleon/provider/quiz_provider.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -291,13 +292,15 @@ class _QuizScreenState extends State<QuizScreen> {
     final quizResult = Preferences.getQuizResult(language.name);
     if (quizResult != null) {
       UiHelper.showGenericConfirmationDialog(
-        context: navigatorKey.currentContext!,
+        context: context,
         title: AppStrings.quizAlreadyTaken,
         message: AppStrings.resultMessage,
         confirmText: AppStrings.viewResult,
         onConfirmed: () {
+          // loadAd();
+
           Navigator.push(
-            navigatorKey.currentContext!,
+            context,
             MaterialPageRoute(
               builder: (_) => QuizResultScreen(
                 language: language,
@@ -306,8 +309,73 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           );
         },
+        thirdOption: "Re-Attempt",
+        thirdClick: () async {
+          QuizProvider().quizReattempt(language); // await loadAd();
+          // if (_rewardedAd != null) {
+          //   _rewardedAd?.show(onUserEarnedReward:
+          //       (AdWithoutView ad, RewardItem rewardItem) {
+          //     log("the reward ${rewardItem.amount}");
+
+          //     // Dispose ad after showing
+          //     // _rewardedAd?.dispose();
+          //     // _rewardedAd;
+
+          //     // Start quiz
+          //     // if(rewardItem.amount.i)
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             QuizScreen(language: languages[i]),
+          //       ),
+          //     );
+          //   });
+          // }
+          // else {
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) =>
+          //           QuizScreen(language: languages[i]),
+          //     ),
+          //   );
+          // }
+        },
+
+        // thirdClick: () async {
+        //   // await loadAd();
+        //   if (_rewardedAd != null) {
+        //     _rewardedAd?.show(onUserEarnedReward:
+        //         (AdWithoutView ad, RewardItem rewardItem) {
+        //       log("the reward ${rewardItem.amount}");
+        //       // Reward the user for watching an ad.
+        //     });
+        //   }
+        // },
       );
     }
+
+    // final quizResult = Preferences.getQuizResult(language.name);
+    // if (quizResult != null) {
+    //   UiHelper.showGenericConfirmationDialog(
+    //     context: navigatorKey.currentContext!,
+    //     title: AppStrings.quizAlreadyTaken,
+    //     message: AppStrings.resultMessage,
+    //     confirmText: AppStrings.viewResult,
+    //     onConfirmed: () {
+    //       Navigator.push(
+    //         navigatorKey.currentContext!,
+    //         MaterialPageRoute(
+    //           builder: (_) => QuizResultScreen(
+    //             language: language,
+    //             result: quizResult,
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //   );
+    // }
 
     setState(() {
       totalScore = totalScore;
