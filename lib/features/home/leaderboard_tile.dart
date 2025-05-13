@@ -59,11 +59,11 @@ class _LeaderboardTileState extends State<LeaderboardTile> {
                 ),
                 const SizedBox(height: 20, width: double.maxFinite),
                 SizedBox(
-                  height: users.length *
-                      80.0, // Adjust height based on item size (optional)
+                  // Adjust height based on item size (optional)
+                  height: users.length * 70.0,
                   child: ListView.builder(
-                    physics:
-                        const NeverScrollableScrollPhysics(), // Disable scroll (since container is static)
+                    // Disable scroll (since container is static)
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: users.length,
                     itemBuilder: (context, index) {

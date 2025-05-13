@@ -1,16 +1,30 @@
 import 'dart:convert';
+import 'package:codekameleon/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
   const Preferences._();
 
   static const _recentCourse = "recentCourse";
+  static const _user = "user";
   static const _attemptedQuizzesKey = "attemptedQuizzes";
 
   static late final SharedPreferences _prefs;
 
   static Future<void> initPreferences() async {
     _prefs = await SharedPreferences.getInstance();
+  }
+
+  //TODO: save user to improve app loading time
+  static Future<bool> saveUser(UserModel user) async {
+    final String userData = jsonEncode(user.toJson());
+    return await _prefs.setString(_user, userData);
+  }
+
+  static UserModel? getUser() {
+    final String? userData = _prefs.getString(_user);
+    if (userData == null) return null;
+    return UserModel.fromJson(jsonDecode(userData));
   }
 
   static Future<bool> saveRecentCourse(String name) async {

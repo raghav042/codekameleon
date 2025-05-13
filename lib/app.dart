@@ -27,6 +27,5 @@ class App extends StatelessWidget {
 }
 
 final providers = [
-  // ChangeNotifierProvider<QuizProvider>(create: (context) => QuizProvider()),
   ChangeNotifierProvider(create: (context) => UserProvider()),
 ];

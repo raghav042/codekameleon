@@ -23,11 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
           .collection("users")
           .doc(user.uid)
           .get();
-      UserProvider()
-          .initUserAndNavigate(context, UserModel.fromJson(snapshot.data()!));
+      UserProvider().initUserAndNavigate(context, UserModel.fromJson(snapshot.data()!));
     } else {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const AuthScreen()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const AuthScreen()));
     }
   }
 
