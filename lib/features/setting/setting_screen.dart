@@ -2,9 +2,10 @@ import 'package:codekameleon/helper/review_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';
+import '../../helper/snackbar_helper.dart';
+import '../../provider/user_provider.dart';
 import '../../widgets/heading.dart';
 
-import 'account_settings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -29,8 +30,9 @@ class _SettingScreenState extends State<SettingScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
-            account(colorScheme),
             helpAndSupport(colorScheme),
+            const SizedBox(height: 15),
+            account(colorScheme),
           ],
         ),
       ),
@@ -46,51 +48,28 @@ class _SettingScreenState extends State<SettingScreen> {
           children: [
             ListTile(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountSettings()));
+                UserProvider().signOut(context);
+                SnackBarHelper.showSnackBar(context, "Logged Out");
               },
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
-              leading: const Icon(Icons.person_outline),
-              title: const Text(AppStrings.manageAccount),
+              leading: const Icon(Icons.logout),
+              title: const Text(AppStrings.logOut),
             ),
-            // ListTile(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const NotificationSettings()));
-            //   },
-            //   leading: const Icon(Icons.notifications_outlined),
-            //   title: const Text(AppStrings.notifications),
-            // ),
-            // ListTile(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const ThemeSettings()));
-            //   },
-            //   leading: const Icon(Icons.dark_mode_outlined),
-            //   title: const Text(AppStrings.themeMode),
-            // ),
-            // ListTile(
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const LanguageSettings()));
-            //   },
-            //   leading: const Icon(Icons.translate),
-            //   title: const Text(AppStrings.language),
-            //   shape: const RoundedRectangleBorder(
-            //     borderRadius:
-            //         BorderRadius.vertical(bottom: Radius.circular(16)),
-            //   ),
-            // ),
+            ListTile(
+              onTap: () {
+                UserProvider().deleteAccount(context);
+                //SnackbarHelper.snackbarFunction(context, "Account Deleted");
+                //no need because the deleteAccount function already has a snackbar
+              },
+              shape: const RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(16)),
+              ),
+              leading: const Icon(Icons.delete_forever),
+              title: const Text(AppStrings.deleteAccount),
+            ),
           ],
         ),
       ],
@@ -101,7 +80,6 @@ class _SettingScreenState extends State<SettingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 15),
         const Heading(title: AppStrings.helpAndSupport),
         Column(
           children: [
@@ -152,12 +130,6 @@ class _SettingScreenState extends State<SettingScreen> {
               leading: const Icon(Icons.info_outline),
               title: const Text(AppStrings.aboutUs),
             ),
-
-            /// TODO: terms of use is mandatory for app store
-            // ListTile(
-            //   leading: Icon(Icons.copyright),
-            //   title: Text("Terms of Use"),
-            // ),
             ListTile(
               onTap: () async {
                 //launchUrlString(
@@ -175,7 +147,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             ListTile(
               onTap: () async {
-                InAppReviewRepository().requestReview();
+                await InAppReviewRepository().requestReview();
                 //  const urlRateUs = "https://www.freeprivacypolicy.com/live/7af2be58-04b5-4389-ae72-47ed1c231fd8";
                 //  if(await canLaunchUrl(Uri.parse(urlRateUs))){
                 // await launchUrl(Uri.parse(urlRateUs));

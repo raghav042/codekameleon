@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SnackbarHelper{
+class SnackBarHelper {
+  const SnackBarHelper._();
 
-  static void snackbarFunction(BuildContext context, String message){
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message), duration: const Duration(seconds: 5),));
+  static void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 }

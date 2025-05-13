@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/model/user_model.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,15 @@ class LeaderboardCard extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: colorScheme.primaryContainer,
-          child: Text(
-            "#${index}",
-            style: TextStyle(color: colorScheme.onPrimaryContainer),
-          ),
+          backgroundImage: user.imageUrl != null
+              ? CachedNetworkImageProvider(user.imageUrl!)
+              : null,
+          child: user.imageUrl == null
+              ? Text(
+                  "#$index",
+                  style: TextStyle(color: colorScheme.onPrimaryContainer),
+                )
+              : null,
         ),
         title: Text(
           user.name,
@@ -36,7 +42,7 @@ class LeaderboardCard extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 8),
-            const Icon(Icons.star_rounded, color: Colors.amber),
+            Icon(Icons.star_rounded, color: Colors.amber.shade700),
           ],
         ),
       ),

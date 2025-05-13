@@ -45,30 +45,31 @@ class LeaderboardScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 200,
+          height: 220,
           child: Row(
             spacing: 20,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               if (topThree.length > 1)
-                PodiumItem(user: topThree[1], position: 2),
+                Expanded(child: PodiumItem(user: topThree[1], position: 2)),
               if (topThree.isNotEmpty)
-                PodiumItem(user: topThree[0], position: 1),
+                Expanded(child: PodiumItem(user: topThree[0], position: 1)),
               if (topThree.length > 2)
-                PodiumItem(user: topThree[2], position: 3),
+                Expanded(child: PodiumItem(user: topThree[2], position: 3)),
             ],
           ),
         ),
+       // const SizedBox(height: 10),
         // Rest of the list
         ListView.builder(
-          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+          padding: const EdgeInsets.only(left: 12, right: 12, bottom: 20),
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: others.length,
           itemBuilder: (context, index) => LeaderboardCard(
             user: others[index],
-            index: index + 1,
+            index: index + 4,
           ),
         ),
       ],

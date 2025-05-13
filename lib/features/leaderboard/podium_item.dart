@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/model/user_model.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class PodiumItem extends StatelessWidget {
   final UserModel user;
   final int position;
 
-  static const _heights = {1: 90.0, 2: 75.0, 3: 60.0};
+  static const _heights = {1: 110.0, 2:70.0, 3: 45.0};
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +22,25 @@ class PodiumItem extends StatelessWidget {
         CircleAvatar(
           radius: 25,
           backgroundColor: rankColor,
-          child: Text(
-            "#$position",
-            style: GoogleFonts.quicksand(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+          backgroundImage: user.imageUrl != null
+              ? CachedNetworkImageProvider(user.imageUrl!)
+              : null,
+          child: user.imageUrl == null
+              ? Text(
+                  "#$position",
+                  style: GoogleFonts.quicksand(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                )
+              : null,
         ),
         const SizedBox(height: 8),
         Text(
           user.name,
+          textAlign: TextAlign.center,
+          maxLines: 1,
           style: GoogleFonts.quicksand(
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -52,7 +60,7 @@ class PodiumItem extends StatelessWidget {
           height: _heights[position],
           decoration: BoxDecoration(
             color: rankColor,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(25), bottom: Radius.circular(8)),
           ),
           child: Center(
             child: Text(

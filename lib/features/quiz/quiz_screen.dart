@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codekameleon/helper/app_helper.dart';
+import 'package:codekameleon/provider/quiz_provider.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,27 +41,43 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(image),
-          fit: BoxFit.cover,
-        ),
-      ),
+      decoration: widget.language.quizes.isEmpty
+          ? null
+          : BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(image),
+                fit: BoxFit.cover,
+              ),
+            ),
       child: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black54, Colors.transparent],
-            stops: [0.1, 0.4],
-          ),
-        ),
+        decoration: widget.language.quizes.isEmpty
+            ? null
+            : const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black54, Colors.transparent],
+                  stops: [0.1, 0.5],
+                ),
+              ),
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor:
+              widget.language.quizes.isEmpty ? null : Colors.transparent,
           appBar: AppBar(
             title: Text("${widget.language.name} Quiz"),
             backgroundColor: Colors.transparent,
             foregroundColor: Colors.white,
+            actions: widget.language.quizes.isEmpty
+                ? null
+                : [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Text(
+                        "Question ${questionIndex + 1} of ${widget.language.quizes.length}",
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
           ),
           body: widget.language.quizes.isEmpty
               ? noDataWidget()
@@ -86,8 +103,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white30,
-        border: Border.all(color: Colors.white30, width: 2),
+        color: Colors.white54,
+        border: Border.all(color: Colors.white60, width: 2),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
       ),
       child: ClipRRect(
@@ -106,15 +123,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   itemBuilder: (context, index) {
                     final option = quiz.options[index];
                     final isSelected = selectedAnswer == option;
-                    // final isCorrectAnswer = option == quiz.options[quiz.answer];
 
                     return GestureDetector(
                       onTap: () async {
-                        // cubit.updateSelectedAnswer(option);
-                        // log("the  actual ${dartQuizes[state.mainIndex].options[dartQuizes[state.mainIndex].answer]}");
-                        // await Future.delayed(const Duration(seconds: 4));
-                        // log("${quiz.options.indexOf(state.selectedAnswers[state.currentIndex].toString())} ₹{(index + 1) == quiz.answer)} ${quiz.answer} ${(index + 1)} and ${state.selectedAnswers}");
-                        // log("the bool ${state.selectedAnswers}a nd $index");
                         if (!selectedAnswers.containsKey(questionIndex)) {
                           updateSelectedAnswer(option);
                         } else {
@@ -123,9 +134,9 @@ class _QuizScreenState extends State<QuizScreen> {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(12),
-                        margin: const EdgeInsets.symmetric(vertical: 6),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.black54 : Colors.white70,
+                          color: isSelected ? Colors.black87 : Colors.white,
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: Row(
@@ -145,11 +156,11 @@ class _QuizScreenState extends State<QuizScreen> {
                               child: Text(
                                 option,
                                 style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : Colors.black),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
+                                ),
                               ),
                             ),
                           ],
@@ -202,7 +213,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -218,6 +229,7 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           ),
         ),
+        const Spacer(),
         quizSheet(),
       ],
     );
@@ -235,7 +247,7 @@ class _QuizScreenState extends State<QuizScreen> {
             //onPressed: () => Navigator.of(context).pop(),
             onPressed: () {
               Navigator.of(context).pop();
-              SnackbarHelper.snackbarFunction(context, "Cancelled");
+              SnackBarHelper.showSnackBar(context, "Cancelled");
             },
             child: const Text(AppStrings.cancel),
           ),
@@ -244,7 +256,7 @@ class _QuizScreenState extends State<QuizScreen> {
               // Navigator.of(context).pop();
               // log("the submit ${widget.language.name}");
               submitQuiz(widget.language.name, currentQuiz, widget.language);
-              SnackbarHelper.snackbarFunction(context, "Quiz submitted");
+              SnackBarHelper.showSnackBar(context, "Quiz submitted");
             },
             child: const Text(AppStrings.submit),
           ),
@@ -291,13 +303,15 @@ class _QuizScreenState extends State<QuizScreen> {
     final quizResult = Preferences.getQuizResult(language.name);
     if (quizResult != null) {
       UiHelper.showGenericConfirmationDialog(
-        context: navigatorKey.currentContext!,
+        context: context,
         title: AppStrings.quizAlreadyTaken,
         message: AppStrings.resultMessage,
         confirmText: AppStrings.viewResult,
         onConfirmed: () {
+          // loadAd();
+
           Navigator.push(
-            navigatorKey.currentContext!,
+            context,
             MaterialPageRoute(
               builder: (_) => QuizResultScreen(
                 language: language,
@@ -306,8 +320,73 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           );
         },
+        thirdOption: "Re-Attempt",
+        thirdClick: () async {
+          QuizProvider().quizReattempt(language); // await loadAd();
+          // if (_rewardedAd != null) {
+          //   _rewardedAd?.show(onUserEarnedReward:
+          //       (AdWithoutView ad, RewardItem rewardItem) {
+          //     log("the reward ${rewardItem.amount}");
+
+          //     // Dispose ad after showing
+          //     // _rewardedAd?.dispose();
+          //     // _rewardedAd;
+
+          //     // Start quiz
+          //     // if(rewardItem.amount.i)
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             QuizScreen(language: languages[i]),
+          //       ),
+          //     );
+          //   });
+          // }
+          // else {
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) =>
+          //           QuizScreen(language: languages[i]),
+          //     ),
+          //   );
+          // }
+        },
+
+        // thirdClick: () async {
+        //   // await loadAd();
+        //   if (_rewardedAd != null) {
+        //     _rewardedAd?.show(onUserEarnedReward:
+        //         (AdWithoutView ad, RewardItem rewardItem) {
+        //       log("the reward ${rewardItem.amount}");
+        //       // Reward the user for watching an ad.
+        //     });
+        //   }
+        // },
       );
     }
+
+    // final quizResult = Preferences.getQuizResult(language.name);
+    // if (quizResult != null) {
+    //   UiHelper.showGenericConfirmationDialog(
+    //     context: navigatorKey.currentContext!,
+    //     title: AppStrings.quizAlreadyTaken,
+    //     message: AppStrings.resultMessage,
+    //     confirmText: AppStrings.viewResult,
+    //     onConfirmed: () {
+    //       Navigator.push(
+    //         navigatorKey.currentContext!,
+    //         MaterialPageRoute(
+    //           builder: (_) => QuizResultScreen(
+    //             language: language,
+    //             result: quizResult,
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //   );
+    // }
 
     setState(() {
       totalScore = totalScore;

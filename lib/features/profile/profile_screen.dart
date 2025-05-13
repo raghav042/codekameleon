@@ -18,9 +18,6 @@ class ProfileScreen extends StatefulWidget {
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
-
-  static const String code =
-      '{"name": name, "email": email, "imageUrl": unavailable, "bio": bio, "points": points, "isOnline": isOnline, "recentLanguage": recentLanguage, "registeredAt": registeredAt, "lastSeenAt": lastSeenAt}';
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
@@ -112,8 +109,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            _buildSectionHeader(context, colorScheme, AppStrings.myProfileTxt,
-                Icons.data_object),
+            _buildSectionHeader(
+              context,
+              colorScheme,
+              AppStrings.myProfileTxt,
+              Icons.data_object,
+            ),
             _buildProfileDetails(user, colorScheme, context),
             const SizedBox(height: 20),
           ],
@@ -124,36 +125,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildProfileImage(UserModel user, Size size,
       UserProvider userProvider, ScaffoldMessengerState messenger) {
+    final colorScheme = context.colorScheme;
     return Stack(
       children: [
         Hero(
           tag: AppStrings.profilePicTag,
           child: CircleAvatar(
             radius: size.width / 4,
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: colorScheme.surfaceContainerHigh,
             backgroundImage: !isUploading && user.imageUrl != null
                 ? CachedNetworkImageProvider(user.imageUrl!)
                 : null,
             child: isUploading
                 ? const CircularProgressIndicator()
                 : user.imageUrl == null
-                    ? const Icon(Icons.person, size: 80)
+                    ? Icon(
+                        Icons.person_4,
+                        size: 100,
+                        color: context.colorScheme.primary,
+                      )
                     : null,
           ),
         ),
         Positioned(
-          bottom: 4,
-          right: 4,
+          bottom: 10,
+          right: 10,
           child: InkWell(
             onTap: isUploading
                 ? null
                 : () => _showImageSourceActionSheet(
                     context, userProvider, messenger),
             child: CircleAvatar(
-              radius: 20,
-              backgroundColor: isUploading ? Colors.grey : Colors.blue,
-              child:
-                  const Icon(Icons.camera_alt, color: Colors.white, size: 20),
+              radius: 23,
+              backgroundColor: isUploading
+                  ? colorScheme.surfaceContainerHighest
+                  : colorScheme.surface,
+              child: Icon(Icons.camera_alt, color: context.colorScheme.primary),
             ),
           ),
         ),

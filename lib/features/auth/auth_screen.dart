@@ -223,7 +223,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ForgetPasswordScreen()));
+                        builder: (context) => ForgetPasswordScreen()));
               },
               child: const Text(
                 AppStrings.forgetPassword,
@@ -384,7 +384,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
-      SnackbarHelper.snackbarFunction(context, e.toString());
+      SnackBarHelper.showSnackBar(context, e.toString());
       throw Exception(e.toString());
     } finally {
       setState(() {
@@ -407,7 +407,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
       if (mounted) UserProvider().initUserAndNavigate(context, userModel);
     } catch (e) {
-      SnackbarHelper.snackbarFunction(context, e.toString());
+      SnackBarHelper.showSnackBar(context, e.toString());
 
       throw Exception(e.toString());
     } finally {
