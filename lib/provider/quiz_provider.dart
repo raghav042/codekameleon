@@ -1,71 +1,80 @@
 import 'dart:developer';
 
 import 'package:codekameleon/constant/app_ads.dart';
-// import 'package:codekameleon/features/quiz/quiz_screen.dart';
-// import 'package:codekameleon/main.dart';
+import 'package:codekameleon/main.dart';
 import 'package:codekameleon/model/language_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-// import 'package:provider/provider.dart';
 
-class QuizProvider {
-  // QuizProvider._internal();
-  // static final QuizProvider _instance = QuizProvider._internal();
-  // factory QuizProvider() => _instance;
+import '../features/quiz/quiz_screen.dart' show QuizScreen;
 
-  RewardedAd? rewardedAd;
-  Future<void> loadAd() async {
-    RewardedAd.load(
-        adUnitId: AppAds.rewardedAdUnitId,
-        request: const AdRequest(),
-        rewardedAdLoadCallback: RewardedAdLoadCallback(
-          // Called when an ad is successfully received.
-          onAdLoaded: (ad) {
-            ad.fullScreenContentCallback = FullScreenContentCallback(
-                // Called when the ad showed the full screen content.
-                onAdShowedFullScreenContent: (ad) {},
-                // Called when an impression occurs on the ad.
-                onAdImpression: (ad) {},
-                // Called when the ad failed to show full screen content.
-                onAdFailedToShowFullScreenContent: (ad, err) {
-                  // Dispose the ad here to free resources.
-                  // ad.dispose();
-                },
-                // Called when the ad dismissed full screen content.
-                onAdDismissedFullScreenContent: (ad) {
-                  // Dispose the ad here to free resources.
-                  // ad.dispose();
-                },
-                // Called when a click is recorded for an ad.
-                onAdClicked: (ad) {});
+class QuizHelper {
+  RewardedAd? _rewardedAd;
+  bool isAdLoading = false;
 
-            debugPrint('$ad loaded.');
-            // Keep a reference to the ad so you can show it later.
-            rewardedAd = ad;
-          },
-          // Called when an ad request failed.
-          onAdFailedToLoad: (LoadAdError error) {
-            debugPrint('RewardedAd failed to load: $error');
-          },
-        ));
-    await Future.delayed(const Duration(milliseconds: 600));
+  Future<void> _loadAd(LanguageModel language) async {
+    await RewardedAd.load(
+      adUnitId: AppAds.rewardedAdUnitId,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (RewardedAd ad) async {
+          log('RewardedAd loaded.');
+          _rewardedAd = ad;
+
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (_) =>
+                log("Ad showed full screen content."),
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              log("Ad dismissed.");
+              isAdLoading = false;
+            },
+            onAdFailedToShowFullScreenContent: (ad, error) {
+              ad.dispose();
+              log("Ad failed to show: $error");
+            },
+            onAdImpression: (_) => log("Ad impression recorded."),
+            onAdClicked: (_) => log("Ad clicked."),
+          );
+
+          await ad.show(
+            onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+              log("User earned reward: ${reward.amount} ${reward.type}");
+              // onRewardEarned(); // Call the reward handler
+            },
+          );
+          isAdLoading = false;
+          if (!isAdLoading) {
+            Navigator.push(
+              navigatorKey.currentContext!,
+              MaterialPageRoute(
+                builder: (context) => QuizScreen(language: language),
+              ),
+            );
+          }
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          log('Failed to load RewardedAd: $error');
+          isAdLoading = false;
+        },
+      ),
+    );
+
+    // Optional delay to allow ad to start (not strictly necessary)
   }
 
   Future<void> quizReattempt(LanguageModel language) async {
-    await loadAd();
-    if (rewardedAd != null) {
-      rewardedAd?.show(
-          onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-        log("the reward ${rewardItem.amount}");
+    try {
+      // _rewardedAd?.dispose(); // Clean up any previous instance
+      _rewardedAd = null;
+      isAdLoading = true;
+      await _loadAd(language);
+      // await Future.delayed(const Duration(seconds: 2));
+      // if (!isAdLoad/ing)
 
-        // if(rewardItem.amount.i)
-        // Navigator.push(
-        //   navigatorKey.currentContext!,
-        //   MaterialPageRoute(
-        //     builder: (_) => QuizScreen(language: language),
-        //   ),
-        // );
-      });
+      // await _loadAd(onRewardEarned: onRewardEarned);
+    } catch (e) {
+      log("Error during quiz reattempt: $e");
     }
   }
 }
