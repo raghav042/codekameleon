@@ -322,7 +322,7 @@ class _QuizScreenState extends State<QuizScreen> {
         },
         thirdOption: "Re-Attempt",
         thirdClick: () async {
-          QuizProvider().quizReattempt(language); // await loadAd();
+          QuizHelper().quizReattempt(language); // await loadAd();
           // if (_rewardedAd != null) {
           //   _rewardedAd?.show(onUserEarnedReward:
           //       (AdWithoutView ad, RewardItem rewardItem) {

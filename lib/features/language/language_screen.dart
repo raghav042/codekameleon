@@ -64,7 +64,7 @@ class LanguageScreen extends StatelessWidget {
                         },
                         thirdOption: "Re-Attempt",
                         thirdClick: () async {
-                          QuizProvider()
+                          QuizHelper()
                               .quizReattempt(language); // await loadAd();
                           // if (_rewardedAd != null) {
                           //   _rewardedAd?.show(onUserEarnedReward:

@@ -113,7 +113,8 @@ class _QuizListState extends State<QuizList> {
                       },
                       thirdOption: "Re-Attempt",
                       thirdClick: () async {
-                        QuizProvider()
+                        log("the re attempt");
+                        await QuizHelper()
                             .quizReattempt(languages[i]); // await loadAd();
                         // if (_rewardedAd != null) {
                         //   _rewardedAd?.show(onUserEarnedReward:
