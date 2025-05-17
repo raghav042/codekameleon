@@ -20,7 +20,7 @@ class AppImages {
 
   static const String error = "$_imgPath/error.svg";
   static const String noData = "$_imgPath/no_data.svg";
-  static const String quiz = "$_imgPath/quiz.png";
+  static const String quiz = "$_imgPath/quiz.svg";
   static const String search = "$_imgPath/search.svg";
 
   static const List<String> images = [

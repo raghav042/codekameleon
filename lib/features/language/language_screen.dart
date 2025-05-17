@@ -2,7 +2,7 @@ import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/features/quiz/quiz_result.dart';
 import 'package:codekameleon/helper/ui_helper.dart';
 import 'package:codekameleon/preferences/preferences.dart';
-import 'package:codekameleon/provider/quiz_provider.dart';
+import 'package:codekameleon/helper/quiz_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';

@@ -2,12 +2,14 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:codekameleon/features/quiz/quiz_info.dart';
 import 'package:codekameleon/helper/app_helper.dart';
-import 'package:codekameleon/provider/quiz_provider.dart';
+import 'package:codekameleon/helper/quiz_helper.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:codekameleon/extension/context_extension.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +42,9 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return QuizInfo(language: widget.language);
+
+    Container(
       decoration: widget.language.quizes.isEmpty
           ? null
           : BoxDecoration(
@@ -433,4 +437,8 @@ class _QuizScreenState extends State<QuizScreen> {
     }
     // cubit.next();
   }
+
+
 }
+
+
