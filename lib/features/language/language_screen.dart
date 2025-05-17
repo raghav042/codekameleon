@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:codekameleon/extension/context_extension.dart';
 import 'package:codekameleon/features/quiz/quiz_result.dart';
 import 'package:codekameleon/helper/ui_helper.dart';
 import 'package:codekameleon/preferences/preferences.dart';
-import 'package:codekameleon/provider/quiz_provider.dart';
+import 'package:codekameleon/helper/quiz_helper.dart';
+import 'package:codekameleon/widgets/native_ad_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';
@@ -149,12 +153,21 @@ class LanguageScreen extends StatelessWidget {
             ),
           ];
         },
-        body: language.tutorials.isNotEmpty
-            ? TutorialList(language: language)
-            : const NoDataWidget(
-                imagePath: "assets/images/no_data.svg",
-                title: AppStrings.noTutorialsFound,
-              ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              language.tutorials.isNotEmpty
+                  ? TutorialList(language: language)
+                  : const NoDataWidget(
+                      imagePath: "assets/images/no_data.svg",
+                      title: AppStrings.noTutorialsFound,
+                    ),
+              const SizedBox(height: 40),
+              // const SizedBox(height: 20),
+              if (!kIsWeb && Platform.isAndroid) const NativeAdWidget(),
+            ],
+          ),
+        ),
       ),
     );
   }

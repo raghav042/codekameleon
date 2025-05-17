@@ -1,4 +1,4 @@
-import 'package:codekameleon/provider/quiz_provider.dart';
+import 'package:codekameleon/helper/quiz_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/auth/splash_screen.dart';
