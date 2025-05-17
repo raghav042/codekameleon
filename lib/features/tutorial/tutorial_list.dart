@@ -11,6 +11,7 @@ class TutorialList extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       primary: true,
+      physics: NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       itemCount: language.tutorials.length,
       itemBuilder: (_, index) {

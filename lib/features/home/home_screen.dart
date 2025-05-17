@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codekameleon/features/home/leaderboard_tile.dart';
 import 'package:codekameleon/features/home/search_field.dart';
@@ -7,11 +9,13 @@ import 'package:codekameleon/helper/language_helper.dart';
 import 'package:codekameleon/provider/user_provider.dart';
 import 'package:codekameleon/widgets/language_tile.dart';
 import 'package:codekameleon/widgets/heading.dart';
+import 'package:codekameleon/widgets/native_ad_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_strings.dart';
 import '../../widgets/recent_language_tile.dart';
-import '../notification/notification_screen.dart';
+// import '../notification/notification_screen.dart';
 import '../setting/setting_screen.dart';
 import 'package:provider/provider.dart';
 import 'quiz_list.dart';
@@ -94,7 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 100),
+                const SizedBox(height: 40),
+                // const SizedBox(height: 20),
+                if (!kIsWeb && Platform.isAndroid) const NativeAdWidget(),
               ],
             ),
           ),

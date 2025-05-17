@@ -55,7 +55,7 @@ class QuizInfo extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => QuizResultScreen(
                       language: language,
-                      result: const {},
+                      result: quizResult ?? {},
                     ), // Corrected class name
                   ),
                 );
